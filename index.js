@@ -1233,7 +1233,7 @@ bot.on('document', async (ctx) => {
             var botStatus3 = await bot.telegram.getChatMember(channelId, ctx.botInfo.id)
             var member3 = await bot.telegram.getChatMember(channelId, ctx.from.id)
             //console.log(member3);
-            if(!member3 || member3.status == 'left' || member3.status == 'kicked'){
+            if(member3.status == 'restricted' || member3.status == 'left' || member3.status == 'kicked'){
                 const profile6 = await bot.telegram.getUserProfilePhotos(ctx.chat.id)
                 if(!profile6 || profile6.total_count == 0)
                     return ctx.reply(`<a href="tg://user?id=${ctx.from.id}">${first_name(ctx)} ${last_name(ctx)}</a> \n\n${welcomejoin(ctx)}`,{
@@ -1520,7 +1520,7 @@ bot.on('video', async(ctx) => {
             var botStatus3 = await bot.telegram.getChatMember(channelId, ctx.botInfo.id)
             var member3 = await bot.telegram.getChatMember(channelId, ctx.from.id)
             //console.log(member3);
-            if(!member3 || member3.status == 'left' || member3.status == 'kicked'){
+            if(member3.status == 'restricted' || member3.status == 'left' || member3.status == 'kicked'){
                 const profile6 = await bot.telegram.getUserProfilePhotos(ctx.chat.id)
                 if(!profile6 || profile6.total_count == 0)
                     return ctx.reply(`<a href="tg://user?id=${ctx.from.id}">${first_name(ctx)} ${last_name(ctx)}</a> \n\n${welcomejoin(ctx)}`,{
@@ -1807,7 +1807,7 @@ bot.on('photo', async(ctx) => {
             var botStatus3 = await bot.telegram.getChatMember(channelId, ctx.botInfo.id)
             var member3 = await bot.telegram.getChatMember(channelId, ctx.from.id)
             //console.log(member3);
-            if(!member3 || member3.status == 'left' || member3.status == 'kicked'){
+                if(member3.status == 'restricted' || member3.status == 'left' || member3.status == 'kicked'){
                 const profile6 = await bot.telegram.getUserProfilePhotos(ctx.chat.id)
                 if(!profile6 || profile6.total_count == 0)
                     return ctx.reply(`<a href="tg://user?id=${ctx.from.id}">${first_name(ctx)} ${last_name(ctx)}</a> \n\n${welcomejoin(ctx)}`,{
