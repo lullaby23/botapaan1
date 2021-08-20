@@ -1219,7 +1219,7 @@ bot.on('document', async (ctx) => {
             //console.log(member3);
             if(member3.status == 'restricted' || member3.status == 'left' || member3.status == 'kicked'){
                 if(ctx.chat.type == 'private') {
-                    const profile6 = await bot.telegram.getUserProfilePhotos(ctx.chat.id)
+                    const profile6 = await bot.telegram.getUserProfilePhotos(ctx.from.id)
                     if(!profile6 || profile6.total_count == 0)
                         return ctx.reply(`<a href="tg://user?id=${ctx.from.id}">${first_name(ctx)} ${last_name(ctx)}</a> \n\n${welcomejoin(ctx)}`,{
                             parse_mode:'HTML',
@@ -1548,7 +1548,7 @@ bot.on('video', async (ctx) => {
             //console.log(member3);
             if(member3.status == 'restricted' || member3.status == 'left' || member3.status == 'kicked'){
                 if(ctx.chat.type == 'private') {
-                    const profile6 = await bot.telegram.getUserProfilePhotos(ctx.chat.id)
+                    const profile6 = await bot.telegram.getUserProfilePhotos(ctx.from.id)
                     if(!profile6 || profile6.total_count == 0)
                         return ctx.reply(`<a href="tg://user?id=${ctx.from.id}">${first_name(ctx)} ${last_name(ctx)}</a> \n\n${welcomejoin(ctx)}`,{
                             parse_mode:'HTML',
@@ -1877,7 +1877,7 @@ bot.on('photo', async (ctx) => {
             //console.log(member3);
             if(member3.status == 'restricted' || member3.status == 'left' || member3.status == 'kicked'){
                 if(ctx.chat.type == 'private') {
-                    const profile6 = await bot.telegram.getUserProfilePhotos(ctx.chat.id)
+                    const profile6 = await bot.telegram.getUserProfilePhotos(ctx.from.id)
                     if(!profile6 || profile6.total_count == 0)
                         return ctx.reply(`<a href="tg://user?id=${ctx.from.id}">${first_name(ctx)} ${last_name(ctx)}</a> \n\n${welcomejoin(ctx)}`,{
                             parse_mode:'HTML',
