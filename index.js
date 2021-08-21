@@ -84,7 +84,7 @@ const url4 = url2[1];
 const inKey = [
   [{text:'🔎 Pencarian',switch_inline_query:''},{text:'📎 Tautan',callback_data:'POP'}],
   [{text:'📚 Dokumentasi',callback_data:'DOC'},{text:'🆘 Bantuan',callback_data:'HELP'}],
-  [{text:'📰 Informasi BOT', url: 'https://t.me/ratufilesaver'}],
+  //[{text:'📰 Informasi BOT', url: 'https://t.me/ratufilesaver'}],
   [{text: `${url3}`, url: `${url4}`}]
 ];
 
@@ -327,30 +327,16 @@ bot.action('HELP',(ctx)=>{
         disable_web_page_preview: true,
         reply_markup:{
             inline_keyboard: [
-                [{text:'💿 Install',callback_data:'INS'},{text:'🪒 Perintah',callback_data:'COMM'}],
+                [{text:'💿 Sewa BOT',callback_data:'SEWABOT'},{text:'🪒 Perintah',callback_data:'COMM'}],
                 [{text:'Kembali',callback_data:'STARTUP'}]
             ]
         }
     })
 })
 
-bot.action('INS',(ctx)=>{
+bot.action('SEWABOT',(ctx)=>{
     ctx.deleteMessage()
-    ctx.reply(`${helpcommand.install}`,{
-        parse_mode: 'HTML',
-        disable_web_page_preview: true,
-        reply_markup:{
-            inline_keyboard: [
-                [{text:'💿 Heroku',callback_data:'INSTALL1'},{text:'💿 Komputer',callback_data:'INSTALL2'}],
-                [{text:'Kembali',callback_data:'HELP'}]
-            ]
-        }
-    })
-})
-
-bot.action('INSTALL1',(ctx)=>{
-    ctx.deleteMessage()
-    ctx.reply(`${helpcommand.botinstall1}`,{
+    ctx.reply(`${helpcommand.sewabot}`,{
         parse_mode: 'HTML',
         disable_web_page_preview: true,
         reply_markup:{
@@ -361,18 +347,45 @@ bot.action('INSTALL1',(ctx)=>{
     })
 })
 
-bot.action('INSTALL2',(ctx)=>{
-    ctx.deleteMessage()
-    ctx.reply(`${helpcommand.botinstall2}`,{
-        parse_mode: 'HTML',
-        disable_web_page_preview: true,
-        reply_markup:{
-            inline_keyboard: [
-                [{text:'Kembali',callback_data:'HELP'}]
-            ]
-        }
-    })
-})
+//bot.action('INS',(ctx)=>{
+//    ctx.deleteMessage()
+//    ctx.reply(`${helpcommand.install}`,{
+//        parse_mode: 'HTML',
+//        disable_web_page_preview: true,
+//        reply_markup:{
+//            inline_keyboard: [
+//                [{text:'💿 Heroku',callback_data:'INSTALL1'},{text:'💿 Komputer',callback_data:'INSTALL2'}],
+//                [{text:'Kembali',callback_data:'HELP'}]
+//            ]
+//        }
+//    })
+//})
+
+//bot.action('INSTALL1',(ctx)=>{
+//    ctx.deleteMessage()
+//    ctx.reply(`${helpcommand.botinstall1}`,{
+//        parse_mode: 'HTML',
+//        disable_web_page_preview: true,
+//        reply_markup:{
+//            inline_keyboard: [
+//                [{text:'Kembali',callback_data:'HELP'}]
+//            ]
+//        }
+//    })
+//})
+
+//bot.action('INSTALL2',(ctx)=>{
+//    ctx.deleteMessage()
+//    ctx.reply(`${helpcommand.botinstall2}`,{
+//        parse_mode: 'HTML',
+//        disable_web_page_preview: true,
+//        reply_markup:{
+//            inline_keyboard: [
+//                [{text:'Kembali',callback_data:'HELP'}]
+//            ]
+//        }
+//    })
+//})
 
 bot.action('COMM',(ctx)=>{
     ctx.deleteMessage()
