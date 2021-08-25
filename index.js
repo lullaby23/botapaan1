@@ -430,7 +430,7 @@ bot.hears('ping',(ctx)=>{
             }
         }
         var end = Date.now()/1000;
-        var timeSpent = (end-begin)+" secs";
+        var timeSpent = end-begin +" secs";
         return bot.telegram.sendMessage(chatId, `Merespon ${timeSpent}`, opts);
     }
 })
