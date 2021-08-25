@@ -160,28 +160,22 @@ bot.start(async(ctx)=>{
                             }
                             if(res2.type=='video'){
                                 if(!res2.caption)
-                                    return ctx.replyWithVideo(res2.file_id)
-                                    ctx.reply(setTimeout(captionFunction2, 1000))
+                                    return ctx.replyWithVideo(res2.file_id) + setTimeout(captionFunction, 1000)
                                     ctx.replyWithVideo(res2.file_id,{caption: `${res2.caption}`,
                                         parse_mode:'HTML'
-                                    })
-                                    ctx.reply(setTimeout(captionFunction2, 1000))
+                                    }) + setTimeout(captionFunction, 1000)
                             }else if(res2.type=='photo'){
                                 if(!res2.caption)
-                                    return ctx.replyWithPhoto(res2.file_id)
-                                    ctx.reply(setTimeout(captionFunction2, 1000))
+                                    return ctx.replyWithPhoto(res2.file_id) + setTimeout(captionFunction, 1000)
                                     ctx.replyWithPhoto(res2.file_id,{caption: `${res2.caption}`,
                                         parse_mode:'HTML'
-                                    })
-                                    ctx.reply(setTimeout(captionFunction2, 1000))
+                                    }) + setTimeout(captionFunction, 1000)
                             }else if(res2.type=='document'){
                                 if(!res2.caption)
-                                    return ctx.replyWithDocument(res2.file_id)
-                                    ctx.reply(setTimeout(captionFunction2, 1000))
+                                    return ctx.replyWithDocument(res2.file_id) + setTimeout(captionFunction, 1000)
                                     ctx.replyWithDocument(res2.file_id,{caption: `${res2.caption}`,
                                         parse_mode:'HTML'
-                                    })
-                                    ctx.reply(setTimeout(captionFunction2, 1000))
+                                    }) + setTimeout(captionFunction, 1000)
                             }
                         })
                     }catch(error){
