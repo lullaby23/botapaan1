@@ -448,7 +448,7 @@ bot.hears('ping',(ctx)=>{
                 inline_keyboard: [[{text:'OK',callback_data:'PONG'}]]
             }
         }
-        return bot.telegram.sendMessage(chatId, `pong ${Pinger_ping}` , opts);
+        return bot.telegram.sendMessage(chatId, `pong ${Pinger_ping(ip, callback)}` , opts);
     }
 })
 
