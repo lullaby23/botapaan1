@@ -428,10 +428,7 @@ bot.hears('ping',(ctx)=>{
                 inline_keyboard: [[{text:'OK',callback_data:'PONG'}]]
             }
         }
-        function ping() {
-            bot.telegram.sendMessage(chatId, 'pong', opts);
-        }
-        return + setTimeout(ping, 1000)
+        return bot.telegram.sendMessage(chatId, 'pong' , opts);
     }
 })
 
