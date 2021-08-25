@@ -429,7 +429,7 @@ bot.hears('ping',(ctx)=>{
             }
         }
         var begin=Date.now();
-        `halo`
+        something here ...;
         var end= Date.now();
 
         var timeSpent=(end-begin)/1000+" secs";
