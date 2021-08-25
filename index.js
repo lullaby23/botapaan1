@@ -429,9 +429,8 @@ bot.hears('ping',(ctx)=>{
             }
         }
         var end= Date.now();
-
         var timeSpent=end/1000+" secs";
-        return bot.telegram.sendMessage(chatId, `Merespon ${timeSpent}` , opts);
+        return bot.telegram.sendMessage(chatId, `Merespon ${timeSpent}`, opts);
     }
 })
 
