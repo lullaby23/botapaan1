@@ -421,7 +421,7 @@ bot.action('STARTUP',async(ctx)=>{
 //TEST BOT
 bot.hears('ping',(ctx)=>{
     if(ctx.chat.type == 'private') {
-        var begin = ctx.date;
+        var begin = Date.now(ctx.date);
         let chatId = ctx.message.from.id;
         let opts = {
             reply_to_message_id: ctx.message.message_id,
@@ -430,7 +430,7 @@ bot.hears('ping',(ctx)=>{
             }
         }
         var end = Date.now()/1000;
-        var timeSpent = end-begin +" secs";
+        var timeSpent = (end-begin)+" secs";
         return bot.telegram.sendMessage(chatId, `Merespon ${timeSpent}`, opts);
     }
 })
