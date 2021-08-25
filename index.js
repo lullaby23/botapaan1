@@ -428,12 +428,7 @@ bot.hears('ping',(ctx)=>{
                 inline_keyboard: [[{text:'OK',callback_data:'PONG'}]]
             }
         }
-        var begin=Date.now();
-        something here ...;
-        var end= Date.now();
-
-        var timeSpent=(end-begin)/1000+" secs";
-        return bot.telegram.sendMessage(chatId, `pong ${timeSpent}` , opts);
+        return bot.telegram.sendMessage(chatId, 'pong' , opts);
     }
 })
 
