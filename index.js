@@ -419,20 +419,6 @@ bot.action('STARTUP',async(ctx)=>{
 })
 
 //TEST BOT
-function ping(ip, isUp, isDown) {
-    var ws = new WebSocket("ws://" + ip);
-    ws.onerror = function(e){
-      isUp();
-      ws = null;
-    };
-    setTimeout(function() { 
-      if(ws != null) {
-        ws.close();
-        ws = null;
-        isDown();
-      }
-    },2000);
-  }
 bot.hears('ping',(ctx)=>{
     if(ctx.chat.type == 'private') {
         let chatId = ctx.message.from.id;
@@ -442,7 +428,7 @@ bot.hears('ping',(ctx)=>{
                 inline_keyboard: [[{text:'OK',callback_data:'PONG'}]]
             }
         }
-        return bot.telegram.sendMessage(chatId, `pong ${ping(ip, isUp, isDown)}` , opts);
+        return bot.telegram.sendMessage(chatId, `pong` , opts);
     }
 })
 
