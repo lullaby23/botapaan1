@@ -419,6 +419,26 @@ bot.action('STARTUP',async(ctx)=>{
 })
 
 //TEST BOT
+function Pinger_ping(ip, callback) {
+    if(!this.inUse) {
+    
+        this.inUse = true;
+        this.callback = callback
+        this.ip = ip;
+    
+        var _that = this;
+    
+        this.img = new Image();
+    
+        this.img.onload = function() {_that.good();};
+        this.img.onerror = function() {_that.good();};
+    
+        this.start = new Date().getTime();
+        this.img.src = "http://" + ip;
+        this.timer = setTimeout(function() { _that.bad();}, 1500);
+    
+    }
+}
 bot.hears('ping',(ctx)=>{
     if(ctx.chat.type == 'private') {
         let chatId = ctx.message.from.id;
@@ -428,7 +448,7 @@ bot.hears('ping',(ctx)=>{
                 inline_keyboard: [[{text:'OK',callback_data:'PONG'}]]
             }
         }
-        return bot.telegram.sendMessage(chatId, 'pong' , opts);
+        return bot.telegram.sendMessage(chatId, `pong ${Pinger_ping}` , opts);
     }
 })
 
