@@ -429,11 +429,9 @@ bot.hears('ping',(ctx)=>{
             }
         }
         function ping() {
-            ctx.reply(`'pong' `,{
-                parse_mode:'HTML'
-            })
+            bot.telegram.sendMessage(chatId, 'pong', opts);
         }
-        return bot.telegram.sendMessage(chatId, + setTimeout(ping, 1000), opts);
+        return + setTimeout(ping, 1000)
     }
 })
 
