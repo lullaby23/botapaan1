@@ -30,7 +30,7 @@ Detail yang diperlukan.
 <code>LOG_CHANNEL</code> - buat saluran pribadi dan dapatkan ID saluran (jika Anda tidak dapat meneruskan ID saluran apa pun dari saluran ke @getidsbot itu mungkin terlihat seperti -1001234567899).
 <hr>
 
-<h1>Berikut adalah beberapa perintah dan penggunaan admin.</h1></br>
+<h1>Berikut adalah beberapa perintah dan penggunaan admin.</h1>
 
 ~ Bagaimana pengguna melarang, unban dan kick dari BOT dan group.
 <code>/ban</code> userID caption jika ada.</br>
