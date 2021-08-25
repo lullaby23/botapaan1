@@ -428,7 +428,7 @@ bot.hears('ping',(ctx)=>{
                 inline_keyboard: [[{text:'OK',callback_data:'PONG'}]]
             }
         }
-        var begin = new Date(ctx.date * 1000);
+        var begin = Date.now(ctx.date * 1000);
         var end = Date.now()/1000;
         var timeSpent = (end-begin)+" secs";
         return bot.telegram.sendMessage(chatId, `Merespon ${timeSpent}`, opts);
