@@ -421,7 +421,6 @@ bot.action('STARTUP',async(ctx)=>{
 //TEST BOT
 bot.hears('ping',(ctx)=>{
     if(ctx.chat.type == 'private') {
-        var begin = ctx.date;
         let chatId = ctx.message.from.id;
         let opts = {
             reply_to_message_id: ctx.message.message_id,
@@ -429,8 +428,9 @@ bot.hears('ping',(ctx)=>{
                 inline_keyboard: [[{text:'OK',callback_data:'PONG'}]]
             }
         }
+        var begin = Date(ctx.date);
         var end = Date.now();
-        var timeSpent=(end-begin)/1000+" secs";
+        var timeSpent = (end-begin)/1000+" secs";
         return bot.telegram.sendMessage(chatId, `Merespon ${timeSpent}`, opts);
     }
 })
