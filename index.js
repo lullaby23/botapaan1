@@ -435,7 +435,10 @@ bot.hears('ping',(ctx)=>{
                 inline_keyboard: [[{text:'OK',callback_data:'PONG'}]]
             }
         }
-        return bot.telegram.sendMessage(chatId, 'pong' , opts);
+        const t0 = performance.now(ctx.update);
+        bot.telegram.sendMessage(chatId, 'pong');
+        const t1 = performance.now();
+        bot.telegram.sendMessage(chatId, `${t1 - t0}` , opts);
     }
 })
 
