@@ -428,7 +428,7 @@ bot.action('STARTUP',async(ctx)=>{
 //TEST BOT
 bot.hears('ping',(ctx)=>{
     if(ctx.chat.type == 'private') {
-        const t0 = performance.now(ctx.date);
+        const t0 = performance.now();
         let chatId = ctx.message.from.id;
         let opts = {
             reply_to_message_id: ctx.message.message_id,
