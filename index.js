@@ -97,7 +97,7 @@ bot.use(async (ctx, next) => {
     await next() // runs next middleware
     // runs after next middleware finishes
     console.timeEnd(`Processing update ${ctx.update.update_id}`)
-  })
+})
 
 //BOT START
 bot.start(async(ctx)=>{
