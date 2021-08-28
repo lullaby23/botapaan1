@@ -2,6 +2,8 @@ require('dotenv').config()
 const { Telegraf } = require('telegraf')
 const rateLimit = require('telegraf-ratelimit')
 
+const bot = new Telegraf(process.env.TOKEN)
+
 telegraf.use(rateLimit(config))
 
 //limit send media
@@ -13,7 +15,6 @@ const documentLimitConfig = {
     },
     onLimitExceeded: (ctx, next) => ctx.reply('Kiriman selanjutnya sedang menunggu')
 }
-
 const videoLimitConfig = {
     window: 60 * 1000,
     limit: 10,
@@ -22,7 +23,6 @@ const videoLimitConfig = {
     },
     onLimitExceeded: (ctx, next) => ctx.reply('Kiriman selanjutnya sedang menunggu')
 }
-
 const photoLimitConfig = {
     window: 60 * 1000,
     limit: 10,
@@ -31,8 +31,6 @@ const photoLimitConfig = {
     },
     onLimitExceeded: (ctx, next) => ctx.reply('Kiriman selanjutnya sedang menunggu')
 }
-
-const bot = new Telegraf(process.env.TOKEN)
 
 process.env.TZ = "Asia/Jakarta";
 
