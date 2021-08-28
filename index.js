@@ -1,14 +1,41 @@
 require('dotenv').config()
-const { Telegraf } = require('telegraf')
+const Telegraf = require('telegraf')
 const rateLimit = require('telegraf-ratelimit')
-// Set limit to 1 message per 3 seconds
-const limitConfig = {
-    window: 3000,
+  
+//limit send media
+const documentLimitConfig = {
+    window: 60 * 1000,
     limit: 10,
-    onLimitExceeded: (ctx, next) => ctx.reply('Batas kirim, tunggu 3 detik')
+    keyGenerator: function (ctx) {
+      return ctx.chat.id
+    },
+    onLimitExceeded: (ctx, next) => ctx.reply('Kiriman selanjutnya sedang menunggu')
 }
+
+const videoLimitConfig = {
+    window: 60 * 1000,
+    limit: 10,
+    keyGenerator: function (ctx) {
+      return ctx.chat.id
+    },
+    onLimitExceeded: (ctx, next) => ctx.reply('Kiriman selanjutnya sedang menunggu')
+}
+
+const photoLimitConfig = {
+    window: 60 * 1000,
+    limit: 10,
+    keyGenerator: function (ctx) {
+      return ctx.chat.id
+    },
+    onLimitExceeded: (ctx, next) => ctx.reply('Kiriman selanjutnya sedang menunggu')
+}
+
 const bot = new Telegraf(process.env.TOKEN)
 bot.use(rateLimit(limitConfig))
+
+function keyGenerator(ctx) {
+    return ctx.from.id
+}
 
 process.env.TZ = "Asia/Jakarta";
 
@@ -1118,7 +1145,7 @@ bot.command('unbanchat', (ctx) => {
 })
 
 //saving documents to db and generating link
-bot.on('document', async (ctx) => {
+bot.on('document', rateLimit(documentLimitConfig), (ctx) => {
     if(ctx.chat.type == 'private') {
         document = ctx.message.document
         //console.log(ctx);
@@ -1451,7 +1478,7 @@ bot.on('document', async (ctx) => {
 })
 
 //video files
-bot.on('video', async (ctx) => {
+bot.on('video', rateLimit(videoLimitConfig), (ctx) => {
     if(ctx.chat.type == 'private') {
         video = ctx.message.video
         //console.log(ctx);
@@ -1784,7 +1811,7 @@ bot.on('video', async (ctx) => {
 })
 
 //photo files
-bot.on('photo', async (ctx) => {
+bot.on('photo', rateLimit(documentLimitConfig), (ctx) => {
     
     if(ctx.chat.type == 'private') {
         photo = ctx.message.photo
