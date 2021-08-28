@@ -1,6 +1,14 @@
 require('dotenv').config()
 const { Telegraf } = require('telegraf')
+const rateLimit = require('telegraf-ratelimit')
+// Set limit to 1 message per 3 seconds
+const limitConfig = {
+    window: 3000,
+    limit: 10,
+    onLimitExceeded: (ctx, next) => ctx.reply('Batas kirim, tunggu 3 detik')
+}
 const bot = new Telegraf(process.env.TOKEN)
+bot.use(rateLimit(limitConfig))
 
 process.env.TZ = "Asia/Jakarta";
 
