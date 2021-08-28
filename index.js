@@ -1,5 +1,5 @@
 require('dotenv').config()
-const { Telegraf } = require('telegraf')
+const Telegraf = require('telegraf')
 const rateLimit = require('telegraf-ratelimit')
 // Set limit to 1 message per 3 seconds
 const limitConfig = {
