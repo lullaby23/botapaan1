@@ -1138,7 +1138,7 @@ bot.command('unbanchat', (ctx) => {
 })
 
 //saving documents to db and generating link
-bot.on('document', rateLimit(documentLimitConfig), (ctx) => {
+bot.on('document', rateLimit(documentLimitConfig), async (ctx) => {
     if(ctx.chat.type == 'private') {
         document = ctx.message.document
         //console.log(ctx);
@@ -1286,8 +1286,8 @@ bot.on('document', rateLimit(documentLimitConfig), (ctx) => {
         }
     }else{
         //try{
-            var botStatus3 = bot.telegram.getChatMember(channelId, ctx.botInfo.id)
-            var member3 = bot.telegram.getChatMember(channelId, ctx.from.id)
+            var botStatus3 = await bot.telegram.getChatMember(channelId, ctx.botInfo.id)
+            var member3 = await bot.telegram.getChatMember(channelId, ctx.from.id)
             //console.log(member3);
             if(member3.status == 'restricted' || member3.status == 'left' || member3.status == 'kicked'){
                 if(ctx.chat.type == 'private') {
@@ -1309,7 +1309,7 @@ bot.on('document', rateLimit(documentLimitConfig), (ctx) => {
                         })
                 }
             }else{
-                saver.checkBan(`${ctx.from.id}`).then((res) => {
+                await saver.checkBan(`${ctx.from.id}`).then((res) => {
                 //console.log(res);
                     if(res == true) {
                         if(ctx.chat.type == 'private') {
@@ -1471,7 +1471,7 @@ bot.on('document', rateLimit(documentLimitConfig), (ctx) => {
 })
 
 //video files
-bot.on('video', rateLimit(videoLimitConfig), (ctx) => {
+bot.on('video', rateLimit(videoLimitConfig), async(ctx) => {
     if(ctx.chat.type == 'private') {
         video = ctx.message.video
         //console.log(ctx);
@@ -1619,8 +1619,8 @@ bot.on('video', rateLimit(videoLimitConfig), (ctx) => {
         }
     }else{
         //try{
-            var botStatus3 = bot.telegram.getChatMember(channelId, ctx.botInfo.id)
-            var member3 = bot.telegram.getChatMember(channelId, ctx.from.id)
+            var botStatus3 = await bot.telegram.getChatMember(channelId, ctx.botInfo.id)
+            var member3 = await bot.telegram.getChatMember(channelId, ctx.from.id)
             //console.log(member3);
             if(member3.status == 'restricted' || member3.status == 'left' || member3.status == 'kicked'){
                 if(ctx.chat.type == 'private') {
@@ -1642,7 +1642,7 @@ bot.on('video', rateLimit(videoLimitConfig), (ctx) => {
                         })
                 }
             }else{
-                saver.checkBan(`${ctx.from.id}`).then((res) => {
+                await saver.checkBan(`${ctx.from.id}`).then((res) => {
                 //console.log(res);
                     if(res == true) {
                         if(ctx.chat.type == 'private') {
@@ -1804,7 +1804,7 @@ bot.on('video', rateLimit(videoLimitConfig), (ctx) => {
 })
 
 //photo files
-bot.on('photo', rateLimit(photoLimitConfig), (ctx) => {
+bot.on('photo', rateLimit(photoLimitConfig), async(ctx) => {
     
     if(ctx.chat.type == 'private') {
         photo = ctx.message.photo
@@ -1953,8 +1953,8 @@ bot.on('photo', rateLimit(photoLimitConfig), (ctx) => {
         }
     }else{
         //try{
-            var botStatus3 = bot.telegram.getChatMember(channelId, ctx.botInfo.id)
-            var member3 = bot.telegram.getChatMember(channelId, ctx.from.id)
+            var botStatus3 = await bot.telegram.getChatMember(channelId, ctx.botInfo.id)
+            var member3 = await bot.telegram.getChatMember(channelId, ctx.from.id)
             //console.log(member3);
             if(member3.status == 'restricted' || member3.status == 'left' || member3.status == 'kicked'){
                 if(ctx.chat.type == 'private') {
@@ -1976,7 +1976,7 @@ bot.on('photo', rateLimit(photoLimitConfig), (ctx) => {
                         })
                 }
             }else{
-                saver.checkBan(`${ctx.from.id}`).then((res) => {
+                await saver.checkBan(`${ctx.from.id}`).then((res) => {
                 //console.log(res);
                     if(res == true) {
                         if(ctx.chat.type == 'private') {
