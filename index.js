@@ -1811,7 +1811,7 @@ bot.on('video', rateLimit(videoLimitConfig), (ctx) => {
 })
 
 //photo files
-bot.on('photo', rateLimit(documentLimitConfig), (ctx) => {
+bot.on('photo', rateLimit(photoLimitConfig), (ctx) => {
     
     if(ctx.chat.type == 'private') {
         photo = ctx.message.photo
