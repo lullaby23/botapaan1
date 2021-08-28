@@ -7,7 +7,7 @@ const documentLimitConfig = {
     window: 60000,
     limit: 10,
     keyGenerator: function (ctx) {
-      return ctx.from.id
+      return ctx.chat.id
     },
     onLimitExceeded: (ctx, next) => ctx.reply(`Anda tidak bisa mengirim sampai menunggu 1 menit, limit sekali kirim maksimal 10 media`)
 }
@@ -15,7 +15,7 @@ const videoLimitConfig = {
     window: 60000,
     limit: 10,
     keyGenerator: function (ctx) {
-      return ctx.from.id
+      return ctx.chat.id
     },
     onLimitExceeded: (ctx, next) => ctx.reply(`Anda tidak bisa mengirim sampai menunggu 1 menit, limit sekali kirim maksimal 10 media`)
 }
@@ -23,7 +23,7 @@ const photoLimitConfig = {
     window: 60000,
     limit: 10,
     keyGenerator: function (ctx) {
-      return ctx.from.id
+      return ctx.chat.id
     },
     onLimitExceeded: (ctx, next) => ctx.reply(`Anda tidak bisa mengirim sampai menunggu 1 menit, limit sekali kirim maksimal 10 media`)
 }
