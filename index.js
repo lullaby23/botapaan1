@@ -1,11 +1,10 @@
 require('dotenv').config()
-const { Telegraf } = require('telegraf')
+const Telegraf = require('telegraf')
 const rateLimit = require('telegraf-ratelimit')
 
 const bot = new Telegraf(process.env.TOKEN)
 
 bot.use(rateLimit(config))
-
 //limit send media
 const documentLimitConfig = {
     window: 60 * 1000,
