@@ -1,33 +1,5 @@
 require('dotenv').config()
 const { Telegraf } = require('telegraf')
-const rateLimit = require('telegraf-ratelimit')
-
-//limit send media
-const documentLimitConfig = {
-    window: 60000,
-    limit: 10,
-    keyGenerator: function (ctx) {
-      return ctx.chat.id
-    },
-    onLimitExceeded: (ctx, next) => ctx.reply(`Anda tidak bisa mengirim sampai menunggu 1 menit, limit sekali kirim maksimal 10 media`)
-}
-const videoLimitConfig = {
-    window: 60000,
-    limit: 10,
-    keyGenerator: function (ctx) {
-      return ctx.chat.id
-    },
-    onLimitExceeded: (ctx, next) => ctx.reply(`Anda tidak bisa mengirim sampai menunggu 1 menit, limit sekali kirim maksimal 10 media`)
-}
-const photoLimitConfig = {
-    window: 60000,
-    limit: 10,
-    keyGenerator: function (ctx) {
-      return ctx.chat.id
-    },
-    onLimitExceeded: (ctx, next) => ctx.reply(`Anda tidak bisa mengirim sampai menunggu 1 menit, limit sekali kirim maksimal 10 media`)
-}
-
 const bot = new Telegraf(process.env.TOKEN)
 
 process.env.TZ = "Asia/Jakarta";
@@ -1138,7 +1110,7 @@ bot.command('unbanchat', (ctx) => {
 })
 
 //saving documents to db and generating link
-bot.on('document', rateLimit(documentLimitConfig), async (ctx) => {
+bot.on('document', async (ctx) => {
     if(ctx.chat.type == 'private') {
         document = ctx.message.document
         //console.log(ctx);
@@ -1471,7 +1443,7 @@ bot.on('document', rateLimit(documentLimitConfig), async (ctx) => {
 })
 
 //video files
-bot.on('video', rateLimit(videoLimitConfig), async(ctx) => {
+bot.on('video', async(ctx) => {
     if(ctx.chat.type == 'private') {
         video = ctx.message.video
         //console.log(ctx);
@@ -1804,7 +1776,7 @@ bot.on('video', rateLimit(videoLimitConfig), async(ctx) => {
 })
 
 //photo files
-bot.on('photo', rateLimit(photoLimitConfig), async(ctx) => {
+bot.on('photo', async(ctx) => {
     
     if(ctx.chat.type == 'private') {
         photo = ctx.message.photo
