@@ -30,8 +30,6 @@ const photoLimitConfig = {
 
 const bot = new Telegraf(process.env.TOKEN)
 
-bot.use(rateLimit(config))
-
 process.env.TZ = "Asia/Jakarta";
 
 //database
