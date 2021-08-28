@@ -1,7 +1,9 @@
 require('dotenv').config()
 const { Telegraf } = require('telegraf')
 const rateLimit = require('telegraf-ratelimit')
-  
+
+telegraf.use(rateLimit(config))
+
 //limit send media
 const documentLimitConfig = {
     window: 60 * 1000,
@@ -31,11 +33,6 @@ const photoLimitConfig = {
 }
 
 const bot = new Telegraf(process.env.TOKEN)
-bot.use(rateLimit(limitConfig))
-
-function keyGenerator(ctx) {
-    return ctx.from.id
-}
 
 process.env.TZ = "Asia/Jakarta";
 
