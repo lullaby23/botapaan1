@@ -2,9 +2,9 @@ require('dotenv').config()
 const Telegraf = require('telegraf')
 const rateLimit = require('telegraf-ratelimit')
 
-const bot = new Telegraf(process.env.TOKEN)
+const telegraf = new Telegraf(process.env.TOKEN)
 
-bot.use(rateLimit(config))
+telegraf.use(rateLimit(config))
 //limit send media
 const documentLimitConfig = {
     window: 60 * 1000,
@@ -122,7 +122,7 @@ const inKey2 = [
 ];
 
 //BOT START
-bot.start(async(ctx)=>{
+telegraf.start(async(ctx)=>{
 
     if(ctx.chat.type == 'private') {
         msg = ctx.message.text
@@ -139,7 +139,7 @@ bot.start(async(ctx)=>{
         if(ctx.from.id == process.env.ADMIN || ctx.from.id == process.env.ADMIN1 || ctx.from.id == process.env.ADMIN2){
             //welcoming message on /start and ifthere is a query available we can send files
             if(length == 1){
-                const profile = await bot.telegram.getUserProfilePhotos(ctx.from.id)
+                const profile = await telegraf.telegram.getUserProfilePhotos(ctx.from.id)
                 if(!profile || profile.total_count == 0)
                     return ctx.reply(`<a href="tg://user?id=${ctx.from.id}">${first_name(ctx)} ${last_name(ctx)}</a> \n\n${messagewelcome(ctx)}`,{
                         parse_mode:'HTML',
@@ -214,11 +214,11 @@ bot.start(async(ctx)=>{
             }
         }else{
             try {
-                var botStatus = await bot.telegram.getChatMember(channelId, ctx.botInfo.id)
-                var member = await bot.telegram.getChatMember(channelId, ctx.from.id)
+                var botStatus = await telegraf.telegram.getChatMember(channelId, ctx.botInfo.id)
+                var member = await telegraf.telegram.getChatMember(channelId, ctx.from.id)
                 //console.log(member);
                 if(member.status == 'restricted' || member.status == 'left' || member.status == 'kicked'){
-                    const profile2 = await bot.telegram.getUserProfilePhotos(ctx.from.id)
+                    const profile2 = await telegraf.telegram.getUserProfilePhotos(ctx.from.id)
                     if(!profile2 || profile2.total_count == 0)
                         return ctx.reply(`<a href="tg://user?id=${ctx.from.id}">${first_name(ctx)} ${last_name(ctx)}</a> \n\n${welcomejoin(ctx)}`,{
                             parse_mode:'HTML',
@@ -237,7 +237,7 @@ bot.start(async(ctx)=>{
                 }else{
                     //welcoming message on /start and ifthere is a query available we can send files
                     if(length == 1){
-                        const profile3 = await bot.telegram.getUserProfilePhotos(ctx.from.id)
+                        const profile3 = await telegraf.telegram.getUserProfilePhotos(ctx.from.id)
                         if(!profile3 || profile3.total_count == 0)
                             return ctx.reply(`<a href="tg://user?id=${ctx.from.id}">${first_name(ctx)} ${last_name(ctx)}</a> \n\n${messagewelcome(ctx)}`,{
                                 parse_mode:'HTML',
@@ -322,7 +322,7 @@ bot.start(async(ctx)=>{
 })
 
 //DEFINING POP CALLBACK
-bot.action('POP',(ctx)=>{
+telegraf.action('POP',(ctx)=>{
     ctx.deleteMessage()
     ctx.reply(`${messagelink(ctx)}`,{
         parse_mode: 'HTML',
@@ -335,7 +335,7 @@ bot.action('POP',(ctx)=>{
 })
 
 //DEFINING DOC CALLBACK
-bot.action('DOC',(ctx)=>{
+telegraf.action('DOC',(ctx)=>{
     ctx.deleteMessage()
     ctx.reply(`${documentation(ctx)}`,{
         parse_mode: 'HTML',
@@ -347,7 +347,7 @@ bot.action('DOC',(ctx)=>{
     })
 })
 
-bot.action('HELP',(ctx)=>{
+telegraf.action('HELP',(ctx)=>{
     ctx.deleteMessage()
     ctx.reply(`${helpcommand.bothelp}`,{
         parse_mode: 'HTML',
@@ -361,7 +361,7 @@ bot.action('HELP',(ctx)=>{
     })
 })
 
-bot.action('SEWABOT',(ctx)=>{
+telegraf.action('SEWABOT',(ctx)=>{
     ctx.deleteMessage()
     ctx.reply(`${helpcommand.sewabot}`,{
         parse_mode: 'HTML',
@@ -374,7 +374,7 @@ bot.action('SEWABOT',(ctx)=>{
     })
 })
 
-//bot.action('INS',(ctx)=>{
+//telegraf.action('INS',(ctx)=>{
 //    ctx.deleteMessage()
 //    ctx.reply(`${helpcommand.install}`,{
 //        parse_mode: 'HTML',
@@ -388,7 +388,7 @@ bot.action('SEWABOT',(ctx)=>{
 //    })
 //})
 
-//bot.action('INSTALL1',(ctx)=>{
+//telegraf.action('INSTALL1',(ctx)=>{
 //    ctx.deleteMessage()
 //    ctx.reply(`${helpcommand.botinstall1}`,{
 //        parse_mode: 'HTML',
@@ -401,7 +401,7 @@ bot.action('SEWABOT',(ctx)=>{
 //    })
 //})
 
-//bot.action('INSTALL2',(ctx)=>{
+//telegraf.action('INSTALL2',(ctx)=>{
 //    ctx.deleteMessage()
 //    ctx.reply(`${helpcommand.botinstall2}`,{
 //        parse_mode: 'HTML',
@@ -414,7 +414,7 @@ bot.action('SEWABOT',(ctx)=>{
 //    })
 //})
 
-bot.action('COMM',(ctx)=>{
+telegraf.action('COMM',(ctx)=>{
     ctx.deleteMessage()
     ctx.reply(`${helpcommand.botcommand}`,{
         parse_mode: 'HTML',
@@ -427,9 +427,9 @@ bot.action('COMM',(ctx)=>{
     })
 })
 
-bot.action('STARTUP',async(ctx)=>{
+telegraf.action('STARTUP',async(ctx)=>{
     ctx.deleteMessage()
-    const profile = await bot.telegram.getUserProfilePhotos(ctx.from.id)
+    const profile = await telegraf.telegram.getUserProfilePhotos(ctx.from.id)
     if(!profile || profile.total_count == 0)
         return ctx.reply(`<a href="tg://user?id=${ctx.from.id}">${first_name(ctx)} ${last_name(ctx)}</a> \n\n${messagewelcome(ctx)}`,{
             parse_mode:'HTML',
@@ -448,7 +448,7 @@ bot.action('STARTUP',async(ctx)=>{
 })
 
 //TEST BOT
-bot.hears('ping',(ctx)=>{
+telegraf.hears('ping',(ctx)=>{
     if(ctx.chat.type == 'private') {
         let chatId = ctx.message.from.id;
         let opts = {
@@ -457,19 +457,19 @@ bot.hears('ping',(ctx)=>{
                 inline_keyboard: [[{text:'OK',callback_data:'PONG'}]]
             }
         }
-        return bot.telegram.sendMessage(chatId, 'pong' , opts);
+        return telegraf.telegram.sendMessage(chatId, 'pong' , opts);
     }
 })
 
-bot.action('PONG',(ctx)=>{
+telegraf.action('PONG',(ctx)=>{
     ctx.deleteMessage()
 })
 
 //GROUP COMMAND
-bot.command('reload',async(ctx)=>{
+telegraf.command('reload',async(ctx)=>{
 
-    var botStatus = await bot.telegram.getChatMember(ctx.chat.id, ctx.botInfo.id)
-    var memberstatus = await bot.telegram.getChatMember(ctx.chat.id, ctx.from.id)
+    var botStatus = await telegraf.telegram.getChatMember(ctx.chat.id, ctx.botInfo.id)
+    var memberstatus = await telegraf.telegram.getChatMember(ctx.chat.id, ctx.from.id)
     //console.log(memberstatus);
     group = {
         groupId:ctx.chat.id
@@ -486,7 +486,7 @@ bot.command('reload',async(ctx)=>{
     }
 })
 
-bot.command('kick',async(ctx)=>{
+telegraf.command('kick',async(ctx)=>{
     groupDetails = await saver.getGroup().then((res)=>{
         n = res.length
         groupId = []
@@ -495,8 +495,8 @@ bot.command('kick',async(ctx)=>{
         }
         async function kick() {
             for (const group of groupId) {
-                var botStatus = await bot.telegram.getChatMember(group, ctx.botInfo.id)
-                var memberstatus = await bot.telegram.getChatMember(group, ctx.from.id)
+                var botStatus = await telegraf.telegram.getChatMember(group, ctx.botInfo.id)
+                var memberstatus = await telegraf.telegram.getChatMember(group, ctx.from.id)
                 //console.log(memberstatus);
 
                 if(ctx.chat.type == 'group' || ctx.chat.type == 'supergroup') {
@@ -504,33 +504,33 @@ bot.command('kick',async(ctx)=>{
                         if(memberstatus.can_restrict_members == true){                
                             if(ctx.message.reply_to_message == undefined){
                                 let args = ctx.message.text.split(" ").slice(1)
-                                await bot.telegram.kickChatMember(ctx.chat.id, args[0]).then(result=>{
+                                await telegraf.telegram.kickChatMember(ctx.chat.id, args[0]).then(result=>{
                                     //console.log(result)
                                 })
                             }
-                            await bot.telegram.kickChatMember(ctx.chat.id, ctx.message.reply_to_message.from.id).then(result=>{
+                            await telegraf.telegram.kickChatMember(ctx.chat.id, ctx.message.reply_to_message.from.id).then(result=>{
                                 //console.log(result)
                             })
                         }
                     }else if(memberstatus.status == 'creator'){
                         if(ctx.message.reply_to_message == undefined){
                             let args = ctx.message.text.split(" ").slice(1)
-                            await bot.telegram.kickChatMember(ctx.chat.id, args[0]).then(result=>{
+                            await telegraf.telegram.kickChatMember(ctx.chat.id, args[0]).then(result=>{
                                 //console.log(result)
                             })
                         }
-                        await bot.telegram.kickChatMember(ctx.chat.id, ctx.message.reply_to_message.from.id).then(result=>{
+                        await telegraf.telegram.kickChatMember(ctx.chat.id, ctx.message.reply_to_message.from.id).then(result=>{
                             //console.log(result)
                         })
                     }else{
                         if(ctx.from.username == 'GroupAnonymousBot'){
                             if(ctx.message.reply_to_message == undefined){
                                 let args = ctx.message.text.split(" ").slice(1)
-                                await bot.telegram.kickChatMember(ctx.chat.id, args[0]).then(result=>{
+                                await telegraf.telegram.kickChatMember(ctx.chat.id, args[0]).then(result=>{
                                     //console.log(result)
                                 })
                             }
-                            await bot.telegram.kickChatMember(ctx.chat.id, ctx.message.reply_to_message.from.id).then(result=>{
+                            await telegraf.telegram.kickChatMember(ctx.chat.id, ctx.message.reply_to_message.from.id).then(result=>{
                                 //console.log(result)
                             })
                         }
@@ -542,7 +542,7 @@ bot.command('kick',async(ctx)=>{
     })
 })
 
-bot.command('ban',async(ctx)=>{
+telegraf.command('ban',async(ctx)=>{
     groupDetails = await saver.getGroup().then((res)=>{
         n = res.length
         groupId = []
@@ -551,8 +551,8 @@ bot.command('ban',async(ctx)=>{
         }
         async function ban() {
             for (const group of groupId) {
-                var botStatus = await bot.telegram.getChatMember(group, ctx.botInfo.id)
-                var memberstatus = await bot.telegram.getChatMember(group, ctx.from.id)
+                var botStatus = await telegraf.telegram.getChatMember(group, ctx.botInfo.id)
+                var memberstatus = await telegraf.telegram.getChatMember(group, ctx.from.id)
                 //console.log(memberstatus);
 
                 if(ctx.chat.type == 'group' || ctx.chat.type == 'supergroup') {
@@ -567,7 +567,7 @@ bot.command('ban',async(ctx)=>{
                                 const caption = words.join(" ");
                                 const caption2 = caption ? `\n<b>Karena:</b> ${caption}` : "";
 
-                                await bot.telegram.callApi('banChatMember', {
+                                await telegraf.telegram.callApi('banChatMember', {
                                 chat_id: ctx.message.chat.id,
                                 user_id: userId
                                 }).then(result=>{
@@ -576,7 +576,7 @@ bot.command('ban',async(ctx)=>{
                                         parse_mode: 'HTML',
                                         reply_to_message_id: ctx.message.message_id
                                     })
-                                    return bot.telegram.sendMessage(userId, `Anda telah diblokir di ${ctx.message.chat.title} ${caption2}`)
+                                    return telegraf.telegram.sendMessage(userId, `Anda telah diblokir di ${ctx.message.chat.title} ${caption2}`)
                                 })
                             }
 
@@ -586,7 +586,7 @@ bot.command('ban',async(ctx)=>{
                             const caption = words.join(" ");
                             const caption2 = caption ? `\n<b>Karena:</b> ${caption}` : "";
 
-                            await bot.telegram.callApi('banChatMember', {
+                            await telegraf.telegram.callApi('banChatMember', {
                             chat_id: ctx.message.chat.id,
                             user_id: ctx.message.reply_to_message.from.id
                             }).then(result=>{
@@ -597,7 +597,7 @@ bot.command('ban',async(ctx)=>{
                                     parse_mode: 'HTML',
                                     reply_to_message_id: ctx.message.reply_to_message.message_id
                                 })
-                                return bot.telegram.sendMessage(userId, `Anda telah diblokir di ${ctx.message.chat.title} ${caption2}`)
+                                return telegraf.telegram.sendMessage(userId, `Anda telah diblokir di ${ctx.message.chat.title} ${caption2}`)
                             })
                         }
                     }else if(memberstatus.status == 'creator'){
@@ -610,7 +610,7 @@ bot.command('ban',async(ctx)=>{
                             const caption = words.join(" ");
                             const caption2 = caption ? `\n<b>Karena:</b> ${caption}` : "";
 
-                            await bot.telegram.callApi('banChatMember', {
+                            await telegraf.telegram.callApi('banChatMember', {
                             chat_id: ctx.message.chat.id,
                             user_id: userId
                             }).then(result=>{
@@ -619,7 +619,7 @@ bot.command('ban',async(ctx)=>{
                                     parse_mode: 'HTML',
                                     reply_to_message_id: ctx.message.message_id
                                 })
-                                return bot.telegram.sendMessage(userId, `Anda telah diblokir di ${ctx.message.chat.title} ${caption2}`)
+                                return telegraf.telegram.sendMessage(userId, `Anda telah diblokir di ${ctx.message.chat.title} ${caption2}`)
                              })
                         }
 
@@ -629,7 +629,7 @@ bot.command('ban',async(ctx)=>{
                         const caption = words.join(" ");
                         const caption2 = caption ? `\n<b>Karena:</b> ${caption}` : "";
 
-                        await bot.telegram.callApi('banChatMember', {
+                        await telegraf.telegram.callApi('banChatMember', {
                         chat_id: ctx.message.chat.id,
                         user_id: ctx.message.reply_to_message.from.id
                         }).then(result=>{
@@ -640,7 +640,7 @@ bot.command('ban',async(ctx)=>{
                                 parse_mode: 'HTML',
                                 reply_to_message_id: ctx.message.reply_to_message.message_id
                             })
-                            return bot.telegram.sendMessage(userId, `Anda telah diblokir di ${ctx.message.chat.title} ${caption2}`)
+                            return telegraf.telegram.sendMessage(userId, `Anda telah diblokir di ${ctx.message.chat.title} ${caption2}`)
                          })
                     }else{
                         if(ctx.from.username == 'GroupAnonymousBot'){
@@ -653,7 +653,7 @@ bot.command('ban',async(ctx)=>{
                                 const caption = words.join(" ");
                                 const caption2 = caption ? `\n<b>Karena:</b> ${caption}` : "";
     
-                                await bot.telegram.callApi('banChatMember', {
+                                await telegraf.telegram.callApi('banChatMember', {
                                 chat_id: ctx.message.chat.id,
                                 user_id: userId
                                 }).then(result=>{
@@ -662,7 +662,7 @@ bot.command('ban',async(ctx)=>{
                                         parse_mode: 'HTML',
                                         reply_to_message_id: ctx.message.message_id
                                     })
-                                    return bot.telegram.sendMessage(userId, `Anda telah diblokir di ${ctx.message.chat.title} ${caption2}`)
+                                    return telegraf.telegram.sendMessage(userId, `Anda telah diblokir di ${ctx.message.chat.title} ${caption2}`)
                                 })
                             }
     
@@ -672,7 +672,7 @@ bot.command('ban',async(ctx)=>{
                             const caption = words.join(" ");
                             const caption2 = caption ? `\n<b>Karena:</b> ${caption}` : "";
     
-                            await bot.telegram.callApi('banChatMember', {
+                            await telegraf.telegram.callApi('banChatMember', {
                             chat_id: ctx.message.chat.id,
                             user_id: ctx.message.reply_to_message.from.id
                             }).then(result=>{
@@ -683,7 +683,7 @@ bot.command('ban',async(ctx)=>{
                                     parse_mode: 'HTML',
                                     reply_to_message_id: ctx.message.reply_to_message.message_id
                                 })
-                                return bot.telegram.sendMessage(userId, `Anda telah diblokir di ${ctx.message.chat.title} ${caption2}`)
+                                return telegraf.telegram.sendMessage(userId, `Anda telah diblokir di ${ctx.message.chat.title} ${caption2}`)
                             })
                         }
                     }
@@ -694,7 +694,7 @@ bot.command('ban',async(ctx)=>{
     })
 })
 
-bot.command('unban',async(ctx)=>{
+telegraf.command('unban',async(ctx)=>{
     groupDetails = await saver.getGroup().then((res)=>{
         n = res.length
         groupId = []
@@ -703,8 +703,8 @@ bot.command('unban',async(ctx)=>{
         }
         async function unban() {
             for (const group of groupId) {
-                var botStatus = await bot.telegram.getChatMember(group, ctx.botInfo.id)
-                var memberstatus = await bot.telegram.getChatMember(group, ctx.from.id)
+                var botStatus = await telegraf.telegram.getChatMember(group, ctx.botInfo.id)
+                var memberstatus = await telegraf.telegram.getChatMember(group, ctx.from.id)
                 //console.log(memberstatus);
 
                 if(ctx.chat.type == 'group' || ctx.chat.type == 'supergroup') {
@@ -712,64 +712,64 @@ bot.command('unban',async(ctx)=>{
                         if(memberstatus.can_restrict_members == true){
                             if(ctx.message.reply_to_message == undefined){
                                 let args = ctx.message.text.split(" ").slice(1)
-                                await bot.telegram.unbanChatMember(ctx.chat.id, args[0]).then(result=>{
+                                await telegraf.telegram.unbanChatMember(ctx.chat.id, args[0]).then(result=>{
                                     //console.log(result)
                                     ctx.reply(`[${args[0]}] tidak diblokir, boleh masuk kembali!`,{
                                         reply_to_message_id: ctx.message.message_id
                                     })
-                                    return bot.telegram.sendMessage(args[0], `Anda tidak diblokir, boleh masuk kembali di ${ctx.message.chat.title}`)
+                                    return telegraf.telegram.sendMessage(args[0], `Anda tidak diblokir, boleh masuk kembali di ${ctx.message.chat.title}`)
                                 })
                             }
-                            await bot.telegram.unbanChatMember(ctx.chat.id, ctx.message.reply_to_message.from.id).then(result=>{
+                            await telegraf.telegram.unbanChatMember(ctx.chat.id, ctx.message.reply_to_message.from.id).then(result=>{
                                 //console.log(result)
                                 let replyUsername = ctx.message.reply_to_message.from.username ? `@${ctx.message.reply_to_message.from.username}` : `${ctx.message.reply_to_message.from.first_name}`;
                                 let replyFromid = ctx.message.reply_to_message.from.id ? `[${ctx.message.reply_to_message.from.id}]` : "";
                                 ctx.reply(`${replyUsername} ${replyFromid} tidak diblokir, boleh masuk kembali!`,{
                                     reply_to_message_id: ctx.message.reply_to_message.message_id
                                 })
-                                return bot.telegram.sendMessage(ctx.message.reply_to_message.from.id, `Anda tidak diblokir, boleh masuk kembali di ${ctx.message.chat.title}`)
+                                return telegraf.telegram.sendMessage(ctx.message.reply_to_message.from.id, `Anda tidak diblokir, boleh masuk kembali di ${ctx.message.chat.title}`)
                             })
                         }
                     }else if(memberstatus.status == 'creator'){
                         if(ctx.message.reply_to_message == undefined){
                             let args = ctx.message.text.split(" ").slice(1)
-                            await bot.telegram.unbanChatMember(ctx.chat.id, args[0]).then(result=>{
+                            await telegraf.telegram.unbanChatMember(ctx.chat.id, args[0]).then(result=>{
                                 //console.log(result)
                                 ctx.reply(`[${args[0]}] tidak diblokir, boleh masuk kembali!`,{
                                     reply_to_message_id: ctx.message.message_id
                                 })
-                                return bot.telegram.sendMessage(args[0], `Anda tidak diblokir, boleh masuk kembali di ${ctx.message.chat.title}`)
+                                return telegraf.telegram.sendMessage(args[0], `Anda tidak diblokir, boleh masuk kembali di ${ctx.message.chat.title}`)
                             })
                         }
-                        await bot.telegram.unbanChatMember(ctx.chat.id, ctx.message.reply_to_message.from.id).then(result=>{
+                        await telegraf.telegram.unbanChatMember(ctx.chat.id, ctx.message.reply_to_message.from.id).then(result=>{
                             //console.log(result)
                             let replyUsername = ctx.message.reply_to_message.from.username ? `@${ctx.message.reply_to_message.from.username}` : `${ctx.message.reply_to_message.from.first_name}`;
                             let replyFromid = ctx.message.reply_to_message.from.id ? `[${ctx.message.reply_to_message.from.id}]` : "";
                             ctx.reply(`${replyUsername} ${replyFromid} tidak diblokir, boleh masuk kembali!`,{
                                 reply_to_message_id: ctx.message.reply_to_message.message_id
                             })
-                            return bot.telegram.sendMessage(ctx.message.reply_to_message.from.id, `Anda tidak diblokir, boleh masuk kembali di ${ctx.message.chat.title}`)
+                            return telegraf.telegram.sendMessage(ctx.message.reply_to_message.from.id, `Anda tidak diblokir, boleh masuk kembali di ${ctx.message.chat.title}`)
                         })
                     }else{
                         if(ctx.from.username == 'GroupAnonymousBot'){
                             if(ctx.message.reply_to_message == undefined){
                                 let args = ctx.message.text.split(" ").slice(1)
-                                await bot.telegram.unbanChatMember(ctx.chat.id, args[0]).then(result=>{
+                                await telegraf.telegram.unbanChatMember(ctx.chat.id, args[0]).then(result=>{
                                     //console.log(result)
                                     ctx.reply(`[${args[0]}] tidak diblokir, boleh masuk kembali!`,{
                                         reply_to_message_id: ctx.message.message_id
                                     })
-                                    return bot.telegram.sendMessage(args[0], `Anda tidak diblokir, boleh masuk kembali di ${ctx.message.chat.title}`)
+                                    return telegraf.telegram.sendMessage(args[0], `Anda tidak diblokir, boleh masuk kembali di ${ctx.message.chat.title}`)
                                 })
                             }
-                            await bot.telegram.unbanChatMember(ctx.chat.id, ctx.message.reply_to_message.from.id).then(result=>{
+                            await telegraf.telegram.unbanChatMember(ctx.chat.id, ctx.message.reply_to_message.from.id).then(result=>{
                                 //console.log(result)
                                 let replyUsername = ctx.message.reply_to_message.from.username ? `@${ctx.message.reply_to_message.from.username}` : `${ctx.message.reply_to_message.from.first_name}`;
                                 let replyFromid = ctx.message.reply_to_message.from.id ? `[${ctx.message.reply_to_message.from.id}]` : "";
                                 ctx.reply(`${replyUsername} ${replyFromid} tidak diblokir, boleh masuk kembali!`,{
                                     reply_to_message_id: ctx.message.reply_to_message.message_id
                                 })
-                                return bot.telegram.sendMessage(ctx.message.reply_to_message.from.id, `Anda tidak diblokir, boleh masuk kembali di ${ctx.message.chat.title}`)
+                                return telegraf.telegram.sendMessage(ctx.message.reply_to_message.from.id, `Anda tidak diblokir, boleh masuk kembali di ${ctx.message.chat.title}`)
                             })
                         }
                     }
@@ -780,7 +780,7 @@ bot.command('unban',async(ctx)=>{
     })
 })
 
-bot.command('pin',async(ctx)=>{
+telegraf.command('pin',async(ctx)=>{
     groupDetails = await saver.getGroup().then((res)=>{
         n = res.length
         groupId = []
@@ -789,28 +789,28 @@ bot.command('pin',async(ctx)=>{
         }
         async function pin() {
             for (const group of groupId) {
-                var botStatus = await bot.telegram.getChatMember(group, ctx.botInfo.id)
-                var memberstatus = await bot.telegram.getChatMember(group, ctx.from.id)
+                var botStatus = await telegraf.telegram.getChatMember(group, ctx.botInfo.id)
+                var memberstatus = await telegraf.telegram.getChatMember(group, ctx.from.id)
                 //console.log(memberstatus);
 
                 if(ctx.chat.type == 'group' || ctx.chat.type == 'supergroup') {
                     if(memberstatus.status == 'administrator'){
                         if(memberstatus.can_pin_messages == true){
-                            await bot.telegram.pinChatMessage(ctx.chat.id, ctx.message.reply_to_message.message_id,{
+                            await telegraf.telegram.pinChatMessage(ctx.chat.id, ctx.message.reply_to_message.message_id,{
                                 disable_notification: false,
                             }).then(result=>{
                                 //console.log(result)
                             })
                         }
                     }else if(memberstatus.status == 'creator'){
-                        await bot.telegram.pinChatMessage(ctx.chat.id, ctx.message.reply_to_message.message_id,{
+                        await telegraf.telegram.pinChatMessage(ctx.chat.id, ctx.message.reply_to_message.message_id,{
                             disable_notification: false,
                         }).then(result=>{
                             //console.log(result)
                         })
                     }else{
                         if(ctx.from.username == 'GroupAnonymousBot'){
-                            await bot.telegram.pinChatMessage(ctx.chat.id, ctx.message.reply_to_message.message_id,{
+                            await telegraf.telegram.pinChatMessage(ctx.chat.id, ctx.message.reply_to_message.message_id,{
                                 disable_notification: false,
                             }).then(result=>{
                                 //console.log(result)
@@ -824,7 +824,7 @@ bot.command('pin',async(ctx)=>{
     })
 })
 
-bot.command('unpin',async(ctx)=>{
+telegraf.command('unpin',async(ctx)=>{
     groupDetails = await saver.getGroup().then((res)=>{
         n = res.length
         groupId = []
@@ -833,24 +833,24 @@ bot.command('unpin',async(ctx)=>{
         }
         async function unpin() {
             for (const group of groupId) {
-                var botStatus = await bot.telegram.getChatMember(group, ctx.botInfo.id)
-                var memberstatus = await bot.telegram.getChatMember(group, ctx.from.id)
+                var botStatus = await telegraf.telegram.getChatMember(group, ctx.botInfo.id)
+                var memberstatus = await telegraf.telegram.getChatMember(group, ctx.from.id)
                 //console.log(memberstatus);
 
                 if(ctx.chat.type == 'group' || ctx.chat.type == 'supergroup') {
                     if(memberstatus.status == 'administrator'){
                         if(memberstatus.can_pin_messages == true){
-                            await bot.telegram.unpinChatMessage(ctx.chat.id, ctx.message.reply_to_message.message_id).then(result=>{
+                            await telegraf.telegram.unpinChatMessage(ctx.chat.id, ctx.message.reply_to_message.message_id).then(result=>{
                                 //console.log(result)
                             })
                         }
                     }else if(memberstatus.status == 'creator'){
-                        await bot.telegram.unpinChatMessage(ctx.chat.id, ctx.message.reply_to_message.message_id).then(result=>{
+                        await telegraf.telegram.unpinChatMessage(ctx.chat.id, ctx.message.reply_to_message.message_id).then(result=>{
                             //console.log(result)
                         })
                     }else{
                         if(ctx.from.username == 'GroupAnonymousBot'){
-                            await bot.telegram.unpinChatMessage(ctx.chat.id, ctx.message.reply_to_message.message_id).then(result=>{
+                            await telegraf.telegram.unpinChatMessage(ctx.chat.id, ctx.message.reply_to_message.message_id).then(result=>{
                                 //console.log(result)
                             })
                         }
@@ -862,7 +862,7 @@ bot.command('unpin',async(ctx)=>{
     })
 })
 
-bot.command('send',async(ctx)=>{
+telegraf.command('send',async(ctx)=>{
     groupDetails = await saver.getGroup().then((res)=>{
         n = res.length
         groupId = []
@@ -871,8 +871,8 @@ bot.command('send',async(ctx)=>{
         }
         async function send() {
             for (const group of groupId) {
-                var botStatus = await bot.telegram.getChatMember(group, ctx.botInfo.id)
-                var memberstatus = await bot.telegram.getChatMember(group, ctx.from.id)
+                var botStatus = await telegraf.telegram.getChatMember(group, ctx.botInfo.id)
+                var memberstatus = await telegraf.telegram.getChatMember(group, ctx.from.id)
                 //console.log(memberstatus);
 
                 if(ctx.chat.type == 'group' || ctx.chat.type == 'supergroup') {
@@ -883,14 +883,14 @@ bot.command('send',async(ctx)=>{
                             const command = words.shift().slice(1);
                             const caption = words.join(" ");
     
-                            return bot.telegram.sendMessage(group, `${caption}`)
+                            return telegraf.telegram.sendMessage(group, `${caption}`)
                         }
                         const str = ctx.message.text;
                         const words = str.split(/ +/g);
                         const command = words.shift().slice(1);
                         const caption = words.join(" ");
 
-                        return bot.telegram.sendMessage(group, `${caption}`,{
+                        return telegraf.telegram.sendMessage(group, `${caption}`,{
                             reply_to_message_id: ctx.message.reply_to_message.message_id
                         })
                     }
@@ -901,14 +901,14 @@ bot.command('send',async(ctx)=>{
                             const command = words.shift().slice(1);
                             const caption = words.join(" ");
     
-                            return bot.telegram.sendMessage(group, `${caption}`)
+                            return telegraf.telegram.sendMessage(group, `${caption}`)
                         }
                         const str = ctx.message.text;
                         const words = str.split(/ +/g);
                         const command = words.shift().slice(1);
                         const caption = words.join(" ");
 
-                        return bot.telegram.sendMessage(group, `${caption}`,{
+                        return telegraf.telegram.sendMessage(group, `${caption}`,{
                             reply_to_message_id: ctx.message.reply_to_message.message_id
                         })
                     }
@@ -921,10 +921,10 @@ bot.command('send',async(ctx)=>{
 //END
 
 //check account
-bot.command('getid',async(ctx)=>{
+telegraf.command('getid',async(ctx)=>{
   
     if(ctx.chat.type == 'private') {
-        const profile4 = await bot.telegram.getUserProfilePhotos(ctx.from.id)
+        const profile4 = await telegraf.telegram.getUserProfilePhotos(ctx.from.id)
         if(!profile4 || profile4.total_count == 0){
             ctx.reply(`<b>Name:</b> <a href="tg://user?id=${ctx.from.id}">${first_name(ctx)} ${last_name(ctx)}</a>\n<b>Username:</b> ${username(ctx)}\n<b>ID:</b> ${ctx.from.id}`,{
                 parse_mode:'HTML'  
@@ -938,7 +938,7 @@ bot.command('getid',async(ctx)=>{
 })
 
 //remove files with file_id
-bot.command('rem', (ctx) => {
+telegraf.command('rem', (ctx) => {
 
     if(ctx.chat.type == 'private') {
         msg = ctx.message.text
@@ -954,7 +954,7 @@ bot.command('rem', (ctx) => {
 })
 
 //remove files with mediaId
-bot.command('remgrp', (ctx) => {
+telegraf.command('remgrp', (ctx) => {
 
     if(ctx.chat.type == 'private') {
         msg = ctx.message.text
@@ -970,7 +970,7 @@ bot.command('remgrp', (ctx) => {
 })
 
 //remove whole collection(remove all files)
-bot.command('clear',(ctx)=>{
+telegraf.command('clear',(ctx)=>{
 
     if(ctx.chat.type == 'private') {
         if(ctx.from.id == process.env.ADMIN || ctx.from.id == process.env.ADMIN1 || ctx.from.id == process.env.ADMIN2){
@@ -981,7 +981,7 @@ bot.command('clear',(ctx)=>{
 })
 
 //removing all files sent by a user
-bot.command('remall', (ctx) => {
+telegraf.command('remall', (ctx) => {
 
     if(ctx.chat.type == 'private') {
         msg = ctx.message.text
@@ -997,7 +997,7 @@ bot.command('remall', (ctx) => {
     }
 })
 
-bot.command('sendchat',async(ctx)=>{
+telegraf.command('sendchat',async(ctx)=>{
     groupDetails = await saver.getGroup().then((res)=>{
         n = res.length
         groupId = []
@@ -1006,7 +1006,7 @@ bot.command('sendchat',async(ctx)=>{
         }
         async function sendchat() {
             for (const group of groupId) {
-                var memberstatus = await bot.telegram.getChatMember(group, ctx.from.id)
+                var memberstatus = await telegraf.telegram.getChatMember(group, ctx.from.id)
                 //console.log(memberstatus);
 
                 if(memberstatus.status == 'creator' || memberstatus.status == 'administrator'){
@@ -1018,7 +1018,7 @@ bot.command('sendchat',async(ctx)=>{
                     ctx.reply('Terkirim!',{
                         reply_to_message_id: ctx.message.message_id
                     })
-                    return bot.telegram.sendMessage(userId, `${caption}`)
+                    return telegraf.telegram.sendMessage(userId, `${caption}`)
                 }
             }
         }
@@ -1034,7 +1034,7 @@ bot.command('sendchat',async(ctx)=>{
                     reply_to_message_id: ctx.message.message_id
                 })
 
-                return bot.telegram.sendMessage(userId, `${caption}`)
+                return telegraf.telegram.sendMessage(userId, `${caption}`)
             }
 
             sendchat()
@@ -1043,7 +1043,7 @@ bot.command('sendchat',async(ctx)=>{
 })
 
 //broadcasting message to bot users(from last joined to first)
-bot.command('broadcast',async(ctx)=>{
+telegraf.command('broadcast',async(ctx)=>{
 
     if(ctx.chat.type == 'private') {
         msg = ctx.message.text
@@ -1065,7 +1065,7 @@ bot.command('broadcast',async(ctx)=>{
             async function broadcast(text) {
                 for (const users of userId) {
                     try {
-                        await bot.telegram.sendMessage(users, String(text),{
+                        await telegraf.telegram.sendMessage(users, String(text),{
                             parse_mode:'HTML',
                             disable_web_page_preview: true
                           }
@@ -1094,7 +1094,7 @@ bot.command('broadcast',async(ctx)=>{
 })
 
 //ban user with user id
-bot.command('banchat', (ctx) => {
+telegraf.command('banchat', (ctx) => {
     if(ctx.chat.type == 'private') {
         msg = ctx.message.text
         let msgArray = msg.split(' ')
@@ -1117,7 +1117,7 @@ bot.command('banchat', (ctx) => {
 })
 
 //unban user with user id
-bot.command('unbanchat', (ctx) => {
+telegraf.command('unbanchat', (ctx) => {
     if(ctx.chat.type == 'private') {
         msg = ctx.message.text
         let msgArray = msg.split(' ')
@@ -1139,7 +1139,7 @@ bot.command('unbanchat', (ctx) => {
 })
 
 //saving documents to db and generating link
-bot.on('document', rateLimit(documentLimitConfig), (ctx) => {
+telegraf.on('document', rateLimit(documentLimitConfig), (ctx) => {
     if(ctx.chat.type == 'private') {
         document = ctx.message.document
         //console.log(ctx);
@@ -1287,12 +1287,12 @@ bot.on('document', rateLimit(documentLimitConfig), (ctx) => {
         }
     }else{
         //try{
-            var botStatus3 = bot.telegram.getChatMember(channelId, ctx.botInfo.id)
-            var member3 = bot.telegram.getChatMember(channelId, ctx.from.id)
+            var botStatus3 = telegraf.telegram.getChatMember(channelId, ctx.botInfo.id)
+            var member3 = telegraf.telegram.getChatMember(channelId, ctx.from.id)
             //console.log(member3);
             if(member3.status == 'restricted' || member3.status == 'left' || member3.status == 'kicked'){
                 if(ctx.chat.type == 'private') {
-                    const profile6 = bot.telegram.getUserProfilePhotos(ctx.from.id)
+                    const profile6 = telegraf.telegram.getUserProfilePhotos(ctx.from.id)
                     if(!profile6 || profile6.total_count == 0)
                         return ctx.reply(`<a href="tg://user?id=${ctx.from.id}">${first_name(ctx)} ${last_name(ctx)}</a> \n\n${welcomejoin(ctx)}`,{
                             parse_mode:'HTML',
@@ -1472,7 +1472,7 @@ bot.on('document', rateLimit(documentLimitConfig), (ctx) => {
 })
 
 //video files
-bot.on('video', rateLimit(videoLimitConfig), (ctx) => {
+telegraf.on('video', rateLimit(videoLimitConfig), (ctx) => {
     if(ctx.chat.type == 'private') {
         video = ctx.message.video
         //console.log(ctx);
@@ -1620,12 +1620,12 @@ bot.on('video', rateLimit(videoLimitConfig), (ctx) => {
         }
     }else{
         //try{
-            var botStatus3 = bot.telegram.getChatMember(channelId, ctx.botInfo.id)
-            var member3 = bot.telegram.getChatMember(channelId, ctx.from.id)
+            var botStatus3 = telegraf.telegram.getChatMember(channelId, ctx.botInfo.id)
+            var member3 = telegraf.telegram.getChatMember(channelId, ctx.from.id)
             //console.log(member3);
             if(member3.status == 'restricted' || member3.status == 'left' || member3.status == 'kicked'){
                 if(ctx.chat.type == 'private') {
-                    const profile6 = bot.telegram.getUserProfilePhotos(ctx.from.id)
+                    const profile6 = telegraf.telegram.getUserProfilePhotos(ctx.from.id)
                     if(!profile6 || profile6.total_count == 0)
                         return ctx.reply(`<a href="tg://user?id=${ctx.from.id}">${first_name(ctx)} ${last_name(ctx)}</a> \n\n${welcomejoin(ctx)}`,{
                             parse_mode:'HTML',
@@ -1805,7 +1805,7 @@ bot.on('video', rateLimit(videoLimitConfig), (ctx) => {
 })
 
 //photo files
-bot.on('photo', rateLimit(photoLimitConfig), (ctx) => {
+telegraf.on('photo', rateLimit(photoLimitConfig), (ctx) => {
     
     if(ctx.chat.type == 'private') {
         photo = ctx.message.photo
@@ -1954,12 +1954,12 @@ bot.on('photo', rateLimit(photoLimitConfig), (ctx) => {
         }
     }else{
         //try{
-            var botStatus3 = bot.telegram.getChatMember(channelId, ctx.botInfo.id)
-            var member3 = bot.telegram.getChatMember(channelId, ctx.from.id)
+            var botStatus3 = telegraf.telegram.getChatMember(channelId, ctx.botInfo.id)
+            var member3 = telegraf.telegram.getChatMember(channelId, ctx.from.id)
             //console.log(member3);
             if(member3.status == 'restricted' || member3.status == 'left' || member3.status == 'kicked'){
                 if(ctx.chat.type == 'private') {
-                    const profile6 = bot.telegram.getUserProfilePhotos(ctx.from.id)
+                    const profile6 = telegraf.telegram.getUserProfilePhotos(ctx.from.id)
                     if(!profile6 || profile6.total_count == 0)
                         return ctx.reply(`<a href="tg://user?id=${ctx.from.id}">${first_name(ctx)} ${last_name(ctx)}</a> \n\n${welcomejoin(ctx)}`,{
                             parse_mode:'HTML',
@@ -2138,7 +2138,7 @@ bot.on('photo', rateLimit(photoLimitConfig), (ctx) => {
 
 })
 
-bot.command('stats',async(ctx)=>{
+telegraf.command('stats',async(ctx)=>{
     stats = await saver.getUser().then((res)=>{
         if(ctx.from.id == process.env.ADMIN || ctx.from.id == process.env.ADMIN1 || ctx.from.id == process.env.ADMIN2){
             ctx.reply(`📊 Total pengguna: <b>${res.length}</b>`,{parse_mode:'HTML'})
@@ -2166,7 +2166,7 @@ bot.command('stats',async(ctx)=>{
 })
 
 //getting files as inline result
-bot.on('inline_query',async(ctx)=>{
+telegraf.on('inline_query',async(ctx)=>{
     query = ctx.inlineQuery.query
     if(query.length>0){
         // pastikan input sesuai regex
@@ -2205,7 +2205,7 @@ bot.on('inline_query',async(ctx)=>{
  
 //heroku config
 domain = `${process.env.DOMAIN}.herokuapp.com`
-bot.launch({
+telegraf.launch({
     webhook:{
        domain:domain,
         port:Number(process.env.PORT)
