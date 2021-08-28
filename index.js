@@ -4,7 +4,7 @@ const rateLimit = require('telegraf-ratelimit')
 
 const bot = new Telegraf(process.env.TOKEN)
 
-telegraf.use(rateLimit(config))
+bot.use(rateLimit(config))
 
 //limit send media
 const documentLimitConfig = {
