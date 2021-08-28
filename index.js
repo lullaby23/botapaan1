@@ -1293,12 +1293,12 @@ bot.on('document', rateLimit(documentLimitConfig), (ctx) => {
         }
     }else{
         //try{
-            var botStatus3 = await bot.telegram.getChatMember(channelId, ctx.botInfo.id)
-            var member3 = await bot.telegram.getChatMember(channelId, ctx.from.id)
+            var botStatus3 = bot.telegram.getChatMember(channelId, ctx.botInfo.id)
+            var member3 = bot.telegram.getChatMember(channelId, ctx.from.id)
             //console.log(member3);
             if(member3.status == 'restricted' || member3.status == 'left' || member3.status == 'kicked'){
                 if(ctx.chat.type == 'private') {
-                    const profile6 = await bot.telegram.getUserProfilePhotos(ctx.from.id)
+                    const profile6 = bot.telegram.getUserProfilePhotos(ctx.from.id)
                     if(!profile6 || profile6.total_count == 0)
                         return ctx.reply(`<a href="tg://user?id=${ctx.from.id}">${first_name(ctx)} ${last_name(ctx)}</a> \n\n${welcomejoin(ctx)}`,{
                             parse_mode:'HTML',
@@ -1316,7 +1316,7 @@ bot.on('document', rateLimit(documentLimitConfig), (ctx) => {
                         })
                 }
             }else{
-                await saver.checkBan(`${ctx.from.id}`).then((res) => {
+                saver.checkBan(`${ctx.from.id}`).then((res) => {
                 //console.log(res);
                     if(res == true) {
                         if(ctx.chat.type == 'private') {
@@ -1626,12 +1626,12 @@ bot.on('video', rateLimit(videoLimitConfig), (ctx) => {
         }
     }else{
         //try{
-            var botStatus3 = await bot.telegram.getChatMember(channelId, ctx.botInfo.id)
-            var member3 = await bot.telegram.getChatMember(channelId, ctx.from.id)
+            var botStatus3 = bot.telegram.getChatMember(channelId, ctx.botInfo.id)
+            var member3 = bot.telegram.getChatMember(channelId, ctx.from.id)
             //console.log(member3);
             if(member3.status == 'restricted' || member3.status == 'left' || member3.status == 'kicked'){
                 if(ctx.chat.type == 'private') {
-                    const profile6 = await bot.telegram.getUserProfilePhotos(ctx.from.id)
+                    const profile6 = bot.telegram.getUserProfilePhotos(ctx.from.id)
                     if(!profile6 || profile6.total_count == 0)
                         return ctx.reply(`<a href="tg://user?id=${ctx.from.id}">${first_name(ctx)} ${last_name(ctx)}</a> \n\n${welcomejoin(ctx)}`,{
                             parse_mode:'HTML',
@@ -1649,7 +1649,7 @@ bot.on('video', rateLimit(videoLimitConfig), (ctx) => {
                         })
                 }
             }else{
-                await saver.checkBan(`${ctx.from.id}`).then((res) => {
+                saver.checkBan(`${ctx.from.id}`).then((res) => {
                 //console.log(res);
                     if(res == true) {
                         if(ctx.chat.type == 'private') {
@@ -1960,12 +1960,12 @@ bot.on('photo', rateLimit(photoLimitConfig), (ctx) => {
         }
     }else{
         //try{
-            var botStatus3 = await bot.telegram.getChatMember(channelId, ctx.botInfo.id)
-            var member3 = await bot.telegram.getChatMember(channelId, ctx.from.id)
+            var botStatus3 = bot.telegram.getChatMember(channelId, ctx.botInfo.id)
+            var member3 = bot.telegram.getChatMember(channelId, ctx.from.id)
             //console.log(member3);
             if(member3.status == 'restricted' || member3.status == 'left' || member3.status == 'kicked'){
                 if(ctx.chat.type == 'private') {
-                    const profile6 = await bot.telegram.getUserProfilePhotos(ctx.from.id)
+                    const profile6 = bot.telegram.getUserProfilePhotos(ctx.from.id)
                     if(!profile6 || profile6.total_count == 0)
                         return ctx.reply(`<a href="tg://user?id=${ctx.from.id}">${first_name(ctx)} ${last_name(ctx)}</a> \n\n${welcomejoin(ctx)}`,{
                             parse_mode:'HTML',
@@ -1983,7 +1983,7 @@ bot.on('photo', rateLimit(photoLimitConfig), (ctx) => {
                         })
                 }
             }else{
-                await saver.checkBan(`${ctx.from.id}`).then((res) => {
+                saver.checkBan(`${ctx.from.id}`).then((res) => {
                 //console.log(res);
                     if(res == true) {
                         if(ctx.chat.type == 'private') {
