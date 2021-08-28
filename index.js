@@ -5,7 +5,7 @@ const rateLimit = require('telegraf-ratelimit')
 //limit send media
 const documentLimitConfig = {
     window: 60 * 1000,
-    limit: 10,
+    limit: 1,
     keyGenerator: function (ctx) {
       return ctx.chat.id
     },
@@ -13,7 +13,7 @@ const documentLimitConfig = {
 }
 const videoLimitConfig = {
     window: 60 * 1000,
-    limit: 10,
+    limit: 1,
     keyGenerator: function (ctx) {
       return ctx.chat.id
     },
@@ -21,7 +21,7 @@ const videoLimitConfig = {
 }
 const photoLimitConfig = {
     window: 60 * 1000,
-    limit: 10,
+    limit: 1,
     keyGenerator: function (ctx) {
       return ctx.chat.id
     },
