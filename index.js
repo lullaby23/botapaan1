@@ -1,5 +1,5 @@
 require('dotenv').config()
-const Telegraf = require('telegraf')
+const { Telegraf } = require('telegraf')
 const rateLimit = require('telegraf-ratelimit')
   
 //limit send media
