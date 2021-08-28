@@ -9,7 +9,7 @@ const documentLimitConfig = {
     keyGenerator: function (ctx) {
       return ctx.chat.id
     },
-    onLimitExceeded: (ctx, next) => ctx.reply('Anda tidak bisa mengirim sampai menunggu 3 detik, limit sekali kirim 10 media')
+    onLimitExceeded: (ctx, next) => ctx.reply(`Anda tidak bisa mengirim sampai menunggu 3 detik, limit sekali kirim 10 media`)
 }
 const videoLimitConfig = {
     window: 3000,
@@ -17,7 +17,7 @@ const videoLimitConfig = {
     keyGenerator: function (ctx) {
       return ctx.chat.id
     },
-    onLimitExceeded: (ctx, next) => ctx.reply('Anda tidak bisa mengirim sampai menunggu 3 detik, limit sekali kirim 10 media')
+    onLimitExceeded: (ctx, next) => ctx.reply(`Anda tidak bisa mengirim sampai menunggu 3 detik, limit sekali kirim 10 media`)
 }
 const photoLimitConfig = {
     window: 3000,
@@ -25,7 +25,7 @@ const photoLimitConfig = {
     keyGenerator: function (ctx) {
       return ctx.chat.id
     },
-    onLimitExceeded: (ctx, next) => ctx.reply('Anda tidak bisa mengirim sampai menunggu 3 detik, limit sekali kirim 10 media')
+    onLimitExceeded: (ctx, next) => ctx.reply(`Anda tidak bisa mengirim sampai menunggu 3 detik, limit sekali kirim 10 media`)
 }
 
 const bot = new Telegraf(process.env.TOKEN)
