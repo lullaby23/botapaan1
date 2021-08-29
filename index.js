@@ -1113,9 +1113,9 @@ bot.command('unbanchat', (ctx) => {
 
 //saving documents to db and generating link
 bot.on('document', async (ctx) => {
+    const limited = rateLimiter.take(`${ctx.from.id}`);
+    if(limited) return ctx.reply('Tunggu 1 menit');
     if(ctx.chat.type == 'private') {
-        const limited = rateLimiter.take(`${ctx.from.id}`);
-        if(limited) return ctx.reply('Tunggu 1 menit');
         document = ctx.message.document
 
         if(ctx.message.media_group_id == undefined){
@@ -1287,9 +1287,9 @@ bot.on('document', async (ctx) => {
                             ctx.reply(`${messagebanned(ctx)}`)
                         }
                     }else{
+                        const limited = rateLimiter.take(`${ctx.from.id}`);
+                        if(limited) return ctx.reply('Tunggu 1 menit');
                         if(ctx.chat.type == 'private') {
-                            const limited = rateLimiter.take(`${ctx.from.id}`);
-                            if(limited) return ctx.reply('Tunggu 1 menit');
                             document = ctx.message.document
 
                             if(ctx.message.media_group_id == undefined){
@@ -1445,9 +1445,9 @@ bot.on('document', async (ctx) => {
 
 //video files
 bot.on('video', async(ctx) => {
+    const limited = rateLimiter.take(`${ctx.from.id}`);
+    if(limited) return ctx.reply('Tunggu 1 menit');
     if(ctx.chat.type == 'private') {
-        const limited = rateLimiter.take(`${ctx.from.id}`);
-        if(limited) return ctx.reply('Tunggu 1 menit');
         video = ctx.message.video
 
         if(ctx.message.media_group_id == undefined){
@@ -1619,9 +1619,9 @@ bot.on('video', async(ctx) => {
                             ctx.reply(`${messagebanned(ctx)}`)
                         }
                     }else{
+                        const limited = rateLimiter.take(`${ctx.from.id}`);
+                        if(limited) return ctx.reply('Tunggu 1 menit');
                         if(ctx.chat.type == 'private') {
-                            const limited = rateLimiter.take(`${ctx.from.id}`);
-                            if(limited) return ctx.reply('Tunggu 1 menit');
                             video = ctx.message.video
 
                             if(ctx.message.media_group_id == undefined){
@@ -1777,10 +1777,9 @@ bot.on('video', async(ctx) => {
 
 //photo files
 bot.on('photo', async(ctx) => {
-    
+    const limited = rateLimiter.take(`${ctx.from.id}`);
+    if(limited) return ctx.reply('Tunggu 1 menit');
     if(ctx.chat.type == 'private') {
-        const limited = rateLimiter.take(`${ctx.from.id}`);
-        if(limited) return ctx.reply('Tunggu 1 menit');
         photo = ctx.message.photo
         
         if(ctx.message.media_group_id == undefined){
@@ -1956,9 +1955,9 @@ bot.on('photo', async(ctx) => {
                             ctx.reply(`${messagebanned(ctx)}`)
                         }
                     }else{
+                        const limited = rateLimiter.take(`${ctx.from.id}`);
+                        if(limited) return ctx.reply('Tunggu 1 menit');
                         if(ctx.chat.type == 'private') {
-                            const limited = rateLimiter.take(`${ctx.from.id}`);
-                            if(limited) return ctx.reply('Tunggu 1 menit');
                             photo = ctx.message.photo
 
                             if(ctx.message.media_group_id == undefined){
