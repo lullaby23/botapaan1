@@ -1,6 +1,8 @@
 require('dotenv').config()
 const { Telegraf } = require('telegraf')
+const { RateLimiter } = require( '@riddea/telegraf-rate-limiter')
 const bot = new Telegraf(process.env.TOKEN)
+const rateLimiter = new RateLimiter(10, 60000);
 
 process.env.TZ = "Asia/Jakarta";
 
@@ -1114,7 +1116,10 @@ bot.on('document', async (ctx) => {
     if(ctx.chat.type == 'private') {
         document = ctx.message.document
         //console.log(ctx);
+
+        const limited = rateLimiter.take(ctx.from.id);
         
+        if (limited) return await ctx.reply('Anda harus menunggu setelah 1 Menit')
         if(ctx.message.media_group_id == undefined){
             if(document.file_name == undefined){
                 fileDetails1 = {
@@ -1292,6 +1297,9 @@ bot.on('document', async (ctx) => {
                             document = ctx.message.document
                             //console.log(ctx);
                             
+                            const limited = rateLimiter.take(ctx.from.id);
+        
+                            if (limited) return await ctx.reply('Anda harus menunggu setelah 1 Menit')
                             if(ctx.message.media_group_id == undefined){
                                 if(document.file_name == undefined){
                                     fileDetails1 = {
@@ -1447,7 +1455,10 @@ bot.on('video', async(ctx) => {
     if(ctx.chat.type == 'private') {
         video = ctx.message.video
         //console.log(ctx);
+
+        const limited = rateLimiter.take(ctx.from.id);
         
+        if (limited) return await ctx.reply('Anda harus menunggu setelah 1 Menit')
         if(ctx.message.media_group_id == undefined){
             if(video.file_name == undefined){
                 fileDetails1 = {
@@ -1625,6 +1636,9 @@ bot.on('video', async(ctx) => {
                             video = ctx.message.video
                             //console.log(ctx);
                             
+                            const limited = rateLimiter.take(ctx.from.id);
+        
+                            if (limited) return await ctx.reply('Anda harus menunggu setelah 1 Menit')
                             if(ctx.message.media_group_id == undefined){
                                 if(video.file_name == undefined){
                                     fileDetails1 = {
@@ -1782,6 +1796,9 @@ bot.on('photo', async(ctx) => {
         photo = ctx.message.photo
         //console.log(ctx);
         
+        const limited = rateLimiter.take(ctx.from.id);
+        
+        if (limited) return await ctx.reply('Anda harus menunggu setelah 1 Menit')
         if(ctx.message.media_group_id == undefined){
             if(photo[1].file_name == undefined){
                 fileDetails1 = {
@@ -1955,10 +1972,13 @@ bot.on('photo', async(ctx) => {
                             ctx.reply(`${messagebanned(ctx)}`)
                         }
                     }else{
-                            
                         if(ctx.chat.type == 'private') {
                             photo = ctx.message.photo
                             //console.log(ctx);
+
+                            const limited = rateLimiter.take(ctx.from.id);
+        
+                            if (limited) return await ctx.reply('Anda harus menunggu setelah 1 Menit')
                             if(ctx.message.media_group_id == undefined){
                                 if(photo[1].file_name == undefined){
                                     fileDetails1 = {
