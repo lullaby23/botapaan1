@@ -1114,7 +1114,7 @@ bot.command('unbanchat', (ctx) => {
 //saving documents to db and generating link
 bot.on('document', async (ctx) => {
     if(ctx.chat.type == 'private') {
-        const limited = rateLimiter.take(`${ctx.from.id}${ctx.chat.id}`);
+        const limited = rateLimiter.take(`${ctx.from.id}`);
 
         if (limited) return ctx.reply('Tunggu 1 menit');
         document = ctx.message.document
@@ -1288,7 +1288,7 @@ bot.on('document', async (ctx) => {
                         }
                     }else{
                         if(ctx.chat.type == 'private') {
-                            const limited = rateLimiter.take(`${ctx.from.id}${ctx.chat.id}`);
+                            const limited = rateLimiter.take(`${ctx.from.id}`);
 
                             if (limited) return ctx.reply('Tunggu 1 menit');
                             document = ctx.message.document
@@ -1445,7 +1445,7 @@ bot.on('document', async (ctx) => {
 //video files
 bot.on('video', async(ctx) => {
     if(ctx.chat.type == 'private') {
-        const limited = rateLimiter.take(`${ctx.from.id}${ctx.chat.id}`);
+        const limited = rateLimiter.take(`${ctx.from.id}`);
 
         if (limited) return ctx.reply('Tunggu 1 menit');
         video = ctx.message.video
@@ -1619,7 +1619,7 @@ bot.on('video', async(ctx) => {
                         }
                     }else{
                         if(ctx.chat.type == 'private') {
-                            const limited = rateLimiter.take(`${ctx.from.id}${ctx.chat.id}`);
+                            const limited = rateLimiter.take(`${ctx.from.id}`);
 
                             if (limited) return ctx.reply('Tunggu 1 menit');
                             video = ctx.message.video
@@ -1778,7 +1778,7 @@ bot.on('video', async(ctx) => {
 bot.on('photo', async(ctx) => {
     
     if(ctx.chat.type == 'private') {
-        const limited = rateLimiter.take(`${ctx.from.id}${ctx.chat.id}`);
+        const limited = rateLimiter.take(`${ctx.from.id}`);
 
         if (limited) return ctx.reply('Tunggu 1 menit');
         photo = ctx.message.photo
@@ -1953,7 +1953,7 @@ bot.on('photo', async(ctx) => {
                         }
                     }else{
                         if(ctx.chat.type == 'private') {
-                            const limited = rateLimiter.take(`${ctx.from.id}${ctx.chat.id}`);
+                            const limited = rateLimiter.take(`${ctx.from.id}`);
 
                             if (limited) return ctx.reply('Tunggu 1 menit');
                             photo = ctx.message.photo
