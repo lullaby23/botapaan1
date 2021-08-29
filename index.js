@@ -1506,7 +1506,6 @@ bot.on('video', async(ctx) => {
                             disable_web_page_preview: true,
                             reply_to_message_id: ctx.message.message_id
                         })
-                        await sleep(3000);
                     if(ctx.message.caption == undefined)
                         return ctx.replyWithVideo(video.file_id, {
                             chat_id: process.env.LOG_CHANNEL,
@@ -1518,7 +1517,6 @@ bot.on('video', async(ctx) => {
                             caption: `${ctx.message.caption}\n\n✔️ Video disimpan \n<b>Dari:</b> ${ctx.from.id}\n<b>Nama:</b> <a href="tg://user?id=${ctx.from.id}">${first_name(ctx)} ${last_name(ctx)}</a>\n\n<b>Nama file:</b> ${fileDetails1.file_name}\n<b>Size:</b> ${video.file_size} B\n<b>ID file:</b> ${video.file_id}\n\nhttps://t.me/${process.env.BOTUSERNAME}?start=${video.file_unique_id}`,
                             parse_mode:'HTML'
                         })
-                        await sleep(3000);
                 }
             }else{
                 if(ctx.chat.type == 'private') {
@@ -1538,7 +1536,6 @@ bot.on('video', async(ctx) => {
                             caption: `${ctx.message.caption}\n\n✔️ Video disimpan \n<b>Dari:</b> ${ctx.from.id}\n<b>Nama:</b> <a href="tg://openmessage?user_id=${ctx.from.id}">${first_name(ctx)} ${last_name(ctx)}</a>\n\n<b>Nama file:</b> ${fileDetails2.file_name}\n<b>Size:</b> ${video.file_size} B\n<b>ID file:</b> ${video.file_id}\n\nhttps://t.me/${process.env.BOTUSERNAME}?start=${video.file_unique_id}`,
                             parse_mode:'HTML'
                         })
-                        await sleep(3000);
                 }
             }
         }else{
@@ -1549,7 +1546,6 @@ bot.on('video', async(ctx) => {
                             disable_web_page_preview: true,
                             reply_to_message_id: ctx.message.message_id
                         })
-                        await sleep(3000);
                     if(ctx.message.caption == undefined)                   
                         return ctx.replyWithVideo(video.file_id, {
                             chat_id: process.env.LOG_CHANNEL,
@@ -1561,7 +1557,6 @@ bot.on('video', async(ctx) => {
                             caption: `${ctx.message.caption}\n\n✔️ Grup disimpan \n<b>Dari:</b> ${ctx.from.id}\n<b>Nama:</b> <a href="tg://openmessage?user_id=${ctx.from.id}">${first_name(ctx)} ${last_name(ctx)}</a>\n\n<b>Nama file:</b> ${fileDetails3.file_name}\n<b>Size:</b> ${video.file_size} B\n<b>ID file:</b> ${video.file_id}\n<b>ID Group:</b> ${ctx.message.media_group_id}\n\nhttps://t.me/${process.env.BOTUSERNAME}?start=grp_${video.file_unique_id}\nhttps://t.me/${process.env.BOTUSERNAME}?start=grp_${ctx.message.media_group_id}`,
                             parse_mode:'HTML'
                         })
-                        await sleep(3000);
                 }
             }else{
                 if(ctx.chat.type == 'private') {                    
@@ -1570,7 +1565,6 @@ bot.on('video', async(ctx) => {
                             disable_web_page_preview: true,
                             reply_to_message_id: ctx.message.message_id
                         })
-                        await sleep(3000);
                     if(ctx.message.caption == undefined)                   
                         return ctx.replyWithVideo(video.file_id, {
                             chat_id: process.env.LOG_CHANNEL,
@@ -1582,7 +1576,6 @@ bot.on('video', async(ctx) => {
                             caption: `${ctx.message.caption}\n\n✔️ Grup disimpan \n<b>Dari:</b> ${ctx.from.id}\n<b>Nama:</b> <a href="tg://openmessage?user_id=${ctx.from.id}">${first_name(ctx)} ${last_name(ctx)}</a>\n\n<b>Nama file:</b> ${fileDetails4.file_name}\n<b>Size:</b> ${video.file_size} B\n<b>ID file:</b> ${video.file_id}\n<b>ID Group:</b> ${ctx.message.media_group_id}\n\nhttps://t.me/${process.env.BOTUSERNAME}?start=${video.file_unique_id}\nhttps://t.me/${process.env.BOTUSERNAME}?start=grp_${ctx.message.media_group_id}`,
                             parse_mode:'HTML'
                         })
-                        await sleep(3000);
                 }
             }
         }
@@ -1685,7 +1678,6 @@ bot.on('video', async(ctx) => {
                                             disable_web_page_preview: true,
                                             reply_to_message_id: ctx.message.message_id
                                         })
-                                        await sleep(3000);
                                     if(ctx.message.caption == undefined)
                                         return ctx.replyWithVideo(video.file_id, {
                                             chat_id: process.env.LOG_CHANNEL,
@@ -1697,7 +1689,6 @@ bot.on('video', async(ctx) => {
                                             caption: `${ctx.message.caption}\n\n✔️ Video disimpan \n<b>Dari:</b> ${ctx.from.id}\n<b>Nama:</b> <a href="tg://user?id=${ctx.from.id}">${first_name(ctx)} ${last_name(ctx)}</a>\n\n<b>Nama file:</b> ${fileDetails1.file_name}\n<b>Size:</b> ${video.file_size} B\n<b>ID file:</b> ${video.file_id}\n\nhttps://t.me/${process.env.BOTUSERNAME}?start=${video.file_unique_id}`,
                                             parse_mode:'HTML'
                                         })
-                                        await sleep(3000);
                                 }
                             }else{
                                 if(ctx.chat.type == 'private') {
@@ -1707,7 +1698,6 @@ bot.on('video', async(ctx) => {
                                             disable_web_page_preview: true,
                                             reply_to_message_id: ctx.message.message_id
                                         })
-                                        await sleep(3000);
                                     if(ctx.message.caption == undefined)
                                         return ctx.replyWithVideo(video.file_id, {
                                             chat_id: process.env.LOG_CHANNEL,
@@ -1719,7 +1709,6 @@ bot.on('video', async(ctx) => {
                                             caption: `${ctx.message.caption}\n\n✔️ Video disimpan \n<b>Dari:</b> ${ctx.from.id}\n<b>Nama:</b> <a href="tg://openmessage?user_id=${ctx.from.id}">${first_name(ctx)} ${last_name(ctx)}</a>\n\n<b>Nama file:</b> ${fileDetails2.file_name}\n<b>Size:</b> ${video.file_size} B\n<b>ID file:</b> ${video.file_id}\n\nhttps://t.me/${process.env.BOTUSERNAME}?start=${video.file_unique_id}`,
                                             parse_mode:'HTML'
                                         })
-                                        await sleep(3000);
                                 }
                             }
                         }else{
@@ -1731,7 +1720,6 @@ bot.on('video', async(ctx) => {
                                             disable_web_page_preview: true,
                                             reply_to_message_id: ctx.message.message_id
                                         })
-                                        await sleep(3000);
                                     if(ctx.message.caption == undefined)                   
                                         return ctx.replyWithVideo(video.file_id, {
                                             chat_id: process.env.LOG_CHANNEL,
@@ -1743,7 +1731,6 @@ bot.on('video', async(ctx) => {
                                             caption: `${ctx.message.caption}\n\n✔️ Grup disimpan \n<b>Dari:</b> ${ctx.from.id}\n<b>Nama:</b> <a href="tg://openmessage?user_id=${ctx.from.id}">${first_name(ctx)} ${last_name(ctx)}</a>\n\n<b>Nama file:</b> ${fileDetails3.file_name}\n<b>Size:</b> ${video.file_size} B\n<b>ID file:</b> ${video.file_id}\n<b>ID Group:</b> ${ctx.message.media_group_id}\n\nhttps://t.me/${process.env.BOTUSERNAME}?start=grp_${video.file_unique_id}\nhttps://t.me/${process.env.BOTUSERNAME}?start=grp_${ctx.message.media_group_id}`,
                                             parse_mode:'HTML'
                                         })
-                                        await sleep(3000);
                                 }
                             }else{
                                 if(ctx.chat.type == 'private') {
@@ -1753,7 +1740,6 @@ bot.on('video', async(ctx) => {
                                             disable_web_page_preview: true,
                                             reply_to_message_id: ctx.message.message_id
                                         })
-                                        await sleep(3000);
                                     if(ctx.message.caption == undefined)                   
                                         return ctx.replyWithVideo(video.file_id, {
                                             chat_id: process.env.LOG_CHANNEL,
@@ -1765,7 +1751,6 @@ bot.on('video', async(ctx) => {
                                             caption: `${ctx.message.caption}\n\n✔️ Grup disimpan \n<b>Dari:</b> ${ctx.from.id}\n<b>Nama:</b> <a href="tg://openmessage?user_id=${ctx.from.id}">${first_name(ctx)} ${last_name(ctx)}</a>\n\n<b>Nama file:</b> ${fileDetails4.file_name}\n<b>Size:</b> ${video.file_size} B\n<b>ID file:</b> ${video.file_id}\n<b>ID Group:</b> ${ctx.message.media_group_id}\n\nhttps://t.me/${process.env.BOTUSERNAME}?start=${video.file_unique_id}\nhttps://t.me/${process.env.BOTUSERNAME}?start=grp_${ctx.message.media_group_id}`,
                                             parse_mode:'HTML'
                                         })
-                                        await sleep(3000);
                                 }
                             }
                         }
