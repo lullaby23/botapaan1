@@ -1117,7 +1117,7 @@ bot.on('document', async (ctx) => {
         document = ctx.message.document
         //console.log(ctx);
         
-        const limited = rateLimiter.take(ctx.from.id);
+        const limited = rateLimiter.take(`${ctx.from.id}${ctx.chat.id}`);
 
         if (limited) return ctx.reply('Tunggu 1 menit');
         if(ctx.message.media_group_id == undefined){
@@ -1293,7 +1293,7 @@ bot.on('document', async (ctx) => {
                             document = ctx.message.document
                             //console.log(ctx);
         
-                            const limited = rateLimiter.take(ctx.from.id);
+                            const limited = rateLimiter.take(`${ctx.from.id}${ctx.chat.id}`);
 
                             if (limited) return ctx.reply('Tunggu 1 menit');
                             if(ctx.message.media_group_id == undefined){
@@ -1452,7 +1452,7 @@ bot.on('video', async(ctx) => {
         video = ctx.message.video
         //console.log(ctx);
         
-        const limited = rateLimiter.take(ctx.from.id);
+        const limited = rateLimiter.take(`${ctx.from.id}${ctx.chat.id}`);
 
         if (limited) return ctx.reply('Tunggu 1 menit');
         if(ctx.message.media_group_id == undefined){
@@ -1628,7 +1628,7 @@ bot.on('video', async(ctx) => {
                             video = ctx.message.video
                             //console.log(ctx);
         
-                            const limited = rateLimiter.take(ctx.from.id);
+                            const limited = rateLimiter.take(`${ctx.from.id}${ctx.chat.id}`);
 
                             if (limited) return ctx.reply('Tunggu 1 menit');
                             if(ctx.message.media_group_id == undefined){
@@ -1788,7 +1788,7 @@ bot.on('photo', async(ctx) => {
         photo = ctx.message.photo
         //console.log(ctx);
         
-        const limited = rateLimiter.take(ctx.from.id);
+        const limited = rateLimiter.take(`${ctx.from.id}${ctx.chat.id}`);
 
         if (limited) return ctx.reply('Tunggu 1 menit');
         if(ctx.message.media_group_id == undefined){
@@ -1964,7 +1964,7 @@ bot.on('photo', async(ctx) => {
                             photo = ctx.message.photo
                             //console.log(ctx);
         
-                            const limited = rateLimiter.take(ctx.from.id);
+                            const limited = rateLimiter.take(`${ctx.from.id}${ctx.chat.id}`);
 
                             if (limited) return ctx.reply('Tunggu 1 menit');
                             if(ctx.message.media_group_id == undefined){
