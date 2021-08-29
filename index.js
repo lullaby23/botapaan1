@@ -1173,9 +1173,7 @@ bot.on('document', async (ctx) => {
   
     if(ctx.from.id == process.env.ADMIN || ctx.from.id == process.env.ADMIN1 || ctx.from.id == process.env.ADMIN2){
         const limited = rateLimiter.take(`${ctx.from.id}`);
-        if(limited){
-            return ctx.reply('Tunggu 1 menit')
-        }
+        if(limited) return ctx.reply('Tunggu 1 menit');
         if(ctx.message.media_group_id == undefined){
             if(document.file_name == undefined){
                 if(ctx.chat.type == 'private') {
@@ -1348,9 +1346,7 @@ bot.on('document', async (ctx) => {
                         }
 
                         const limited = rateLimiter.take(`${ctx.from.id}`);
-                        if(limited){
-                            return ctx.reply('Tunggu 1 menit')
-                        }
+                        if(limited) return ctx.reply('Tunggu 1 menit');
                         if(ctx.message.media_group_id == undefined){
                             if(document.file_name == undefined){
                                 if(ctx.chat.type == 'private') {
@@ -1509,9 +1505,7 @@ bot.on('video', async(ctx) => {
   
     if(ctx.from.id == process.env.ADMIN || ctx.from.id == process.env.ADMIN1 || ctx.from.id == process.env.ADMIN2){
         const limited = rateLimiter.take(`${ctx.from.id}`);
-        if(limited){
-            return ctx.reply('Tunggu 1 menit')
-        }
+        if(limited) return ctx.reply('Tunggu 1 menit');
         if(ctx.message.media_group_id == undefined){
             if(video.file_name == undefined){
                 if(ctx.chat.type == 'private') {
@@ -1684,9 +1678,7 @@ bot.on('video', async(ctx) => {
                         }
 
                         const limited = rateLimiter.take(`${ctx.from.id}`);
-                        if(limited){
-                            return ctx.reply('Tunggu 1 menit')
-                        }
+                        if(limited) return ctx.reply('Tunggu 1 menit');
                         if(ctx.message.media_group_id == undefined){
                             if(video.file_name == undefined){
                                 if(ctx.chat.type == 'private') {
@@ -1846,9 +1838,7 @@ bot.on('photo', async(ctx) => {
 
     if(ctx.from.id == process.env.ADMIN || ctx.from.id == process.env.ADMIN1 || ctx.from.id == process.env.ADMIN2){
         const limited = rateLimiter.take(`${ctx.from.id}`);
-        if(limited){
-            return ctx.reply('Tunggu 1 menit')
-        }
+        if(limited) return ctx.reply('Tunggu 1 menit');
         if(ctx.message.media_group_id == undefined){
             if(photo[1].file_name == undefined){
                 if(ctx.chat.type == 'private') {
@@ -2025,9 +2015,7 @@ bot.on('photo', async(ctx) => {
                         }
 
                         const limited = rateLimiter.take(`${ctx.from.id}`);
-                        if(limited){
-                            return ctx.reply('Tunggu 1 menit')
-                        }
+                        if(limited) return ctx.reply('Tunggu 1 menit');
                         if(ctx.message.media_group_id == undefined){
                             if(photo[1].file_name == undefined){
                                 if(ctx.chat.type == 'private') {
