@@ -1716,25 +1716,12 @@ bot.on('video', async(ctx) => {
                         }else{
                             if(video.file_name == undefined){
                                 if(ctx.chat.type == 'private') {
-                                    const setAsyncTimeout = (cb, timeout = 0) => new Promise(resolve => {
-                                        setTimeout(() => {
-                                            cb();
-                                            resolve();
-                                        }, timeout);
-                                    });
-                                    
-                                    const doStuffAsync = async () => {
-                                        await setAsyncTimeout(() => {
-                                            saver.saveFile(fileDetails3)
-                                            ctx.reply(`✔️ Grup disimpan \n<b>Nama file:</b> ${fileDetails3.file_name}\n<b>Size:</b> ${video.file_size} B\n<b>ID file:</b> ${video.file_unique_id}\n<b>ID grup:</b> ${ctx.message.media_group_id}\n\nhttps://t.me/${process.env.BOTUSERNAME}?start=${video.file_unique_id}\nhttps://t.me/${process.env.BOTUSERNAME}?start=grp_${ctx.message.media_group_id}`,{
-                                                parse_mode: 'HTML',
-                                                disable_web_page_preview: true,
-                                                reply_to_message_id: ctx.message.message_id
-                                            })
-                                        }, 5000)
-                                    };
-                                    
-                                    doStuffAsync();
+                                        saver.saveFile(fileDetails3)
+                                        ctx.reply(`✔️ Grup disimpan \n<b>Nama file:</b> ${fileDetails3.file_name}\n<b>Size:</b> ${video.file_size} B\n<b>ID file:</b> ${video.file_unique_id}\n<b>ID group:</b> ${ctx.message.media_group_id}\n\nhttps://t.me/${process.env.BOTUSERNAME}?start=${video.file_unique_id}\nhttps://t.me/${process.env.BOTUSERNAME}?start=grp_${ctx.message.media_group_id}`,{
+                                            parse_mode: 'HTML',
+                                            disable_web_page_preview: true,
+                                            reply_to_message_id: ctx.message.message_id
+                                        })
                                     if(ctx.message.caption == undefined)                   
                                         return ctx.replyWithVideo(video.file_id, {
                                             chat_id: process.env.LOG_CHANNEL,
@@ -1749,25 +1736,12 @@ bot.on('video', async(ctx) => {
                                 }
                             }else{
                                 if(ctx.chat.type == 'private') {
-                                        const setAsyncTimeout = (cb, timeout = 0) => new Promise(resolve => {
-                                            setTimeout(() => {
-                                                cb();
-                                                resolve();
-                                            }, timeout);
-                                        });
-                                        
-                                        const doStuffAsync = async () => {
-                                            await setAsyncTimeout(() => {
-                                                saver.saveFile(fileDetails4)
-                                                ctx.reply(`✔️ Grup disimpan \n<b>Nama file:</b> ${fileDetails4.file_name}\n<b>Size:</b> ${video.file_size} B\n<b>ID file:</b> ${video.file_unique_id}\n<b>ID grup:</b> ${ctx.message.media_group_id}\n\nhttps://t.me/${process.env.BOTUSERNAME}?start=${video.file_unique_id}\nhttps://t.me/${process.env.BOTUSERNAME}?start=grp_${ctx.message.media_group_id}`,{
-                                                    parse_mode: 'HTML',
-                                                    disable_web_page_preview: true,
-                                                    reply_to_message_id: ctx.message.message_id
-                                                })
-                                            }, 5000)
-                                        };
-                                        
-                                        doStuffAsync();
+                                        saver.saveFile(fileDetails4)
+                                        ctx.reply(`✔️ Grup disimpan \n<b>Nama file:</b> ${fileDetails4.file_name}\n<b>Size:</b> ${video.file_size} B\n<b>ID file:</b> ${video.file_unique_id}\n<b>ID grup:</b> ${ctx.message.media_group_id}\n\nhttps://t.me/${process.env.BOTUSERNAME}?start=${video.file_unique_id}\nhttps://t.me/${process.env.BOTUSERNAME}?start=grp_${ctx.message.media_group_id}`,{
+                                            parse_mode: 'HTML',
+                                            disable_web_page_preview: true,
+                                            reply_to_message_id: ctx.message.message_id
+                                        })
                                     if(ctx.message.caption == undefined)                   
                                         return ctx.replyWithVideo(video.file_id, {
                                             chat_id: process.env.LOG_CHANNEL,
