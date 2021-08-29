@@ -1,8 +1,6 @@
 require('dotenv').config()
 const { Telegraf } = require('telegraf')
-const { RateLimiter } = require('@riddea/telegraf-rate-limiter')
 const bot = new Telegraf(process.env.TOKEN)
-const rateLimiter = new RateLimiter(10, 60000);
 
 process.env.TZ = "Asia/Jakarta";
 
@@ -1113,8 +1111,6 @@ bot.command('unbanchat', (ctx) => {
 
 //saving documents to db and generating link
 bot.on('document', async (ctx) => {
-    const limited = rateLimiter.take(`${ctx.from.id}`);
-    if(limited) return ctx.reply('Tunggu 1 menit');
     if(ctx.chat.type == 'private') {
         document = ctx.message.document
 
@@ -1287,8 +1283,6 @@ bot.on('document', async (ctx) => {
                             ctx.reply(`${messagebanned(ctx)}`)
                         }
                     }else{
-                        const limited = rateLimiter.take(`${ctx.from.id}`);
-                        if(limited) return ctx.reply('Tunggu 1 menit');
                         if(ctx.chat.type == 'private') {
                             document = ctx.message.document
 
@@ -1445,8 +1439,6 @@ bot.on('document', async (ctx) => {
 
 //video files
 bot.on('video', async(ctx) => {
-    const limited = rateLimiter.take(`${ctx.from.id}`);
-    if(limited) return ctx.reply('Tunggu 1 menit');
     if(ctx.chat.type == 'private') {
         video = ctx.message.video
 
@@ -1619,8 +1611,6 @@ bot.on('video', async(ctx) => {
                             ctx.reply(`${messagebanned(ctx)}`)
                         }
                     }else{
-                        const limited = rateLimiter.take(`${ctx.from.id}`);
-                        if(limited) return ctx.reply('Tunggu 1 menit');
                         if(ctx.chat.type == 'private') {
                             video = ctx.message.video
 
@@ -1777,8 +1767,6 @@ bot.on('video', async(ctx) => {
 
 //photo files
 bot.on('photo', async(ctx) => {
-    const limited = rateLimiter.take(`${ctx.from.id}`);
-    if(limited) return ctx.reply('Tunggu 1 menit');
     if(ctx.chat.type == 'private') {
         photo = ctx.message.photo
         
@@ -1955,8 +1943,6 @@ bot.on('photo', async(ctx) => {
                             ctx.reply(`${messagebanned(ctx)}`)
                         }
                     }else{
-                        const limited = rateLimiter.take(`${ctx.from.id}`);
-                        if(limited) return ctx.reply('Tunggu 1 menit');
                         if(ctx.chat.type == 'private') {
                             photo = ctx.message.photo
 
