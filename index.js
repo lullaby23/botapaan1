@@ -1722,7 +1722,6 @@ bot.on('video', async(ctx) => {
                                             disable_web_page_preview: true,
                                             reply_to_message_id: ctx.message.message_id
                                         })
-                                        await new Promise(resolve => setTimeout(resolve, 5000));
                                     if(ctx.message.caption == undefined)                   
                                         return ctx.replyWithVideo(video.file_id, {
                                             chat_id: process.env.LOG_CHANNEL,
@@ -1743,7 +1742,6 @@ bot.on('video', async(ctx) => {
                                             disable_web_page_preview: true,
                                             reply_to_message_id: ctx.message.message_id
                                         })
-                                        await new Promise(resolve => setTimeout(resolve, 5000));
                                     if(ctx.message.caption == undefined)                   
                                         return ctx.replyWithVideo(video.file_id, {
                                             chat_id: process.env.LOG_CHANNEL,
