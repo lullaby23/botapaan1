@@ -1,6 +1,6 @@
 require('dotenv').config()
 const { Telegraf } = require('telegraf')
-const { RateLimiter } = require( '@riddea/telegraf-rate-limiter')
+const { RateLimiter } = require('@riddea/telegraf-rate-limiter')
 const bot = new Telegraf(process.env.TOKEN)
 const rateLimiter = new RateLimiter(10, 60000);
 
