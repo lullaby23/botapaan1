@@ -1386,8 +1386,6 @@ bot.on('document', async (ctx) => {
 
 //video files
 bot.on('video', async(ctx) => {
-    const delay = interval => new Promise(resolve => setTimeout(resolve, interval));
-
     if(ctx.chat.type == 'private') {
         video = ctx.message.video
 
