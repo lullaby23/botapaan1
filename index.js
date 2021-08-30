@@ -70,7 +70,7 @@ function messagebotnoaddgroup(ctx){
     return `Bot belum masuk channel/grup pemiliknya.`;
 }
 function messagelink(ctx){
-    return `Kirim Bot video, photo dan dokumen.`;
+    return `Kirim bot video, photo dan dokumen.`;
 }
 function documentation(ctx){
     return `Bot di buat menggunakan \n<b>Program:</b> Node JS \n<b>API:</b> <a href='https://bot.js.org/'>Telegraf</a>`;
