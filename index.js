@@ -67,13 +67,13 @@ function messagebanned(ctx){
     return `⚠ ANDA DIBLOKIR KARENA MENYALAHGUNAKAN BOT, HUBUNGI ADMIN UNTUK BANDING.`;
 }
 function messagebotnoaddgroup(ctx){
-    return `BOT belum masuk channel/grup pemiliknya.`;
+    return `Bot belum masuk channel/grup pemiliknya.`;
 }
 function messagelink(ctx){
-    return `Kirim BOT video, photo dan dokumen.`;
+    return `Kirim Bot video, photo dan dokumen.`;
 }
 function documentation(ctx){
-    return `BOT di buat menggunakan \n<b>Program:</b> Node JS \n<b>API:</b> <a href='https://bot.js.org/'>Telegraf</a>`;
+    return `Bot di buat menggunakan \n<b>Program:</b> Node JS \n<b>API:</b> <a href='https://bot.js.org/'>Telegraf</a>`;
 }
 
 const url2 = process.env.LINKCHANNEL.split(/[\,-]+/);
@@ -866,7 +866,7 @@ bot.command('rem', (ctx) => {
         //console.log(text);
         if(ctx.from.id == process.env.ADMIN || ctx.from.id == process.env.ADMIN1 || ctx.from.id == process.env.ADMIN2){
             saver.removeFile(text)
-            ctx.reply('✅ Dihapus')
+            ctx.reply('✅ 1 media dihapus berhasil')
         }
     }
 })
