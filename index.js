@@ -910,7 +910,7 @@ bot.command('remall', (ctx) => {
         let id = parseInt(text)
         if(ctx.from.id == process.env.ADMIN || ctx.from.id == process.env.ADMIN1 || ctx.from.id == process.env.ADMIN2){
             saver.removeUserFile(id)
-            ctx.reply('❌ Hapus semua media pada pengguna berhasil')
+            ctx.reply('❌ Hapus semua media pengguna berhasil')
         }
     }
 })
