@@ -319,6 +319,7 @@ bot.action('DOC',(ctx)=>{
             ]
         }
     })
+    ctx.deleteMessage()
 })
 
 bot.action('HELP',(ctx)=>{
