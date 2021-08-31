@@ -1,6 +1,6 @@
 module.exports.bothelp = `Halo, kami adalah bot File Saver. Kami akan terus memperbarui bot kami.`;
 
-module.exports.botins = `Kalian bisa instal sendiri bot nya, pastikan langkah di ikuti dengan benar`;
+module.exports.botins = `Kalian bisa instal sendiri bot nya, pastikan langkah di ikuti dengan benar.`;
 
 module.exports.botcommand = `<b>Berikut adalah beberapa perintah dan penggunaan admin.</b>
 

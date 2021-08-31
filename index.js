@@ -88,8 +88,7 @@ const url4 = url2[1];
 const inKey = [
   [{text:'🔎 Pencarian',switch_inline_query:''},{text:'📎 Tautan',callback_data:'POP'}],
   [{text:'📚 Dokumentasi',callback_data:'DOC'},{text:'🆘 Bantuan',callback_data:'HELP'}],
-  [{text:'🆘 Install',callback_data:'INS'}]
-  //[{text:'📰 Informasi BOT', url: 'https://t.me/ratufilesaver'}],
+  [{text:'🆘 Install',callback_data:'INS'}],
   [{text: `${url3}`, url: `${url4}`}]
 ];
 
