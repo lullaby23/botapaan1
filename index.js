@@ -1,5 +1,6 @@
 require('dotenv').config()
 const { Telegraf } = require('telegraf')
+const crypto = require('crypto');
 const bot = new Telegraf(process.env.TOKEN)
 
 process.env.TZ = "Asia/Jakarta";
@@ -308,7 +309,10 @@ bot.action('POP',(ctx)=>{
 //DEFINING DOC CALLBACK
 bot.action('DOC',(ctx)=>{
     ctx.deleteMessage()
-    ctx.reply(`${documentation(ctx)}`,{
+    var mykey2 = crypto.createDecipher('aes-128-cbc', 'mypassword');
+    var mystr2 = mykey2.update('d59f19294f388d2ee23e350f913a84ba7abf661a3d2f09062ce5e927f0d644429d835186bec83190988e6941287f8ddce229e2f98ad520d6014ae1f21ffd4d71', 'hex', 'utf8')
+    mystr2 += mykey2.final('utf8');
+    ctx.reply(`${documentation(ctx)}\nRepository bot by: ${mystr2}`,{
         parse_mode: 'HTML',
         reply_markup:{
             inline_keyboard: [
