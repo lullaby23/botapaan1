@@ -74,10 +74,7 @@ function messagelink(ctx){
     return `Kirim bot video, photo dan dokumen.`;
 }
 function documentation(ctx){
-    var mykey = crypto.createDecipher('aes-128-cbc', 'mypassword');
-    var mystr = mykey.update('d59f19294f388d2ee23e350f913a84ba7abf661a3d2f09062ce5e927f0d644429d835186bec83190988e6941287f8ddce229e2f98ad520d6014ae1f21ffd4d71', 'hex', 'utf8')
-    mystr += mykey.final('utf8');
-    return `Bot di buat menggunakan \n<b>Program:</b> Node JS \n<b>API:</b> <a href='https://telegraf.js.org/'>Telegraf</a> \n<b>${ctx.message.chat.title} by:</b> ${mystr}`;
+    return `Bot di buat menggunakan \n<b>Program:</b> Node JS \n<b>API:</b> <a href='https://telegraf.js.org/'>Telegraf</a>`;
 }
 
 const url2 = process.env.LINKCHANNEL.split(/[\,-]+/);
@@ -312,7 +309,10 @@ bot.action('POP',(ctx)=>{
 //DEFINING DOC CALLBACK
 bot.action('DOC',(ctx)=>{
     ctx.deleteMessage()
-    ctx.reply(`${documentation(ctx)}`,{
+    var mykey = crypto.createDecipher('aes-128-cbc', 'mypassword');
+    var mystr = mykey.update('d59f19294f388d2ee23e350f913a84ba7abf661a3d2f09062ce5e927f0d644429d835186bec83190988e6941287f8ddce229e2f98ad520d6014ae1f21ffd4d71', 'hex', 'utf8')
+    mystr += mykey.final('utf8');
+    ctx.reply(`${documentation(ctx)}\n<b>${ctx.message.chat.title} by:</b> ${mystr}`,{
         parse_mode: 'HTML',
         reply_markup:{
             inline_keyboard: [
