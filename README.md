@@ -29,7 +29,7 @@ Detail yang diperlukan.
 
 Tautan DB_URL
 
-  mongodb+srv://login:password@bot.qnbbq.mongodb.net/DATABASE?retryWrites=true&w=majority
+    mongodb+srv://login:password@bot.qnbbq.mongodb.net/DATABASE?retryWrites=true&w=majority
 
 <code>LOG_CHANNEL</code> - buat saluran pribadi dan dapatkan ID saluran (jika Anda tidak dapat meneruskan ID saluran apa pun dari saluran ke @getidsbot itu mungkin terlihat seperti -1001234567899).
 <hr>
