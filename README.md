@@ -27,7 +27,7 @@ Detail yang diperlukan.
 
 <code>DB_URL</code> - Buat akun di https://www.mongodb.com/cloud/atlas , nama database - RatuMediaFile ,nama collection - RatuFileBackup.Klik Connect dan pilih 'Hubungkan aplikasi Anda'.copy tautan dan ganti "< password >" dengan kata sandi pengguna yang memiliki akses ke DB dan ganti "myFirstDatabase" untuk "RatuMediaFile". Kalau mau ubah sesuai keinginan nama databasenya ada di folder config.</br>
 
-Tautan DB_URL
+<b>Tautan DB_URL</b>
 
     mongodb+srv://login:password@bot.qnbbq.mongodb.net/DATABASE?retryWrites=true&w=majority
 
