@@ -14,8 +14,7 @@ Ganti tautan dengan template github Anda.
 Klik di sini untuk menonton cara meng-host
 </a>
 <br>
-Detail yang diperlukan.
-
+Detail yang diperlukan.</br>
 <code>TOKEN</code> - Dapatkan Token bot dari bot father.</br>
 <code>DOMAIN</code> - Sama dengan nama aplikasi yang Anda masukkan di Heroku.</br>
 <code>ADMIN</code> - ID Akun Anda (jika Anda tidak dapat menemukannya menggunakan bot seperti @getmyid_bot).
