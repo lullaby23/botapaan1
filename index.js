@@ -9,7 +9,7 @@ const limitConfig = {
 }
 const mediaLimitConfig = {
     window: 60000,
-    limit: 1,
+    limit: 20,
     keyGenerator: function (ctx) {
       return ctx.from.id
     },
