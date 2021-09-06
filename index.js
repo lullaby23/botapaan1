@@ -17,7 +17,7 @@ const documentLimitConfig = {
 }
 const videoLimitConfig = {
     window: 60000,
-    limit: 20,
+    limit: 1,
     keyGenerator: function (ctx) {
       return ctx.from.id
     },
