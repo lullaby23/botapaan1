@@ -9,7 +9,7 @@ const limitConfig = {
 }
 // Set limit to 1 sticker per 1 minute per chat
 const videoLimitConfig = {
-    window: 60 * 1000,
+    window: 60000,
     limit: 20,
     keyGenerator: function (ctx) {
       return ctx.chat.id
