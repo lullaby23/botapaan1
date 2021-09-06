@@ -5,23 +5,15 @@ const crypto = require('crypto')
 const limitConfig = {
     window: 60000,
     limit: 20,
-    onLimitExceeded: (ctx, next) =>
-    if(ctx.chat.type == 'private') {
-        ctx.reply('Silakan menunggu 1 menit untuk mengirim lagi, minimal 20 pesan sekali kirim')
-    }
+    onLimitExceeded: (ctx, next) => ctx.reply('Silakan menunggu 1 menit untuk mengirim lagi, minimal 20 pesan sekali kirim')
 }
 const mediaLimitConfig = {
     window: 60000,
     limit: 20,
     keyGenerator: function (ctx) {
-        if(ctx.chat.type == 'private') {
-            return ctx.from.id
-        }
+      return ctx.from.id
     },
-    onLimitExceeded: (ctx, next) =>
-    if(ctx.chat.type == 'private') {
-        ctx.reply('Silakan menunggu 1 menit untuk mengirim lagi, minimal 20 pesan sekali kirim')
-    }
+    onLimitExceeded: (ctx, next) => ctx.reply('Silakan menunggu 1 menit untuk mengirim lagi, minimal 20 pesan sekali kirim')
 }
 const bot = new Telegraf(process.env.TOKEN)
 bot.use(rateLimit(limitConfig))
