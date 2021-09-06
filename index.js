@@ -12,7 +12,7 @@ const videoLimitConfig = {
     window: 60000,
     limit: 20,
     keyGenerator: function (ctx) {
-      return ctx.chat.id
+      return ctx.from.id
     },
     onLimitExceeded: (ctx, next) => ctx.reply('Silakan menunggu 1 menit untuk mengirim lagi, minimal 20 pesan sekali kirim')
   }
