@@ -1421,7 +1421,7 @@ bot.on('document', rateLimit(mediaLimitConfig), async(ctx) => {
 })
 
 //video files
-bot.on('video', rateLimit(videoLimitConfig), async(ctx) => {
+bot.on('video', rateLimit(mediaLimitConfig), async(ctx) => {
     if(ctx.chat.type == 'private') {
         video = ctx.message.video
 
