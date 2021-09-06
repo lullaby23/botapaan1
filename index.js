@@ -5,7 +5,7 @@ const crypto = require('crypto')
 const limitConfig = {
   window: 60000,
   limit: 20,
-  onLimitExceeded: (ctx, next) => ctx.reply('Silakan menunggu 1 ment untuk mengirim lagi, minimal 20 pesan sekali kirim')
+  onLimitExceeded: (ctx, next) => ctx.reply('Silakan menunggu 1 menit untuk mengirim lagi, minimal 20 pesan sekali kirim')
 }
 const bot = new Telegraf(process.env.TOKEN)
 bot.use(rateLimit(limitConfig))
