@@ -3,21 +3,18 @@ const { Telegraf } = require('telegraf')
 const rateLimit = require('telegraf-ratelimit')
 const crypto = require('crypto')
 if(ctx.chat.type == 'private') {
-    const limitConfig = {
-        window: 60000,
-        limit: 20,
-        onLimitExceeded: (ctx, next) => ctx.reply('Silakan menunggu 1 menit untuk mengirim lagi, minimal 20 pesan sekali kirim')
-    }
+const limitConfig = {
+    window: 60000,
+    limit: 20,
+    onLimitExceeded: (ctx, next) => ctx.reply('Silakan menunggu 1 menit untuk mengirim lagi, minimal 20 pesan sekali kirim')
 }
-if(ctx.chat.type == 'private') {
-    const mediaLimitConfig = {
-        window: 60000,
-        limit: 20,
-        keyGenerator: function (ctx) {
-        return ctx.from.id
-        },
-        onLimitExceeded: (ctx, next) => ctx.reply('Silakan menunggu 1 menit untuk mengirim lagi, minimal 20 pesan sekali kirim')
-    }
+const mediaLimitConfig = {
+    window: 60000,
+    limit: 20,
+    keyGenerator: function (ctx) {
+      return ctx.from.id
+    },
+    onLimitExceeded: (ctx, next) => ctx.reply('Silakan menunggu 1 menit untuk mengirim lagi, minimal 20 pesan sekali kirim')
 }
 const bot = new Telegraf(process.env.TOKEN)
 bot.use(rateLimit(limitConfig))
