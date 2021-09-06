@@ -2,7 +2,6 @@ require('dotenv').config()
 const { Telegraf } = require('telegraf')
 const rateLimit = require('telegraf-ratelimit')
 const crypto = require('crypto')
-if(ctx.chat.type == 'private') {
 const limitConfig = {
     window: 60000,
     limit: 20,
@@ -95,7 +94,6 @@ function documentation(ctx){
     mystr += mykey.final('utf8');
     return `Bot dibuat menggunakan \n<b>Program:</b> Node JS \n<b>API:</b> <a href='https://telegraf.js.org/'>Telegraf</a> \n\n~ ${mystr} ~`;
 }
-
 const url2 = process.env.LINKCHANNEL.split(/[\,-]+/);
 const url3 = url2[0];
 const url4 = url2[1];
