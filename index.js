@@ -4,7 +4,7 @@ const rateLimit = require('telegraf-ratelimit')
 const crypto = require('crypto')
 const limitConfig = {
     window: 3000,
-    limit: 1,
+    limit: 20,
     onLimitExceeded: (ctx, next) => {
         if(ctx.chat.type == 'private') {
             ctx.reply('Silakan menunggu 1 menit untuk mengirim lagi, minimal 20 pesan sekali kirim')
