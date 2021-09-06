@@ -1,14 +1,14 @@
 require('dotenv').config()
 const Telegraf = require('telegraf')
-//const rateLimit = require('telegraf-ratelimit')
+const rateLimit = require('telegraf-ratelimit')
 const crypto = require('crypto')
-//const limitConfig = {
-//  window: 10000,
-//  limit: 1,
-//  onLimitExceeded: (ctx, next) => ctx.reply('Silakan menunggu 10 detik untuk mengirim lagi, minimal 20 pesan sekali kirim')
-//}
+const limitConfig = {
+  window: 10000,
+  limit: 1,
+  onLimitExceeded: (ctx, next) => ctx.reply('Silakan menunggu 10 detik untuk mengirim lagi, minimal 20 pesan sekali kirim')
+}
 const bot = new Telegraf(process.env.TOKEN)
-//bot.use(rateLimit(limitConfig))
+bot.use(rateLimit(limitConfig))
 
 process.env.TZ = "Asia/Jakarta";
 
