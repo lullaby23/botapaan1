@@ -1,7 +1,7 @@
 require('dotenv').config()
 const { Telegraf } = require('telegraf')
 const { rateLimit } = require('telegraf-ratelimit')
-const { crypto } = require('crypto');
+const { crypto } = require('crypto')
 const limitConfig = {
   window: 10000,
   limit: 20,
