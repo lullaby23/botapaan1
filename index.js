@@ -16,7 +16,7 @@ const mediaLimitConfig = {
     onLimitExceeded: (ctx, next) => ctx.reply('Silakan menunggu 1 menit untuk mengirim lagi, minimal 20 pesan sekali kirim')
 }
 const bot = new Telegraf(process.env.TOKEN)
-bot.use(rateLimit(limitConfig))
+bot.use(rateLimit(if(ctx.chat.type == 'private') {limitConfig}))
 
 process.env.TZ = "Asia/Jakarta";
 
