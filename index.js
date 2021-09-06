@@ -3,9 +3,9 @@ const { Telegraf } = require('telegraf')
 const rateLimit = require('telegraf-ratelimit')
 const crypto = require('crypto')
 const limitConfig = {
-  window: 60000,
-  limit: 20,
-  onLimitExceeded: (ctx, next) => ctx.reply('Silakan menunggu 1 menit untuk mengirim lagi, minimal 20 pesan sekali kirim')
+    window: 60000,
+    limit: 20,
+    onLimitExceeded: (ctx, next) => ctx.reply('Silakan menunggu 1 menit untuk mengirim lagi, minimal 20 pesan sekali kirim')
 }
 const mediaLimitConfig = {
     window: 60000,
