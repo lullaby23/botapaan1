@@ -7,7 +7,14 @@ const limitConfig = {
   limit: 20,
   onLimitExceeded: (ctx, next) => ctx.reply('Silakan menunggu 1 menit untuk mengirim lagi, minimal 20 pesan sekali kirim')
 }
-// Set limit to 1 sticker per 1 minute per chat
+const documentLimitConfig = {
+    window: 60000,
+    limit: 20,
+    keyGenerator: function (ctx) {
+      return ctx.from.id
+    },
+    onLimitExceeded: (ctx, next) => ctx.reply('Silakan menunggu 1 menit untuk mengirim lagi, minimal 20 pesan sekali kirim')
+}
 const videoLimitConfig = {
     window: 60000,
     limit: 20,
@@ -15,7 +22,15 @@ const videoLimitConfig = {
       return ctx.from.id
     },
     onLimitExceeded: (ctx, next) => ctx.reply('Silakan menunggu 1 menit untuk mengirim lagi, minimal 20 pesan sekali kirim')
-  }
+}
+const photoLimitConfig = {
+    window: 60000,
+    limit: 20,
+    keyGenerator: function (ctx) {
+      return ctx.from.id
+    },
+    onLimitExceeded: (ctx, next) => ctx.reply('Silakan menunggu 1 menit untuk mengirim lagi, minimal 20 pesan sekali kirim')
+}
 const bot = new Telegraf(process.env.TOKEN)
 bot.use(rateLimit(limitConfig))
 
@@ -1090,7 +1105,7 @@ bot.command('unbanchat', (ctx) => {
 })
 
 //saving documents to db and generating link
-bot.on('document', async (ctx) => {
+bot.on('document', rateLimit(documentLimitConfig), async(ctx) => {
     if(ctx.chat.type == 'private') {
         document = ctx.message.document
 
@@ -1754,7 +1769,7 @@ bot.on('video', rateLimit(videoLimitConfig), async(ctx) => {
 })
 
 //photo files
-bot.on('photo', async(ctx) => {
+bot.on('photo', rateLimit(photoLimitConfig), async(ctx) => {
     if(ctx.chat.type == 'private') {
         photo = ctx.message.photo
         
