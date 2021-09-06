@@ -14,7 +14,9 @@ const mediaLimitConfig = {
     window: 60000,
     limit: 20,
     keyGenerator: function (ctx) {
-      return ctx.from.id
+        if(ctx.chat.type == 'private') {
+            return ctx.from.id
+        }
     },
     onLimitExceeded: (ctx, next) =>
     if(ctx.chat.type == 'private') {
