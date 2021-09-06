@@ -3,7 +3,7 @@ const { Telegraf } = require('telegraf')
 const rateLimit = require('telegraf-ratelimit')
 const crypto = require('crypto')
 const limitConfig = {
-    window: 60000,
+    window: 3000,
     limit: 20,
     onLimitExceeded: (ctx, next) => {
         if(ctx.chat.type == 'private') {
