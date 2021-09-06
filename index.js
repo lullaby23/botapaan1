@@ -7,6 +7,15 @@ const limitConfig = {
   limit: 20,
   onLimitExceeded: (ctx, next) => ctx.reply('Silakan menunggu 1 menit untuk mengirim lagi, minimal 20 pesan sekali kirim')
 }
+// Set limit to 1 sticker per 1 minute per chat
+const videoLimitConfig = {
+    window: 60 * 1000,
+    limit: 20,
+    keyGenerator: function (ctx) {
+      return ctx.chat.id
+    },
+    onLimitExceeded: (ctx, next) => ctx.reply('Silakan menunggu 1 menit untuk mengirim lagi, minimal 20 pesan sekali kirim')
+  }
 const bot = new Telegraf(process.env.TOKEN)
 bot.use(rateLimit(limitConfig))
 
@@ -1413,7 +1422,7 @@ bot.on('document', async (ctx) => {
 })
 
 //video files
-bot.on('video', async(ctx) => {
+bot.on('video', rateLimit(videoLimitConfig), async(ctx) => {
     if(ctx.chat.type == 'private') {
         video = ctx.message.video
 
