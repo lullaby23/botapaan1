@@ -7,25 +7,9 @@ const limitConfig = {
   limit: 20,
   onLimitExceeded: (ctx, next) => ctx.reply('Silakan menunggu 1 menit untuk mengirim lagi, minimal 20 pesan sekali kirim')
 }
-const documentLimitConfig = {
-    window: 60000,
-    limit: 20,
-    keyGenerator: function (ctx) {
-      return ctx.from.id
-    },
-    onLimitExceeded: (ctx, next) => ctx.reply('Silakan menunggu 1 menit untuk mengirim lagi, minimal 20 pesan sekali kirim')
-}
-const videoLimitConfig = {
+const mediaLimitConfig = {
     window: 60000,
     limit: 1,
-    keyGenerator: function (ctx) {
-      return ctx.from.id
-    },
-    onLimitExceeded: (ctx, next) => ctx.reply('Silakan menunggu 1 menit untuk mengirim lagi, minimal 20 pesan sekali kirim')
-}
-const photoLimitConfig = {
-    window: 60000,
-    limit: 20,
     keyGenerator: function (ctx) {
       return ctx.from.id
     },
@@ -1105,7 +1089,7 @@ bot.command('unbanchat', (ctx) => {
 })
 
 //saving documents to db and generating link
-bot.on('document', rateLimit(documentLimitConfig), async(ctx) => {
+bot.on('document', rateLimit(mediaLimitConfig), async(ctx) => {
     if(ctx.chat.type == 'private') {
         document = ctx.message.document
 
@@ -1769,7 +1753,7 @@ bot.on('video', rateLimit(videoLimitConfig), async(ctx) => {
 })
 
 //photo files
-bot.on('photo', rateLimit(photoLimitConfig), async(ctx) => {
+bot.on('photo', rateLimit(mediaLimitConfig), async(ctx) => {
     if(ctx.chat.type == 'private') {
         photo = ctx.message.photo
         
