@@ -272,7 +272,7 @@ bot.start(async(ctx)=>{
                             if (query.indexOf('grp_') > -1){
                                 var query1 = query.replace('grp_','');
                                 try{
-                                    await saver.getFile1(query1).then((res1)=>{
+                                    file = await saver.getFile1(query1).then((res1)=>{
                                         //console.log(res1);
                                         let mediagroup = [];
                                         for (let index = 0; index < res1.length; index++) {
