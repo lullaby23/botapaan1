@@ -280,21 +280,12 @@ bot.start(async(ctx)=>{
                                             mediagroup.push({type: data.type, media: data.file_id, caption: data.caption, parse_mode:'HTML'});
                                         }
                                         //console.log(mediagroup);
-                                        await saver.checkBan(`${ctx.from.id}`).then((res) => {
-                                            //console.log(res);
-                                            if(res == true) {
-                                                if(ctx.chat.type == 'private') {
-                                                    ctx.reply(`${messagebanned(ctx)}`)
-                                                }
-                                            }else{
-                                                function captionFunction() {
-                                                    ctx.reply(`${captionbuild(ctx)}`,{
-                                                        parse_mode:'HTML'
-                                                    })
-                                                }
-                                                return ctx.telegram.sendMediaGroup(ctx.chat.id, mediagroup) + setTimeout(captionFunction, 1000)
-                                            }
-                                        })
+                                        function captionFunction() {
+                                            ctx.reply(`${captionbuild(ctx)}`,{
+                                                parse_mode:'HTML'
+                                            })
+                                        }
+                                        return ctx.telegram.sendMediaGroup(ctx.chat.id, mediagroup) + setTimeout(captionFunction, 1000)
                                     })
                                 }catch(error){
                                     ctx.reply(`Media tidak ditemukan atau sudah dihapus`)
