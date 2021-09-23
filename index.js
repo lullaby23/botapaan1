@@ -244,61 +244,61 @@ bot.start(async(ctx)=>{
                     //welcoming message on /start and ifthere is a query available we can send files
                     if(length == 1){
                         const profile3 = await bot.telegram.getUserProfilePhotos(ctx.from.id)
-                        await saver.checkBan(`${ctx.from.id}`).then((res) => {
-                            //console.log(res);
-                            if(res == true) {
-                                if(ctx.chat.type == 'private') {
-                                    ctx.reply(`${messagebanned(ctx)}`)
+                            await saver.checkBan(`${ctx.from.id}`).then((res) => {
+                                //console.log(res);
+                                if(res == true) {
+                                    if(ctx.chat.type == 'private') {
+                                        ctx.reply(`${messagebanned(ctx)}`)
+                                    }
+                                }else{
+                                    if(!profile3 || profile3.total_count == 0)
+                                        return ctx.reply(`<a href="tg://user?id=${ctx.from.id}">${first_name(ctx)} ${last_name(ctx)}</a> \n\n${messagewelcome(ctx)}`,{
+                                            parse_mode:'HTML',
+                                            disable_web_page_preview: true,
+                                            reply_markup:{
+                                                inline_keyboard:inKey
+                                            }
+                                        })
+                                        ctx.replyWithPhoto(profile3.photos[0][0].file_id,{caption: `<a href="tg://user?id=${ctx.from.id}">${first_name(ctx)} ${last_name(ctx)}</a> \n\n${messagewelcome(ctx)}`,
+                                            parse_mode:'HTML',
+                                            disable_web_page_preview: true,
+                                            reply_markup:{
+                                                inline_keyboard:inKey
+                                            }
+                                        })
                                 }
-                            }else{
-                                if(!profile3 || profile3.total_count == 0)
-                                    return ctx.reply(`<a href="tg://user?id=${ctx.from.id}">${first_name(ctx)} ${last_name(ctx)}</a> \n\n${messagewelcome(ctx)}`,{
-                                        parse_mode:'HTML',
-                                        disable_web_page_preview: true,
-                                        reply_markup:{
-                                            inline_keyboard:inKey
-                                        }
-                                    })
-                                    ctx.replyWithPhoto(profile3.photos[0][0].file_id,{caption: `<a href="tg://user?id=${ctx.from.id}">${first_name(ctx)} ${last_name(ctx)}</a> \n\n${messagewelcome(ctx)}`,
-                                        parse_mode:'HTML',
-                                        disable_web_page_preview: true,
-                                        reply_markup:{
-                                            inline_keyboard:inKey
-                                        }
-                                    })
-                            }
-                        })
+                            })
                         }else{
                             if (query.indexOf('grp_') > -1){
                                 var query1 = query.replace('grp_','');
-                                await saver.checkBan(`${ctx.from.id}`).then((res) => {
-                                    //console.log(res);
-                                    if(res == true) {
-                                        if(ctx.chat.type == 'private') {
-                                            ctx.reply(`${messagebanned(ctx)}`)
+                                try{
+                                    file = await saver.getFile1(query1).then((res1)=>{
+                                        //console.log(res1);
+                                        let mediagroup = [];
+                                        for (let index = 0; index < res1.length; index++) {
+                                            const data = res1[index];
+                                            mediagroup.push({type: data.type, media: data.file_id, caption: data.caption, parse_mode:'HTML'});
                                         }
-                                    }else{
-                                        try{
-                                            file = await saver.getFile1(query1).then((res1)=>{
-                                                //console.log(res1);
-                                                let mediagroup = [];
-                                                for (let index = 0; index < res1.length; index++) {
-                                                    const data = res1[index];
-                                                    mediagroup.push({type: data.type, media: data.file_id, caption: data.caption, parse_mode:'HTML'});
+                                        //console.log(mediagroup);
+                                        await saver.checkBan(`${ctx.from.id}`).then((res) => {
+                                            //console.log(res);
+                                            if(res == true) {
+                                                if(ctx.chat.type == 'private') {
+                                                    ctx.reply(`${messagebanned(ctx)}`)
                                                 }
-                                                //console.log(mediagroup);
+                                            }else{
                                                 function captionFunction() {
                                                     ctx.reply(`${captionbuild(ctx)}`,{
                                                         parse_mode:'HTML'
                                                     })
                                                 }
                                                 return ctx.telegram.sendMediaGroup(ctx.chat.id, mediagroup) + setTimeout(captionFunction, 1000)
-                                            })
-                                        }catch(error){
-                                            ctx.reply(`Media tidak ditemukan atau sudah dihapus`)
-                                        }
-                                    }
-                                })
+                                            }
+                                        })
+                                    })
+                                }catch(error){
+                                    ctx.reply(`Media tidak ditemukan atau sudah dihapus`)
+                                }
                             }else{
                                 let query2 = query;
                                 try{
