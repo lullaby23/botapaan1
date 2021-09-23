@@ -445,7 +445,7 @@ bot.hears('ping',async(ctx)=>{
     }
 })
 
-bot.action('PONG',(ctx)=>{
+bot.action('PONG',async(ctx)=>{
     ctx.deleteMessage()
 })
 
