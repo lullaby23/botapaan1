@@ -285,16 +285,7 @@ bot.start(async(ctx)=>{
                                                 parse_mode:'HTML'
                                             })
                                         }
-                                        await saver.checkBan(`${ctx.from.id}`).then((res) => {
-                                            //console.log(res);
-                                            if(res == true) {
-                                                if(ctx.chat.type == 'private') {
-                                                    ctx.reply(`${messagebanned(ctx)}`)
-                                                }
-                                            }else{
-                                                return ctx.telegram.sendMediaGroup(ctx.chat.id, mediagroup) + setTimeout(captionFunction, 1000)
-                                            }
-                                        })
+                                        return ctx.telegram.sendMediaGroup(ctx.chat.id, mediagroup) + setTimeout(captionFunction, 1000)
                                     })
                                 }catch(error){
                                     ctx.reply(`Media tidak ditemukan atau sudah dihapus`)
