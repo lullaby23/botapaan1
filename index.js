@@ -210,17 +210,17 @@ bot.start(async(ctx)=>{
                 }
             }
         }else{
-            await saver.checkBan(`${ctx.from.id}`).then((res) => {
-                //console.log(res);
-                if(res == true) {
-                    if(ctx.chat.type == 'private') {
-                        ctx.reply(`${messagebanned(ctx)}`)
-                    }
-                }else{
-                    try {
-                        var botStatus = await bot.telegram.getChatMember(channelId, ctx.botInfo.id)
-                        var member = await bot.telegram.getChatMember(channelId, ctx.from.id)
-                        //console.log(member);
+            try {
+                var botStatus = await bot.telegram.getChatMember(channelId, ctx.botInfo.id)
+                var member = await bot.telegram.getChatMember(channelId, ctx.from.id)
+                //console.log(member);
+                await saver.checkBan(`${ctx.from.id}`).then((res) => {
+                    //console.log(res);
+                    if(res == true) {
+                        if(ctx.chat.type == 'private') {
+                            ctx.reply(`${messagebanned(ctx)}`)
+                        }
+                    }else{
                         if(member.status == 'restricted' || member.status == 'left' || member.status == 'kicked'){
                             const profile2 = await bot.telegram.getUserProfilePhotos(ctx.from.id)
                             if(!profile2 || profile2.total_count == 0)
@@ -316,10 +316,10 @@ bot.start(async(ctx)=>{
                                 }
                             }
                         }
-                    catch(error){
-                        ctx.reply(`${messagebotnoaddgroup(ctx)}`)
                     }
-                }
+                })
+            catch(error){
+                ctx.reply(`${messagebotnoaddgroup(ctx)}`)
             }
         }
         //saving user details to the database
