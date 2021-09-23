@@ -244,21 +244,30 @@ bot.start(async(ctx)=>{
                     //welcoming message on /start and ifthere is a query available we can send files
                     if(length == 1){
                         const profile3 = await bot.telegram.getUserProfilePhotos(ctx.from.id)
-                        if(!profile3 || profile3.total_count == 0)
-                            return ctx.reply(`<a href="tg://user?id=${ctx.from.id}">${first_name(ctx)} ${last_name(ctx)}</a> \n\n${messagewelcome(ctx)}`,{
-                                parse_mode:'HTML',
-                                disable_web_page_preview: true,
-                                reply_markup:{
-                                    inline_keyboard:inKey
+                        await saver.checkBan(`${ctx.from.id}`).then((res) => {
+                            //console.log(res);
+                            if(res == true) {
+                                if(ctx.chat.type == 'private') {
+                                    ctx.reply(`${messagebanned(ctx)}`)
                                 }
-                            })
-                            ctx.replyWithPhoto(profile3.photos[0][0].file_id,{caption: `<a href="tg://user?id=${ctx.from.id}">${first_name(ctx)} ${last_name(ctx)}</a> \n\n${messagewelcome(ctx)}`,
-                                parse_mode:'HTML',
-                                disable_web_page_preview: true,
-                                reply_markup:{
-                                    inline_keyboard:inKey
-                                }
-                            })
+                            }else{
+                                if(!profile3 || profile3.total_count == 0)
+                                    return ctx.reply(`<a href="tg://user?id=${ctx.from.id}">${first_name(ctx)} ${last_name(ctx)}</a> \n\n${messagewelcome(ctx)}`,{
+                                        parse_mode:'HTML',
+                                        disable_web_page_preview: true,
+                                        reply_markup:{
+                                            inline_keyboard:inKey
+                                        }
+                                    })
+                                    ctx.replyWithPhoto(profile3.photos[0][0].file_id,{caption: `<a href="tg://user?id=${ctx.from.id}">${first_name(ctx)} ${last_name(ctx)}</a> \n\n${messagewelcome(ctx)}`,
+                                        parse_mode:'HTML',
+                                        disable_web_page_preview: true,
+                                        reply_markup:{
+                                            inline_keyboard:inKey
+                                        }
+                                    })
+                            }
+                        })
                         }else{
                             if (query.indexOf('grp_') > -1){
                                 var query1 = query.replace('grp_','');
