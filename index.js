@@ -1279,28 +1279,35 @@ bot.on('document', rateLimit(mediaLimitConfig), async(ctx) => {
         }
     }else{
         //try{
-            var botStatus3 = await bot.telegram.getChatMember(channelId, ctx.botInfo.id)
-            var member3 = await bot.telegram.getChatMember(channelId, ctx.from.id)
-            //console.log(member3);
-            if(member3.status == 'restricted' || member3.status == 'left' || member3.status == 'kicked'){
-                if(ctx.chat.type == 'private') {
-                    const profile6 = bot.telegram.getUserProfilePhotos(ctx.from.id)
-                    if(!profile6 || profile6.total_count == 0)
-                        return ctx.reply(`<a href="tg://user?id=${ctx.from.id}">${first_name(ctx)} ${last_name(ctx)}</a> \n\n${welcomejoin(ctx)}`,{
-                            parse_mode:'HTML',
-                            disable_web_page_preview: true,
-                            reply_markup:{
-                                inline_keyboard:inKey2
-                            }
-                        })
-                        ctx.replyWithPhoto(profile6.photos[0][0].file_id,{caption: `<a href="tg://user?id=${ctx.from.id}">${first_name(ctx)} ${last_name(ctx)}</a> \n\n${welcomejoin(ctx)}`,
-                            parse_mode:'HTML',
-                            disable_web_page_preview: true,
-                            reply_markup:{
-                                inline_keyboard:inKey2
-                            }
-                        })
-                }
+          var botStatus = await bot.telegram.getChatMember(channelId, ctx.botInfo.id)
+          var member = await bot.telegram.getChatMember(channelId, ctx.from.id)
+          //console.log(member);
+            if(member.status == 'restricted' || member.status == 'left' || member.status == 'kicked'){
+                const profile2 = await bot.telegram.getUserProfilePhotos(ctx.from.id)
+                await saver.checkBan(`${ctx.from.id}`).then((res) => {
+                    //console.log(res);
+                    if(res == true) {
+                        if(ctx.chat.type == 'private') {
+                            ctx.reply(`${messagebanned(ctx)}`)
+                        }
+                    }else{
+                        if(!profile2 || profile2.total_count == 0)
+                            return ctx.reply(`<a href="tg://user?id=${ctx.from.id}">${first_name(ctx)} ${last_name(ctx)}</a> \n\n${welcomejoin(ctx)}`,{
+                                parse_mode:'HTML',
+                                disable_web_page_preview: true,
+                                reply_markup:{
+                                    inline_keyboard:inKey2
+                                }
+                            })
+                            ctx.replyWithPhoto(profile2.photos[0][0].file_id,{caption: `<a href="tg://user?id=${ctx.from.id}">${first_name(ctx)} ${last_name(ctx)}</a> \n\n${welcomejoin(ctx)}`,
+                                parse_mode:'HTML',
+                                disable_web_page_preview: true,
+                                reply_markup:{
+                                    inline_keyboard:inKey2
+                                }
+                            })
+                    }
+                })
             }else{
                 await saver.checkBan(`${ctx.from.id}`).then((res) => {
                 //console.log(res);
