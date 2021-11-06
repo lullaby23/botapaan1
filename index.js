@@ -3,7 +3,7 @@ const { Telegraf } = require('telegraf')
 const rateLimit = require('telegraf-ratelimit')
 const crypto = require('crypto')
 
-bot.use(async (ctx, next) => {
+bot.use((ctx, next) => {
     return next();
 })
 
@@ -18,7 +18,7 @@ bot.use(async (ctx, next) => {
             return resolve("Result");
         }, 10_000);
     });
-    await ctx.reply()
+    await ctx.reply("Proses selesai")
     return next();
 })
 
