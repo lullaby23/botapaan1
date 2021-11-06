@@ -119,6 +119,7 @@ const inKey2 = [
 ];
 
 bot.use((ctx, next) => {
+    ctx.reply('Silakan menunggu, masih ada proses.')
     return next();
 })
 
