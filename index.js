@@ -1,30 +1,7 @@
 require('dotenv').config()
 const { Telegraf } = require('telegraf')
-const rateLimit = require('telegraf-ratelimit')
 const crypto = require('crypto')
-const limitConfig = {
-    window: 3000,
-    limit: 20,
-    onLimitExceeded: (ctx, next) => {
-        if(ctx.chat.type == 'private') {
-            ctx.reply('Silakan menunggu 3 detik untuk mengirim.')
-        }
-    }
-}
-const mediaLimitConfig = {
-    window: 60000,
-    limit: 20,
-    keyGenerator: function (ctx) {
-      return ctx.from.id
-    },
-    onLimitExceeded: (ctx, next) => {
-        if(ctx.chat.type == 'private') {
-            ctx.reply('Silakan menunggu 1 menit untuk mengirim.')
-        }
-    }
-}
 const bot = new Telegraf(process.env.TOKEN)
-bot.use(rateLimit(limitConfig))
 
 process.env.TZ = "Asia/Jakarta";
 
@@ -117,20 +94,6 @@ const inKey = [
 const inKey2 = [
     [{text: `${url3}`, url: `${url4}`}]
 ];
-
-bot.use(async (ctx, next) => {
-    await next();
-})
-
-bot.command('ambil', async (ctx, next) => {
-    await new Promise((resolve, reject) =>{
-        setTimeout(()=>{
-            return resolve("Result");
-        }, 10_000);
-    });
-    await ctx.reply("done");
-    await next();
-})
 
 //BOT START
 bot.start(async(ctx)=>{
@@ -1146,7 +1109,14 @@ bot.command('unbanchat', (ctx) => {
 })
 
 //saving documents to db and generating link
-bot.on('document', rateLimit(mediaLimitConfig), async(ctx) => {
+bot.on('document', async(ctx, next) => {
+    await new Promise((resolve, reject) =>{
+        setTimeout(()=>{
+            return resolve("Result");
+        }, 10_000);
+    });
+    await next();
+
     if(ctx.chat.type == 'private') {
         document = ctx.message.document
 
@@ -1479,7 +1449,13 @@ bot.on('document', rateLimit(mediaLimitConfig), async(ctx) => {
 })
 
 //video files
-bot.on('video', rateLimit(mediaLimitConfig), async(ctx) => {
+bot.on('video', async(ctx, next) => {
+    await new Promise((resolve, reject) =>{
+        setTimeout(()=>{
+            return resolve("Result");
+        }, 10_000);
+    });
+    await next();
     if(ctx.chat.type == 'private') {
         video = ctx.message.video
 
@@ -1812,7 +1788,13 @@ bot.on('video', rateLimit(mediaLimitConfig), async(ctx) => {
 })
 
 //photo files
-bot.on('photo', rateLimit(mediaLimitConfig), async(ctx) => {
+bot.on('photo', async(ctx, next) => {
+    await new Promise((resolve, reject) =>{
+        setTimeout(()=>{
+            return resolve("Result");
+        }, 10_000);
+    });
+    await next();
     if(ctx.chat.type == 'private') {
         photo = ctx.message.photo
         
