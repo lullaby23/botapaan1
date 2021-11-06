@@ -119,7 +119,6 @@ const inKey2 = [
 ];
 
 bot.use(async (ctx, next) => {
-    await ctx.reply('Silakan menunggu, masih ada proses.')
     await next();
 })
 
@@ -129,7 +128,6 @@ bot.use(async (ctx, next) => {
             return resolve("Result");
         }, 10_000);
     });
-    await ctx.reply("Proses selesai.")
     await next();
 })
 
