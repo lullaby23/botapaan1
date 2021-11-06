@@ -122,12 +122,17 @@ bot.use(async (ctx, next) => {
     await next();
 })
 
-bot.use(async (ctx, next) => {
+bot.command('ambil', async (ctx, next) => {
+    return next();
+})
+
+bot.command('ambil', async (ctx, next) => {
     await new Promise((resolve, reject) =>{
         setTimeout(()=>{
             return resolve("Result");
         }, 10_000);
     });
+    await ctx.reply("done");
     await next();
 })
 
