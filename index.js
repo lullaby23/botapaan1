@@ -1144,25 +1144,6 @@ bot.command('unbanchat', (ctx) => {
     }
 })
 
-bot.use(async (ctx, next) => {
-    return next();
-})
-
-bot.use(async (ctx, next) => {
-    await ctx.reply('Silakan menunggu, masih ada proses.')
-    return next();
-})
-
-bot.use(async (ctx, next) => {
-    await new Promise((resolve, reject) =>{
-        setTimeout(()=>{
-            return resolve("Result");
-        }, 10_000);
-    });
-    await ctx.reply()
-    return next();
-})
-
 //saving documents to db and generating link
 bot.on('document', rateLimit(mediaLimitConfig), async(ctx) => {
     if(ctx.chat.type == 'private') {
