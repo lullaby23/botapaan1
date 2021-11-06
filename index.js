@@ -118,11 +118,6 @@ const inKey2 = [
     [{text: `${url3}`, url: `${url4}`}]
 ];
 
-bot.use((ctx, next) => {
-    ctx.reply('Silakan menunggu, masih ada proses.')
-    return next();
-})
-
 bot.use(async (ctx, next) => {
     await ctx.reply('Silakan menunggu, masih ada proses.')
     return next();
@@ -134,7 +129,7 @@ bot.use(async (ctx, next) => {
             return resolve("Result");
         }, 10_000);
     });
-    await ctx.reply("Proses selesai")
+    await ctx.reply("Proses selesai.")
     return next();
 })
 
