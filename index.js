@@ -2,6 +2,26 @@ require('dotenv').config()
 const { Telegraf } = require('telegraf')
 const rateLimit = require('telegraf-ratelimit')
 const crypto = require('crypto')
+
+bot.use(async (ctx, next) => {
+    return next();
+})
+
+bot.use(async (ctx, next) => {
+    await ctx.reply('Silakan menunggu, masih ada proses.')
+    return next();
+})
+
+bot.use(async (ctx, next) => {
+    await new Promise((resolve, reject) =>{
+        setTimeout(()=>{
+            return resolve("Result");
+        }, 10_000);
+    });
+    await ctx.reply()
+    return next();
+})
+
 const limitConfig = {
     window: 3000,
     limit: 20,
@@ -1129,6 +1149,25 @@ bot.command('unbanchat', (ctx) => {
             }
         }
     }
+})
+
+bot.use(async (ctx, next) => {
+    return next();
+})
+
+bot.use(async (ctx, next) => {
+    await ctx.reply('Silakan menunggu, masih ada proses.')
+    return next();
+})
+
+bot.use(async (ctx, next) => {
+    await new Promise((resolve, reject) =>{
+        setTimeout(()=>{
+            return resolve("Result");
+        }, 10_000);
+    });
+    await ctx.reply()
+    return next();
 })
 
 //saving documents to db and generating link
