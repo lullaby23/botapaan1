@@ -915,7 +915,7 @@ bot.command('rem', (ctx) => {
         let msgArray = msg.split(' ')
         msgArray.shift()
         let text = msgArray.join(' ')
-        //console.log(text);
+        console.log(text);
         if(ctx.from.id == process.env.ADMIN || ctx.from.id == process.env.ADMIN1 || ctx.from.id == process.env.ADMIN2){
             saver.removeFile(text)
             ctx.reply('❌ 1 media dihapus berhasil')
