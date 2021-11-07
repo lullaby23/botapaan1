@@ -107,9 +107,7 @@ module.exports={
 
     //removing file with file_id
     removeFile:(fileId)=>{
-        db.get().collection(collection.FILE_COLLECTION).removeOne({file_id:fileId}.then((res)=>{
-            console.log('❌ 1 media dihapus berhasil');
-        })
+        db.get().collection(collection.FILE_COLLECTION).removeOne({file_id:fileId})
     },
 
     //removing file with mediaId
