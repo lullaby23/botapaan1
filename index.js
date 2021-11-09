@@ -11,6 +11,8 @@ const collection = require('./config/collection')
 const saver = require('./database/filesaver')
 const helpcommand = require('./help.js')
 
+export NODE_OPTIONS="--unhandled-rejections=strict"
+
 //DATABASE CONNECTION 
 db.connect((err) => {
     if(err) { console.log('error connection db' + err); }
