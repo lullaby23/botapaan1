@@ -148,7 +148,7 @@ bot.start(async(ctx)=>{
                             }
                             return ctx.telegram.sendMediaGroup(ctx.chat.id, mediagroup) + setTimeout(captionFunction, 1000)
                         })
-                    }catch(error){
+                    }catch{
                         return;
                     }
                     throw new Error('Function didn’t throw an exception!');
