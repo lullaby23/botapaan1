@@ -132,24 +132,25 @@ bot.start(async(ctx)=>{
             }else{
                 if(query.indexOf('grp_') > -1){
                     let query1 = query.replace('grp_','');
-                    file = await saver.getFile1(query1).then((res1)=>{
-                        //console.log(res1);
-                        let mediagroup = [];
-                        for (let index = 0; index < res1.length; index++) {
-                            const data = res1[index];
-                            mediagroup.push({type: data.type, media: data.file_id, caption: data.caption, parse_mode:'HTML'});
-                        }
-                        //console.log(mediagroup);
-                        function captionFunction() {
-                            ctx.reply(`${captionbuild(ctx)}`,{
-                                parse_mode:'HTML'
-                            })
-                        }
-                        return ctx.telegram.sendMediaGroup(ctx.chat.id, mediagroup) + setTimeout(captionFunction, 1000)
-                    })
-                    .catch((error) => {
+                    try{
+                        file = await saver.getFile1(query1).then((res1)=>{
+                            //console.log(res1);
+                            let mediagroup = [];
+                            for (let index = 0; index < res1.length; index++) {
+                                const data = res1[index];
+                                mediagroup.push({type: data.type, media: data.file_id, caption: data.caption, parse_mode:'HTML'});
+                            }
+                            //console.log(mediagroup);
+                            function captionFunction() {
+                                ctx.reply(`${captionbuild(ctx)}`,{
+                                    parse_mode:'HTML'
+                                })
+                            }
+                            return ctx.telegram.sendMediaGroup(ctx.chat.id, mediagroup) + setTimeout(captionFunction, 1000)
+                        })
+                    }catch(error){
                         ctx.reply(`Media tidak ditemukan atau sudah dihapus`)
-                    })
+                    }
                 }else{
                     let query2 = query;
                     try{
