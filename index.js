@@ -151,7 +151,6 @@ bot.start(async(ctx)=>{
                     }catch{
                         return;
                     }
-                    throw new Error('Function didn’t throw an exception!');
                     ctx.reply(`Media tidak ditemukan atau sudah dihapus`)
                 }else{
                     let query2 = query;
