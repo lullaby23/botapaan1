@@ -150,6 +150,8 @@ bot.start(async(ctx)=>{
                         })
                     }catch(error){
                         ctx.reply(`Media tidak ditemukan atau sudah dihapus`)
+                    }finally{
+                        ctx.reply(`Media tidak ditemukan atau sudah dihapus`)
                     }
                 }else{
                     let query2 = query;
