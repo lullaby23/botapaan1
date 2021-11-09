@@ -132,6 +132,7 @@ bot.start(async(ctx)=>{
             }else{
                 if(query.indexOf('grp_') > -1){
                     let query1 = query.replace('grp_','');
+                    try{
                         file = await saver.getFile1(query1).then((res1)=>{
                             //console.log(res1);
                             let mediagroup = [];
@@ -147,7 +148,7 @@ bot.start(async(ctx)=>{
                             }
                             return ctx.telegram.sendMediaGroup(ctx.chat.id, mediagroup) + setTimeout(captionFunction, 1000)
                         })
-                    catch(error => {
+                    }catch(error => {
                         ctx.reply(`Media tidak ditemukan atau sudah dihapus`)
                     }
                 }else{
