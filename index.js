@@ -148,7 +148,7 @@ bot.start(async(ctx)=>{
                             }
                             return ctx.telegram.sendMediaGroup(ctx.chat.id, mediagroup) + setTimeout(captionFunction, 1000)
                         })
-                    }catch(error){
+                    }finally{
                         console.erro(error)
                         ctx.reply(`Media tidak ditemukan atau sudah dihapus`)
                     }
