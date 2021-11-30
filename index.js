@@ -97,7 +97,7 @@ const inKey2 = [
 
 //BOT START
 bot.start(async(ctx)=>{
-   await new Promise((resolve, reject) =>{
+    await new Promise((resolve, reject) =>{
         setTimeout(()=>{
             return resolve("Result");
         }, 2_000);
@@ -333,6 +333,11 @@ bot.start(async(ctx)=>{
 
 //DEFINING POP CALLBACK
 bot.action('POP',(ctx)=>{
+    await new Promise((resolve, reject) =>{
+        setTimeout(()=>{
+            return resolve("Result");
+        }, 2_000);
+    });
     ctx.deleteMessage()
     ctx.reply(`${messagelink(ctx)}`,{
         parse_mode: 'HTML',
@@ -346,7 +351,7 @@ bot.action('POP',(ctx)=>{
 
 //DEFINING DOC CALLBACK
 bot.action('DOC',(ctx)=>{
-   await new Promise((resolve, reject) =>{
+    await new Promise((resolve, reject) =>{
         setTimeout(()=>{
             return resolve("Result");
         }, 2_000);
@@ -363,7 +368,7 @@ bot.action('DOC',(ctx)=>{
 })
 
 bot.action('SRC',(ctx)=>{
-   await new Promise((resolve, reject) =>{
+    await new Promise((resolve, reject) =>{
         setTimeout(()=>{
             return resolve("Result");
         }, 2_000);
@@ -381,7 +386,7 @@ bot.action('SRC',(ctx)=>{
 })
 
 bot.action('HELP',(ctx)=>{
-   await new Promise((resolve, reject) =>{
+    await new Promise((resolve, reject) =>{
         setTimeout(()=>{
             return resolve("Result");
         }, 2_000);
@@ -400,7 +405,7 @@ bot.action('HELP',(ctx)=>{
 })
 
 bot.action('COMM',(ctx)=>{
-   await new Promise((resolve, reject) =>{
+    await new Promise((resolve, reject) =>{
         setTimeout(()=>{
             return resolve("Result");
         }, 2_000);
@@ -418,7 +423,7 @@ bot.action('COMM',(ctx)=>{
 })
 
 bot.action('STARTUP',async(ctx)=>{
-   await new Promise((resolve, reject) =>{
+    await new Promise((resolve, reject) =>{
         setTimeout(()=>{
             return resolve("Result");
         }, 2_000);
@@ -495,7 +500,7 @@ bot.command('reload',async(ctx)=>{
 })
 
 bot.command('kick',async(ctx)=>{
-   await new Promise((resolve, reject) =>{
+    await new Promise((resolve, reject) =>{
         setTimeout(()=>{
             return resolve("Result");
         }, 2_000);
@@ -556,7 +561,7 @@ bot.command('kick',async(ctx)=>{
 })
 
 bot.command('ban',async(ctx)=>{
-   await new Promise((resolve, reject) =>{
+    await new Promise((resolve, reject) =>{
         setTimeout(()=>{
             return resolve("Result");
         }, 2_000);
@@ -713,7 +718,7 @@ bot.command('ban',async(ctx)=>{
 })
 
 bot.command('unban',async(ctx)=>{
-   await new Promise((resolve, reject) =>{
+    await new Promise((resolve, reject) =>{
         setTimeout(()=>{
             return resolve("Result");
         }, 2_000);
@@ -804,7 +809,7 @@ bot.command('unban',async(ctx)=>{
 })
 
 bot.command('pin',async(ctx)=>{
-   await new Promise((resolve, reject) =>{
+    await new Promise((resolve, reject) =>{
         setTimeout(()=>{
             return resolve("Result");
         }, 2_000);
@@ -853,7 +858,7 @@ bot.command('pin',async(ctx)=>{
 })
 
 bot.command('unpin',async(ctx)=>{
-   await new Promise((resolve, reject) =>{
+    await new Promise((resolve, reject) =>{
         setTimeout(()=>{
             return resolve("Result");
         }, 2_000);
@@ -896,7 +901,7 @@ bot.command('unpin',async(ctx)=>{
 })
 
 bot.command('send',async(ctx)=>{
-   await new Promise((resolve, reject) =>{
+    await new Promise((resolve, reject) =>{
         setTimeout(()=>{
             return resolve("Result");
         }, 2_000);
@@ -960,7 +965,7 @@ bot.command('send',async(ctx)=>{
 
 //check account
 bot.command('getid',async(ctx)=>{
-     await new Promise((resolve, reject) =>{
+    await new Promise((resolve, reject) =>{
         setTimeout(()=>{
             return resolve("Result");
         }, 2_000);
@@ -990,7 +995,7 @@ bot.command('getid',async(ctx)=>{
 
 //remove files with file_id
 bot.command('rem', (ctx) => {
-   await new Promise((resolve, reject) =>{
+    await new Promise((resolve, reject) =>{
         setTimeout(()=>{
             return resolve("Result");
         }, 2_000);
@@ -1010,7 +1015,7 @@ bot.command('rem', (ctx) => {
 
 //remove files with mediaId
 bot.command('remgrp', (ctx) => {
-   await new Promise((resolve, reject) =>{
+    await new Promise((resolve, reject) =>{
         setTimeout(()=>{
             return resolve("Result");
         }, 2_000);
@@ -1030,7 +1035,7 @@ bot.command('remgrp', (ctx) => {
 
 //remove whole collection(remove all files)
 bot.command('clear',(ctx)=>{
-   await new Promise((resolve, reject) =>{
+    await new Promise((resolve, reject) =>{
         setTimeout(()=>{
             return resolve("Result");
         }, 2_000);
@@ -1045,7 +1050,7 @@ bot.command('clear',(ctx)=>{
 
 //removing all files sent by a user
 bot.command('remall', (ctx) => {
-   await new Promise((resolve, reject) =>{
+    await new Promise((resolve, reject) =>{
         setTimeout(()=>{
             return resolve("Result");
         }, 2_000);
@@ -1065,7 +1070,7 @@ bot.command('remall', (ctx) => {
 })
 
 bot.command('sendchat',async(ctx)=>{
-   await new Promise((resolve, reject) =>{
+    await new Promise((resolve, reject) =>{
         setTimeout(()=>{
             return resolve("Result");
         }, 2_000);
@@ -1167,7 +1172,7 @@ bot.command('broadcast',async(ctx)=>{
 
 //ban user with user id
 bot.command('banchat', (ctx) => {
-   await new Promise((resolve, reject) =>{
+    await new Promise((resolve, reject) =>{
         setTimeout(()=>{
             return resolve("Result");
         }, 2_000);
@@ -1195,7 +1200,7 @@ bot.command('banchat', (ctx) => {
 
 //unban user with user id
 bot.command('unbanchat', (ctx) => {
-   await new Promise((resolve, reject) =>{
+    await new Promise((resolve, reject) =>{
         setTimeout(()=>{
             return resolve("Result");
         }, 2_000);
@@ -2455,7 +2460,7 @@ bot.on('photo', async(ctx, next) => {
 })
 
 bot.command('stats',async(ctx)=>{
-   await new Promise((resolve, reject) =>{
+    await new Promise((resolve, reject) =>{
         setTimeout(()=>{
             return resolve("Result");
         }, 2_000);
