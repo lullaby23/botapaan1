@@ -257,43 +257,43 @@ bot.start(async(ctx)=>{
                                 }
                             })
                         }else{
-                            await saver.checkBan(`${ctx.from.id}`).then((res) => {
-                                //console.log(res);
-                                if(res == true) {
-                                    if(ctx.chat.type == 'private') {
-                                        ctx.reply(`${messagebanned(ctx)}`)
+                            if (query.indexOf('grp_') > -1){
+                                let query1 = query.replace('grp_','');
+                                try{
+                                    const res1 = await saver.getFile1(query1)
+                                        let mediagroup = [];
+                                        for (let index = 0; index < res1.length; index++) {
+                                        const data = res1[index];
+                                        mediagroup.push({type: data.type, media: data.file_id, caption: data.caption, parse_mode:'HTML'});
                                     }
-                                }else{
-                                    if (query.indexOf('grp_') > -1){
-                                        let query1 = query.replace('grp_','');
-                                        try{
-                                            const res1 = await saver.getFile1(query1)
-                                                let mediagroup = [];
-                                                for (let index = 0; index < res1.length; index++) {
-                                                const data = res1[index];
-                                                mediagroup.push({type: data.type, media: data.file_id, caption: data.caption, parse_mode:'HTML'});
+                                
+                                    function captionFunction() {
+                                        return ctx.reply(`${captionbuild(ctx)}`,{
+                                            parse_mode:'HTML'
+                                        })
+                                    }
+                                    await ctx.telegram.sendMediaGroup(ctx.chat.id, mediagroup);
+                                    setTimeout(captionFunction, 1000)
+                                }catch(error){
+                                    ctx.reply(`Media tidak ditemukan atau sudah dihapus`)
+                                }
+                            }else{
+                                let query2 = query;
+                                try{
+                                    const res2 = await saver.getFile2(query2)
+                                
+                                    function captionFunction2() {
+                                        ctx.reply(`${captionbuild(ctx)}`,{
+                                            parse_mode:'HTML'
+                                        })
+                                    }
+                                    await saver.checkBan(`${ctx.from.id}`).then((res) => {
+                                        //console.log(res);
+                                        if(res == true) {
+                                            if(ctx.chat.type == 'private') {
+                                                ctx.reply(`${messagebanned(ctx)}`)
                                             }
-                                        
-                                            function captionFunction() {
-                                                return ctx.reply(`${captionbuild(ctx)}`,{
-                                                    parse_mode:'HTML'
-                                                })
-                                            }
-                                            await ctx.telegram.sendMediaGroup(ctx.chat.id, mediagroup);
-                                            setTimeout(captionFunction, 1000)
-                                        }catch(error){
-                                            ctx.reply(`Media tidak ditemukan atau sudah dihapus`)
-                                        }
-                                    }else{
-                                        let query2 = query;
-                                        try{
-                                            const res2 = await saver.getFile2(query2)
-                                        
-                                            function captionFunction2() {
-                                                ctx.reply(`${captionbuild(ctx)}`,{
-                                                    parse_mode:'HTML'
-                                                })
-                                            }
+                                        }else{
                                             if(res2.type=='video'){
                                                 if(!res2.caption) {
                                                     setTimeout(captionFunction2, 1000)
@@ -322,12 +322,12 @@ bot.start(async(ctx)=>{
                                                 })
                                                     setTimeout(captionFunction2, 1000)
                                             }
-                                        }catch(error){
-                                            ctx.reply(`Media tidak ditemukan atau sudah dihapus`)
                                         }
-                                    }
+                                    })
+                                }catch(error){
+                                    ctx.reply(`Media tidak ditemukan atau sudah dihapus`)
                                 }
-                            })
+                            }
                         }
                     }
                 }
