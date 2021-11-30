@@ -97,7 +97,11 @@ const inKey2 = [
 
 //BOT START
 bot.start(async(ctx)=>{
-
+    await new Promise((resolve, reject) =>{
+        setTimeout(()=>{
+            return resolve("Result");
+        }, 2_000);
+    });
     if(ctx.chat.type == 'private') {
         msg = ctx.message.text
         let msgArray = msg.split(' ')
@@ -226,97 +230,106 @@ bot.start(async(ctx)=>{
                     })
                 }else{
                     //welcoming message on /start and ifthere is a query available we can send files
-                    if(length == 1){
-                        const profile3 = await bot.telegram.getUserProfilePhotos(ctx.from.id)
-                            await saver.checkBan(`${ctx.from.id}`).then((res) => {
-                                //console.log(res);
-                                if(res == true) {
-                                    if(ctx.chat.type == 'private') {
-                                        ctx.reply(`${messagebanned(ctx)}`)
-                                    }
-                                }else{
-                                    if(!profile3 || profile3.total_count == 0)
-                                        return ctx.reply(`<a href="tg://user?id=${ctx.from.id}">${first_name(ctx)} ${last_name(ctx)}</a> \n\n${messagewelcome(ctx)}`,{
-                                            parse_mode:'HTML',
-                                            disable_web_page_preview: true,
-                                            reply_markup:{
-                                                inline_keyboard:inKey
-                                            }
-                                        })
-                                        ctx.replyWithPhoto(profile3.photos[0][0].file_id,{caption: `<a href="tg://user?id=${ctx.from.id}">${first_name(ctx)} ${last_name(ctx)}</a> \n\n${messagewelcome(ctx)}`,
-                                            parse_mode:'HTML',
-                                            disable_web_page_preview: true,
-                                            reply_markup:{
-                                                inline_keyboard:inKey
-                                            }
-                                        })
-                                }
-                            })
+                    await saver.checkBan(`${ctx.from.id}`).then((res) => {
+                        //console.log(res);
+                        if(res == true) {
+                            if(ctx.chat.type == 'private') {
+                                ctx.reply(`${messagebanned(ctx)}`)
+                            }
                         }else{
-                            if (query.indexOf('grp_') > -1){
-                                let query1 = query.replace('grp_','');
-                                try{
-                                    const res1 = await saver.getFile1(query1)
-                                        let mediagroup = [];
-                                        for (let index = 0; index < res1.length; index++) {
-                                        const data = res1[index];
-                                        mediagroup.push({type: data.type, media: data.file_id, caption: data.caption, parse_mode:'HTML'});
-                                    }
-                                
-                                    function captionFunction() {
-                                        return ctx.reply(`${captionbuild(ctx)}`,{
-                                            parse_mode:'HTML'
-                                        })
-                                    }
-                                    await ctx.telegram.sendMediaGroup(ctx.chat.id, mediagroup);
-                                    setTimeout(captionFunction, 1000)
-                                }catch(error){
-                                    ctx.reply(`Media tidak ditemukan atau sudah dihapus`)
-                                }
-                            }else{
-                                let query2 = query;
-                                try{
-                                    const res2 = await saver.getFile2(query2)
-                                
-                                    function captionFunction2() {
-                                        ctx.reply(`${captionbuild(ctx)}`,{
-                                            parse_mode:'HTML'
-                                        })
-                                    }
-                                    if(res2.type=='video'){
-                                        if(!res2.caption) {
-                                            setTimeout(captionFunction2, 1000)
-                                            return ctx.replyWithVideo(res2.file_id);
+                            if(length == 1){
+                                const profile3 = await bot.telegram.getUserProfilePhotos(ctx.from.id)
+                                    await saver.checkBan(`${ctx.from.id}`).then((res) => {
+                                        //console.log(res);
+                                        if(res == true) {
+                                            if(ctx.chat.type == 'private') {
+                                                ctx.reply(`${messagebanned(ctx)}`)
+                                            }
+                                        }else{
+                                            if(!profile3 || profile3.total_count == 0)
+                                                return ctx.reply(`<a href="tg://user?id=${ctx.from.id}">${first_name(ctx)} ${last_name(ctx)}</a> \n\n${messagewelcome(ctx)}`,{
+                                                    parse_mode:'HTML',
+                                                    disable_web_page_preview: true,
+                                                    reply_markup:{
+                                                        inline_keyboard:inKey
+                                                    }
+                                                })
+                                                ctx.replyWithPhoto(profile3.photos[0][0].file_id,{caption: `<a href="tg://user?id=${ctx.from.id}">${first_name(ctx)} ${last_name(ctx)}</a> \n\n${messagewelcome(ctx)}`,
+                                                    parse_mode:'HTML',
+                                                    disable_web_page_preview: true,
+                                                    reply_markup:{
+                                                        inline_keyboard:inKey
+                                                    }
+                                                })
                                         }
-                                        ctx.replyWithVideo(res2.file_id,{caption: `${res2.caption}`,
-                                            parse_mode:'HTML'
-                                        });
-                                            setTimeout(captionFunction2, 1000)
-                                    }else if(res2.type=='photo'){
-                                        if(!res2.caption) {
-                                            setTimeout(captionFunction2, 1000)
-                                            return ctx.replyWithPhoto(res2.file_id);
+                                    })
+                                }else{
+                                    if (query.indexOf('grp_') > -1){
+                                        let query1 = query.replace('grp_','');
+                                        try{
+                                            const res1 = await saver.getFile1(query1)
+                                                let mediagroup = [];
+                                                for (let index = 0; index < res1.length; index++) {
+                                                const data = res1[index];
+                                                mediagroup.push({type: data.type, media: data.file_id, caption: data.caption, parse_mode:'HTML'});
+                                            }
+                                        
+                                            function captionFunction() {
+                                                return ctx.reply(`${captionbuild(ctx)}`,{
+                                                    parse_mode:'HTML'
+                                                })
+                                            }
+                                            await ctx.telegram.sendMediaGroup(ctx.chat.id, mediagroup);
+                                            setTimeout(captionFunction, 1000)
+                                        }catch(error){
+                                            ctx.reply(`Media tidak ditemukan atau sudah dihapus`)
                                         }
-                                        ctx.replyWithPhoto(res2.file_id,{caption: `${res2.caption}`,
-                                            parse_mode:'HTML'
-                                        });
-                                            setTimeout(captionFunction2, 1000)
-                                    }else if(res2.type=='document'){
-                                        if(!res2.caption) {
-                                            setTimeout(captionFunction2, 1000)
-                                            return ctx.replyWithDocument(res2.file_id);
+                                    }else{
+                                        let query2 = query;
+                                        try{
+                                            const res2 = await saver.getFile2(query2)
+                                        
+                                            function captionFunction2() {
+                                                ctx.reply(`${captionbuild(ctx)}`,{
+                                                    parse_mode:'HTML'
+                                                })
+                                            }
+                                            if(res2.type=='video'){
+                                                if(!res2.caption) {
+                                                    setTimeout(captionFunction2, 1000)
+                                                    return ctx.replyWithVideo(res2.file_id);
+                                                }
+                                                ctx.replyWithVideo(res2.file_id,{caption: `${res2.caption}`,
+                                                    parse_mode:'HTML'
+                                                });
+                                                    setTimeout(captionFunction2, 1000)
+                                            }else if(res2.type=='photo'){
+                                                if(!res2.caption) {
+                                                    setTimeout(captionFunction2, 1000)
+                                                    return ctx.replyWithPhoto(res2.file_id);
+                                                }
+                                                ctx.replyWithPhoto(res2.file_id,{caption: `${res2.caption}`,
+                                                    parse_mode:'HTML'
+                                                });
+                                                    setTimeout(captionFunction2, 1000)
+                                            }else if(res2.type=='document'){
+                                                if(!res2.caption) {
+                                                    setTimeout(captionFunction2, 1000)
+                                                    return ctx.replyWithDocument(res2.file_id);
+                                                }
+                                                ctx.replyWithDocument(res2.file_id,{caption: `${res2.caption}`,
+                                                    parse_mode:'HTML'
+                                                })
+                                                    setTimeout(captionFunction2, 1000)
+                                            }
+                                        }catch(error){
+                                            ctx.reply(`Media tidak ditemukan atau sudah dihapus`)
                                         }
-                                        ctx.replyWithDocument(res2.file_id,{caption: `${res2.caption}`,
-                                            parse_mode:'HTML'
-                                        })
-                                            setTimeout(captionFunction2, 1000)
                                     }
-                                }catch(error){
-                                    ctx.reply(`Media tidak ditemukan atau sudah dihapus`)
                                 }
                             }
                         }
-                    }
+                    )}
                 }
             catch(error){
                 ctx.reply(`${messagebotnoaddgroup(ctx)}`)
@@ -394,6 +407,11 @@ bot.action('COMM',(ctx)=>{
 })
 
 bot.action('STARTUP',async(ctx)=>{
+    await new Promise((resolve, reject) =>{
+        setTimeout(()=>{
+            return resolve("Result");
+        }, 2_000);
+    });
     ctx.deleteMessage()
     const profile = await bot.telegram.getUserProfilePhotos(ctx.from.id)
     if(!profile || profile.total_count == 0)
@@ -897,6 +915,11 @@ bot.command('send',async(ctx)=>{
 
 //check account
 bot.command('getid',async(ctx)=>{
+    await new Promise((resolve, reject) =>{
+        setTimeout(()=>{
+            return resolve("Result");
+        }, 2_000);
+    });
   
     if(ctx.chat.type == 'private') {
         const profile4 = await bot.telegram.getUserProfilePhotos(ctx.from.id)
@@ -1101,7 +1124,7 @@ bot.command('banchat', (ctx) => {
 })
 
 //unban user with user id
-bot.command('unbanchat', (ctx) => {
+bot.command('unbanchat',(ctx) => {
     if(ctx.chat.type == 'private') {
         msg = ctx.message.text
         let msgArray = msg.split(' ')
@@ -2357,6 +2380,11 @@ bot.on('photo', async(ctx, next) => {
 })
 
 bot.command('stats',async(ctx)=>{
+    await new Promise((resolve, reject) =>{
+        setTimeout(()=>{
+            return resolve("Result");
+        }, 2_000);
+    });
     stats = await saver.getUser().then((res)=>{
         if(ctx.from.id == process.env.ADMIN || ctx.from.id == process.env.ADMIN1 || ctx.from.id == process.env.ADMIN2){
             ctx.reply(`📊 Total pengguna: <b>${res.length}</b>`,{parse_mode:'HTML'})
