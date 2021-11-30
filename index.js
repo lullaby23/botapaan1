@@ -284,7 +284,16 @@ bot.start(async(ctx)=>{
                                         }
                                     })
                                 }catch(error){
-                                    ctx.reply(`Media tidak ditemukan atau sudah dihapus`)
+                                    await saver.checkBan(`${ctx.from.id}`).then((res) => {
+                                        //console.log(res);
+                                        if(res == true) {
+                                            if(ctx.chat.type == 'private') {
+                                                ctx.reply(`${messagebanned(ctx)}`)
+                                            }
+                                        }else{
+                                            ctx.reply(`Media tidak ditemukan atau sudah dihapus`)
+                                        }
+                                    })
                                 }
                             }else{
                                 let query2 = query;
@@ -334,7 +343,16 @@ bot.start(async(ctx)=>{
                                         }
                                     })
                                 }catch(error){
-                                    ctx.reply(`Media tidak ditemukan atau sudah dihapus`)
+                                    await saver.checkBan(`${ctx.from.id}`).then((res) => {
+                                        //console.log(res);
+                                        if(res == true) {
+                                            if(ctx.chat.type == 'private') {
+                                                ctx.reply(`${messagebanned(ctx)}`)
+                                            }
+                                        }else{
+                                            ctx.reply(`Media tidak ditemukan atau sudah dihapus`)
+                                        }
+                                    })
                                 }
                             }
                         }
