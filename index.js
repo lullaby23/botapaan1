@@ -97,6 +97,11 @@ const inKey2 = [
 
 //BOT START
 bot.start(async(ctx)=>{
+   await new Promise((resolve, reject) =>{
+        setTimeout(()=>{
+            return resolve("Result");
+        }, 2_000);
+    });
 
     if(ctx.chat.type == 'private') {
         msg = ctx.message.text
