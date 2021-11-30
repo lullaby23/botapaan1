@@ -279,7 +279,7 @@ bot.start(async(ctx)=>{
                                                 ctx.reply(`${messagebanned(ctx)}`)
                                             }
                                         }else{
-                                            await ctx.telegram.sendMediaGroup(ctx.chat.id, mediagroup);
+                                            ctx.telegram.sendMediaGroup(ctx.chat.id, mediagroup);
                                             setTimeout(captionFunction, 1000)
                                         }
                                     })
