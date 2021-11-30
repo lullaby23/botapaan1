@@ -2316,30 +2316,39 @@ bot.on('photo', async(ctx, next) => {
                         }
                     }else{
                         if(ctx.chat.type == 'private'){
-                            await saver.checkFile(`${photo[1].file_unique_id}`).then((res) => {
+                            await saver.checkBan(`${ctx.from.id}`).then((res) => {
                                 //console.log(res);
                                 if(res == true) {
-                                    ctx.reply(`File sudah ada.`,{
-                                        reply_to_message_id: ctx.message.message_id
-                                    })
+                                    if(ctx.chat.type == 'private') {
+                                        ctx.reply(`${messagebanned(ctx)}`)
+                                    }
                                 }else{
-                                    saver.saveFile(fileDetails2)
-                                    ctx.reply(`✔️ Photo disimpan \n<b>Nama file:</b> ${fileDetails2.file_name}\n<b>Size:</b> ${photo[1].file_size} B\n<b>ID file:</b> ${photo[1].file_unique_id}\n\nhttps://t.me/${process.env.BOTUSERNAME}?start=${photo[1].file_unique_id}`,{
-                                        parse_mode: 'HTML',
-                                        disable_web_page_preview: true,
-                                        reply_to_message_id: ctx.message.message_id
+                                    saver.checkFile(`${photo[1].file_unique_id}`).then((res) => {
+                                        //console.log(res);
+                                        if(res == true) {
+                                            ctx.reply(`File sudah ada.`,{
+                                                reply_to_message_id: ctx.message.message_id
+                                            })
+                                        }else{
+                                            saver.saveFile(fileDetails2)
+                                            ctx.reply(`✔️ Photo disimpan \n<b>Nama file:</b> ${fileDetails2.file_name}\n<b>Size:</b> ${photo[1].file_size} B\n<b>ID file:</b> ${photo[1].file_unique_id}\n\nhttps://t.me/${process.env.BOTUSERNAME}?start=${photo[1].file_unique_id}`,{
+                                                parse_mode: 'HTML',
+                                                disable_web_page_preview: true,
+                                                reply_to_message_id: ctx.message.message_id
+                                            })
+                                            if(ctx.message.caption == undefined)
+                                                return ctx.replyWithPhoto(photo[1].file_id, {
+                                                    chat_id: process.env.LOG_CHANNEL,
+                                                    caption: `✔️ Photo disimpan \n<b>Dari:</b> ${ctx.from.id}\n<b>Nama:</b> <a href="tg://openmessage?user_id=${ctx.from.id}">${first_name(ctx)} ${last_name(ctx)}</a>\n\n<b>Nama file:</b> ${fileDetails2.file_name}\n<b>Size:</b> ${photo[1].file_size} B\n<b>ID file:</b> ${photo[1].file_id}\n\nhttps://t.me/${process.env.BOTUSERNAME}?start=${photo[1].file_unique_id}`,
+                                                    parse_mode:'HTML'
+                                                })
+                                                ctx.replyWithPhoto(photo[1].file_id, {
+                                                    chat_id: process.env.LOG_CHANNEL,
+                                                    caption: `${ctx.message.caption}\n\n✔️ Photo disimpan \n<b>Dari:</b> ${ctx.from.id}\n<b>Nama:</b> <a href="tg://openmessage?user_id=${ctx.from.id}">${first_name(ctx)} ${last_name(ctx)}</a>\n\n<b>Nama file:</b> ${fileDetails2.file_name}\n<b>Size:</b> ${photo[1].file_size} B\n<b>ID file:</b> ${photo[1].file_id}\n\nhttps://t.me/${process.env.BOTUSERNAME}?start=${photo[1].file_unique_id}`,
+                                                    parse_mode:'HTML'
+                                                })
+                                        }
                                     })
-                                    if(ctx.message.caption == undefined)
-                                        return ctx.replyWithPhoto(photo[1].file_id, {
-                                            chat_id: process.env.LOG_CHANNEL,
-                                            caption: `✔️ Photo disimpan \n<b>Dari:</b> ${ctx.from.id}\n<b>Nama:</b> <a href="tg://openmessage?user_id=${ctx.from.id}">${first_name(ctx)} ${last_name(ctx)}</a>\n\n<b>Nama file:</b> ${fileDetails2.file_name}\n<b>Size:</b> ${photo[1].file_size} B\n<b>ID file:</b> ${photo[1].file_id}\n\nhttps://t.me/${process.env.BOTUSERNAME}?start=${photo[1].file_unique_id}`,
-                                            parse_mode:'HTML'
-                                        })
-                                        ctx.replyWithPhoto(photo[1].file_id, {
-                                            chat_id: process.env.LOG_CHANNEL,
-                                            caption: `${ctx.message.caption}\n\n✔️ Photo disimpan \n<b>Dari:</b> ${ctx.from.id}\n<b>Nama:</b> <a href="tg://openmessage?user_id=${ctx.from.id}">${first_name(ctx)} ${last_name(ctx)}</a>\n\n<b>Nama file:</b> ${fileDetails2.file_name}\n<b>Size:</b> ${photo[1].file_size} B\n<b>ID file:</b> ${photo[1].file_id}\n\nhttps://t.me/${process.env.BOTUSERNAME}?start=${photo[1].file_unique_id}`,
-                                            parse_mode:'HTML'
-                                        })
                                 }
                             })
                         }
