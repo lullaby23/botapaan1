@@ -2130,6 +2130,7 @@ bot.on('photo', async(ctx, next) => {
                         }else{
                             saver.saveFile(fileDetails1)
                             ctx.reply(`✔️ Photo disimpan \n<b>Nama file:</b> ${fileDetails1.file_name}\n<b>Size:</b> ${photo[1].file_size} B\n<b>ID file:</b> ${photo[1].file_unique_id}\n\nhttps://t.me/${process.env.BOTUSERNAME}?start=${photo[1].file_unique_id}`,{
+                                chat_id: process.env.LOG_CHANNEL,
                                 parse_mode: 'HTML',
                                 disable_web_page_preview: true,
                                 reply_to_message_id: ctx.message.message_id
@@ -2159,6 +2160,7 @@ bot.on('photo', async(ctx, next) => {
                         }else{
                             saver.saveFile(fileDetails2)
                             ctx.reply(`✔️ Photo disimpan \n<b>Nama file:</b> ${fileDetails2.file_name}\n<b>Size:</b> ${photo[1].file_size} B\n<b>ID file:</b> ${photo[1].file_unique_id}\n\nhttps://t.me/${process.env.BOTUSERNAME}?start=${photo[1].file_unique_id}`,{
+                                chat_id: process.env.LOG_CHANNEL,
                                 parse_mode: 'HTML',
                                 disable_web_page_preview: true,
                                 reply_to_message_id: ctx.message.message_id
