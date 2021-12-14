@@ -1768,7 +1768,7 @@ bot.on('video', async(ctx, next) => {
                     await saver.checkFile(`${video.file_unique_id}`).then(async res => {
                         //console.log(res);
                         if(res == true) {
-                            ctx.reply(`File sudah ada.`,{
+                            await ctx.reply(`File sudah ada.`,{
                                 reply_to_message_id: ctx.message.message_id
                             })
                         }else{
@@ -1962,7 +1962,7 @@ bot.on('video', async(ctx, next) => {
                                     await saver.checkFile(`${video.file_unique_id}`).then(async res => {
                                         //console.log(res);
                                         if(res == true) {
-                                            ctx.reply(`File sudah ada.`,{
+                                            await ctx.reply(`File sudah ada.`,{
                                                 reply_to_message_id: ctx.message.message_id
                                             })
                                         }else{
@@ -2147,7 +2147,7 @@ bot.on('photo', async(ctx, next) => {
                     await saver.checkFile(`${photo[1].file_unique_id}`).then(async res => {
                         //console.log(res);
                         if(res == true) {
-                            ctx.reply(`File sudah ada.`,{
+                            await ctx.reply(`File sudah ada.`,{
                                 reply_to_message_id: ctx.message.message_id
                             })
                         }else{
