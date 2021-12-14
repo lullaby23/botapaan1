@@ -279,7 +279,7 @@ bot.start(async(ctx)=>{
                                         mediagroup.push({type: data.type, media: data.file_id, caption: data.caption, parse_mode:'HTML'});
                                     }
                                 
-                                    function captionFunction() {
+                                    async function captionFunction() {
                                         return await ctx.reply(`${captionbuild(ctx)}`,{
                                             parse_mode:'HTML'
                                         })
