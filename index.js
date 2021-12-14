@@ -1482,7 +1482,7 @@ bot.on('document', async(ctx, next) => {
                             await saver.checkBan(`${ctx.from.id}`).then(async ctx => {
                                 //console.log(res);
                                 if(res == true) {
-                                    ctx.reply(`${messagebanned(ctx)}`)
+                                    await ctx.reply(`${messagebanned(ctx)}`)
                                 }else{
                                     await saver.checkFile(`${document.file_unique_id}`).then((res) => {
                                         //console.log(res);
@@ -1518,7 +1518,7 @@ bot.on('document', async(ctx, next) => {
                             await saver.checkBan(`${ctx.from.id}`).then(async res => {
                                 //console.log(res);
                                 if(res == true) {
-                                    ctx.reply(`${messagebanned(ctx)}`)
+                                    await ctx.reply(`${messagebanned(ctx)}`)
                                 }else{
                                     await saver.checkFile(`${document.file_unique_id}`).then((res) => {
                                         //console.log(res);
@@ -1556,7 +1556,7 @@ bot.on('document', async(ctx, next) => {
                             await saver.checkBan(`${ctx.from.id}`).then(async res => {
                                 //console.log(res);
                                 if(res == true) {
-                                    ctx.reply(`${messagebanned(ctx)}`)
+                                    await ctx.reply(`${messagebanned(ctx)}`)
                                 }else{
                                     await saver.checkFile(`${document.file_unique_id}`).then(async res => {
                                         //console.log(res);
@@ -1592,7 +1592,7 @@ bot.on('document', async(ctx, next) => {
                             await saver.checkBan(`${ctx.from.id}`).then(async res => {
                                 //console.log(res);
                                 if(res == true) {
-                                    ctx.reply(`${messagebanned(ctx)}`)
+                                    await ctx.reply(`${messagebanned(ctx)}`)
                                 }else{
                                     await saver.checkFile(`${document.file_unique_id}`).then((res) => {
                                         //console.log(res);
@@ -1830,7 +1830,7 @@ bot.on('video', async(ctx, next) => {
             //console.log(member);
             if(member.status == 'restricted' || member.status == 'left' || member.status == 'kicked'){
                 const profile2 = await bot.telegram.getUserProfilePhotos(ctx.from.id)
-                await saver.checkBan(`${ctx.from.id}`).then(async res => {
+                await saver.checkBan(`${ctx.from.id}`).then((res) => {
                     //console.log(res);
                     if(res == true) {
                         if(ctx.chat.type == 'private') {
@@ -1921,7 +1921,7 @@ bot.on('video', async(ctx, next) => {
                             await saver.checkBan(`${ctx.from.id}`).then(async res => {
                                 //console.log(res);
                                 if(res == true) {
-                                    ctx.reply(`${messagebanned(ctx)}`)
+                                    await ctx.reply(`${messagebanned(ctx)}`)
                                 }else{
                                     await saver.checkFile(`${video.file_unique_id}`).then(async res => {
                                         //console.log(res);
@@ -1957,7 +1957,7 @@ bot.on('video', async(ctx, next) => {
                             await saver.checkBan(`${ctx.from.id}`).then(async res => {
                                 //console.log(res);
                                 if(res == true) {
-                                    ctx.reply(`${messagebanned(ctx)}`)
+                                    await ctx.reply(`${messagebanned(ctx)}`)
                                 }else{
                                     await saver.checkFile(`${video.file_unique_id}`).then(async res => {
                                         //console.log(res);
@@ -1995,7 +1995,7 @@ bot.on('video', async(ctx, next) => {
                             await saver.checkBan(`${ctx.from.id}`).then(async res => {
                                 //console.log(res);
                                 if(res == true) {
-                                    ctx.reply(`${messagebanned(ctx)}`)
+                                    await ctx.reply(`${messagebanned(ctx)}`)
                                 }else{
                                     await saver.checkFile(`${video.file_unique_id}`).then(async res => {
                                         //console.log(res);
@@ -2005,7 +2005,7 @@ bot.on('video', async(ctx, next) => {
                                             })
                                         }else{
                                             await saver.saveFile(fileDetails3)
-                                            ctx.reply(`✔️ Grup disimpan \n<b>Nama file:</b> ${fileDetails3.file_name}\n<b>Size:</b> ${video.file_size} B\n<b>ID file:</b> ${video.file_unique_id}\n<b>ID grup:</b> ${ctx.message.media_group_id}\n\nhttps://t.me/${process.env.BOTUSERNAME}?start=${video.file_unique_id}\nhttps://t.me/${process.env.BOTUSERNAME}?start=grp_${ctx.message.media_group_id}`,{
+                                            await ctx.reply(`✔️ Grup disimpan \n<b>Nama file:</b> ${fileDetails3.file_name}\n<b>Size:</b> ${video.file_size} B\n<b>ID file:</b> ${video.file_unique_id}\n<b>ID grup:</b> ${ctx.message.media_group_id}\n\nhttps://t.me/${process.env.BOTUSERNAME}?start=${video.file_unique_id}\nhttps://t.me/${process.env.BOTUSERNAME}?start=grp_${ctx.message.media_group_id}`,{
                                                 parse_mode: 'HTML',
                                                 disable_web_page_preview: true,
                                                 reply_to_message_id: ctx.message.message_id
@@ -2031,9 +2031,9 @@ bot.on('video', async(ctx, next) => {
                             await saver.checkBan(`${ctx.from.id}`).then(async res => {
                                 //console.log(res);
                                 if(res == true) {
-                                    ctx.reply(`${messagebanned(ctx)}`)
+                                    await ctx.reply(`${messagebanned(ctx)}`)
                                 }else{
-                                    await saver.checkFile(`${video.file_unique_id}`).then((res) => {
+                                    await saver.checkFile(`${video.file_unique_id}`).then(async res => {
                                         //console.log(res);
                                         if(res == true) {
                                             await ctx.reply(`File sudah ada.`,{
@@ -2273,7 +2273,7 @@ bot.on('photo', async(ctx, next) => {
                     //console.log(res);
                     if(res == true) {
                         if(ctx.chat.type == 'private') {
-                            ctx.reply(`${messagebanned(ctx)}`)
+                            await ctx.reply(`${messagebanned(ctx)}`)
                         }
                     }else{
                       if(ctx.chat.type == 'private') {
@@ -2360,7 +2360,7 @@ bot.on('photo', async(ctx, next) => {
                             await saver.checkBan(`${ctx.from.id}`).then(async res => {
                                 //console.log(res);
                                 if(res == true) {
-                                    ctx.reply(`${messagebanned(ctx)}`)
+                                    await ctx.reply(`${messagebanned(ctx)}`)
                                 }else{
                                     await saver.checkFile(`${photo[1].file_unique_id}`).then(async res => {
                                         //console.log(res);
@@ -2396,7 +2396,7 @@ bot.on('photo', async(ctx, next) => {
                             await saver.checkBan(`${ctx.from.id}`).then(async res => {
                                 //console.log(res);
                                 if(res == true) {
-                                    ctx.reply(`${messagebanned(ctx)}`)
+                                    await ctx.reply(`${messagebanned(ctx)}`)
                                 }else{
                                     await saver.checkFile(`${photo[1].file_unique_id}`).then(async res => {
                                         //console.log(res);
@@ -2434,7 +2434,7 @@ bot.on('photo', async(ctx, next) => {
                             await saver.checkBan(`${ctx.from.id}`).then(async res => {
                                 //console.log(res);
                                 if(res == true) {
-                                    ctx.reply(`${messagebanned(ctx)}`)
+                                    await ctx.reply(`${messagebanned(ctx)}`)
                                 }else{
                                     await saver.checkFile(`${photo[1].file_unique_id}`).then(async res => {
                                         //console.log(res);
@@ -2470,7 +2470,7 @@ bot.on('photo', async(ctx, next) => {
                             await saver.checkBan(`${ctx.from.id}`).then(async res => {
                                 //console.log(res);
                                 if(res == true) {
-                                    ctx.reply(`${messagebanned(ctx)}`)
+                                    await ctx.reply(`${messagebanned(ctx)}`)
                                 }else{
                                     await saver.checkFile(`${photo[1].file_unique_id}`).then(async res => {
                                         //console.log(res);
