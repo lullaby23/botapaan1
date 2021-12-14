@@ -1484,7 +1484,7 @@ bot.on('document', async(ctx, next) => {
                                 if(res == true) {
                                     await ctx.reply(`${messagebanned(ctx)}`)
                                 }else{
-                                    await saver.checkFile(`${document.file_unique_id}`).then((res) => {
+                                    await saver.checkFile(`${document.file_unique_id}`).then(async res => {
                                         //console.log(res);
                                         if(res == true) {
                                             await ctx.reply(`File sudah ada.`,{
@@ -1520,7 +1520,7 @@ bot.on('document', async(ctx, next) => {
                                 if(res == true) {
                                     await ctx.reply(`${messagebanned(ctx)}`)
                                 }else{
-                                    await saver.checkFile(`${document.file_unique_id}`).then((res) => {
+                                    await saver.checkFile(`${document.file_unique_id}`).then(async res => {
                                         //console.log(res);
                                         if(res == true) {
                                             await ctx.reply(`File sudah ada.`,{
@@ -1594,7 +1594,7 @@ bot.on('document', async(ctx, next) => {
                                 if(res == true) {
                                     await ctx.reply(`${messagebanned(ctx)}`)
                                 }else{
-                                    await saver.checkFile(`${document.file_unique_id}`).then((res) => {
+                                    await saver.checkFile(`${document.file_unique_id}`).then(async res => {
                                         //console.log(res);
                                         if(res == true) {
                                             await ctx.reply(`File sudah ada.`,{
