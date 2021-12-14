@@ -1839,14 +1839,14 @@ bot.on('video', async(ctx, next) => {
                     }else{
                       if(ctx.chat.type == 'private') {
                         if(!profile2 || profile2.total_count == 0)
-                            return await ctx.reply(`<a href="tg://user?id=${ctx.from.id}">${first_name(ctx)} ${last_name(ctx)}</a> \n\n${welcomejoin(ctx)}`,{
+                            return ctx.reply(`<a href="tg://user?id=${ctx.from.id}">${first_name(ctx)} ${last_name(ctx)}</a> \n\n${welcomejoin(ctx)}`,{
                                 parse_mode:'HTML',
                                 disable_web_page_preview: true,
                                 reply_markup:{
                                     inline_keyboard:inKey2
                                 }
                             })
-                            await ctx.replyWithPhoto(profile2.photos[0][0].file_id,{caption: `<a href="tg://user?id=${ctx.from.id}">${first_name(ctx)} ${last_name(ctx)}</a> \n\n${welcomejoin(ctx)}`,
+                            ctx.replyWithPhoto(profile2.photos[0][0].file_id,{caption: `<a href="tg://user?id=${ctx.from.id}">${first_name(ctx)} ${last_name(ctx)}</a> \n\n${welcomejoin(ctx)}`,
                                 parse_mode:'HTML',
                                 disable_web_page_preview: true,
                                 reply_markup:{
@@ -2273,7 +2273,7 @@ bot.on('photo', async(ctx, next) => {
                     //console.log(res);
                     if(res == true) {
                         if(ctx.chat.type == 'private') {
-                            await ctx.reply(`${messagebanned(ctx)}`)
+                            ctx.reply(`${messagebanned(ctx)}`)
                         }
                     }else{
                       if(ctx.chat.type == 'private') {
