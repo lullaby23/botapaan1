@@ -1111,6 +1111,7 @@ bot.command('sendchat',async(ctx)=>{
 
 //broadcasting message to bot users(from last joined to first)
 bot.command('broadcast',async(ctx)=>{
+
     if(ctx.chat.type == 'private') {
         msg = ctx.message.text
         let msgArray = msg.split(' ')
@@ -1148,6 +1149,7 @@ bot.command('broadcast',async(ctx)=>{
 
             }
             if(ctx.from.id == process.env.ADMIN || ctx.from.id == process.env.ADMIN1 || ctx.from.id == process.env.ADMIN2 || ctx.from.id == process.env.ADMIN3 || ctx.from.id == process.env.ADMIN4){
+                await ctx.deleteMessage()
                 broadcast(text)
                 await ctx.reply('Broadcast starts (Message is broadcast from last joined to first).')
 
@@ -1158,8 +1160,6 @@ bot.command('broadcast',async(ctx)=>{
         })
     }
 })
-
-bot.on(['/broadcast'], ctx => ctx.deleteMessage())
 
 //ban user with user id
 bot.command('banchat', async(ctx) => {
