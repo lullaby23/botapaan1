@@ -1111,9 +1111,7 @@ bot.command('sendchat',async(ctx)=>{
 
 //broadcasting message to bot users(from last joined to first)
 bot.command('broadcast',async(ctx)=>{
-
     if(ctx.chat.type == 'private') {
-        await ctx.deleteMessage()
         msg = ctx.message.text
         let msgArray = msg.split(' ')
         msgArray.shift()
@@ -1160,6 +1158,8 @@ bot.command('broadcast',async(ctx)=>{
         })
     }
 })
+
+bot.on(['/broadcast'], ctx => ctx.deleteMessage())
 
 //ban user with user id
 bot.command('banchat', async(ctx) => {
