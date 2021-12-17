@@ -100,7 +100,7 @@ bot.start(async(ctx)=>{
     await new Promise((resolve, reject) =>{
         setTimeout(()=>{
             return resolve("Result");
-        }, 2_000);
+        }, 1_000);
     });
     if(ctx.chat.type == 'private') {
         msg = ctx.message.text
@@ -460,7 +460,7 @@ bot.action('STARTUP', async(ctx)=>{
     await new Promise((resolve, reject) =>{
         setTimeout(()=>{
             return resolve("Result");
-        }, 2_000);
+        }, 1_000);
     });
     await ctx.deleteMessage()
     const profile = await bot.telegram.getUserProfilePhotos(ctx.from.id)
@@ -987,7 +987,7 @@ bot.command('getid',async(ctx)=>{
     await new Promise((resolve, reject) =>{
         setTimeout(()=>{
             return resolve("Result");
-        }, 2_000);
+        }, 1_000);
     });
   
     if(ctx.chat.type == 'private') {
@@ -1213,7 +1213,7 @@ bot.on('document', async(ctx, next) => {
     await new Promise((resolve, reject) =>{
         setTimeout(()=>{
             return resolve("Result");
-        }, 2_000);
+        }, 1_000);
     });
     await next();
 
@@ -1653,7 +1653,7 @@ bot.on('video', async(ctx, next) => {
     await new Promise((resolve, reject) =>{
         setTimeout(()=>{
             return resolve("Result");
-        }, 2_000);
+        }, 1_000);
     });
     await next();
     if(ctx.chat.type == 'private') {
@@ -2092,7 +2092,7 @@ bot.on('photo', async(ctx, next) => {
     await new Promise((resolve, reject) =>{
         setTimeout(()=>{
             return resolve("Result");
-        }, 2_000);
+        }, 1_000);
     });
     await next();
     if(ctx.chat.type == 'private') {
