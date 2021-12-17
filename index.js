@@ -2291,7 +2291,7 @@ bot.on('photo', async(ctx, next) => {
         if(ctx.message.media_group_id == undefined){
             if(photo[1].file_name == undefined){
                 if(ctx.chat.type == 'private'){
-                    try{
+                    //try{
                         var botStatus = await bot.telegram.getChatMember(channelId, ctx.botInfo.id)
                         var member = await bot.telegram.getChatMember(channelId, ctx.from.id)
                         //console.log(member);
@@ -2325,9 +2325,9 @@ bot.on('photo', async(ctx, next) => {
                                 }
                             })
                         }
-                    }catch(error){
-                        await ctx.reply(`${messagebotnoaddgroup(ctx)}`)
-                    }
+                    //}catch(error){
+                    //    await ctx.reply(`${messagebotnoaddgroup(ctx)}`)
+                    //}
                 }
             }else{
                 if(ctx.chat.type == 'private') {
