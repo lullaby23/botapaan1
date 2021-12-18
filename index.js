@@ -219,7 +219,7 @@ bot.start(async(ctx)=>{
                                 await ctx.reply(`${messagebanned(ctx)}`)
                             }
                         }else{
-                            await ctx.deleteMessage()
+                            ctx.deleteMessage()
                             if(!profile2 || profile2.total_count == 0)
                                 return await ctx.reply(`<a href="tg://user?id=${ctx.from.id}">${first_name(ctx)} ${last_name(ctx)}</a> \n\n${welcomejoin(ctx)}`,{
                                     parse_mode:'HTML',
