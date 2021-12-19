@@ -1,22 +1,21 @@
 # RatuFileSaver
 Bot menghasilkan tautan yang dapat dibagikan di dalam telegram untuk video, photo, dokumen dan bisa berbagi secara grup.
 <hr>
-
+</br>
 <a href="https://heroku.com/deploy?template=https://github.com/BimoSora/RatuFileSaver">
   <img src="https://www.herokucdn.com/deploy/button.svg" alt="Deploy">
 </a>
 </br>
 Ganti tautan dengan template github Anda.
-</br>
-
+</br></br>
 <a href="https://youtu.be/zw_ijvhzomI">
 Klik di sini untuk menonton cara meng-host
 </a>
-</br>
-<a href="https://www.imagebam.com/view/ME5P87D" target="_blank"><img src="https://thumbs4.imagebam.com/8f/7e/1f/ME5P87D_t.jpg" alt="20211220_051345.jpg"/></a>
-</br>
+</br></br>
 Ganti mode jalaninnya dari web ke worker
 </br>
+<a href="https://www.imagebam.com/view/ME5P87D" target="_blank"><img src="https://thumbs4.imagebam.com/8f/7e/1f/ME5P87D_t.jpg" alt="20211220_051345.jpg"/></a>
+</br></br>
 
 Detail yang diperlukan.</br>
 <code>TOKEN</code> - Dapatkan Token bot dari bot father.</br>
