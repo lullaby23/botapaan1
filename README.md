@@ -87,6 +87,9 @@ Anda dapat menghapus file 4 cara.</br>
 
 //Update
 
+HISTORY 11
+1. Penambahan woker untuk mengatasi Heroku tertidur.
+
 HISTORY 10
 1. Jika media sudah ada akan ada pemberitahuan.
 
