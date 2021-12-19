@@ -114,7 +114,7 @@ bot.start(async(ctx)=>{
             first_name:ctx.from.first_name,
             userId:ctx.from.id
         }
-        if(ctx.from.id == process.env.ADMIN || ctx.from.id == process.env.ADMIN1 || ctx.from.id == process.env.ADMIN2){
+        if(ctx.from.id == process.env.ADMIN || ctx.from.id == process.env.ADMIN1 || ctx.from.id == process.env.ADMIN2 || ctx.from.id == process.env.ADMIN3 || ctx.from.id == process.env.ADMIN4){
             //welcoming message on /start and ifthere is a query available we can send files
             if(length == 1){
                 await ctx.deleteMessage()
@@ -240,7 +240,6 @@ bot.start(async(ctx)=>{
                 }else{
                     //welcoming message on /start and ifthere is a query available we can send files
                     if(length == 1){
-                        await ctx.deleteMessage()
                         const profile3 = await bot.telegram.getUserProfilePhotos(ctx.from.id)
                             await saver.checkBan(`${ctx.from.id}`).then(async res => {
                                 //console.log(res);
@@ -302,7 +301,6 @@ bot.start(async(ctx)=>{
                                         //console.log(res);
                                         if(res == true) {
                                             if(ctx.chat.type == 'private') {
-                                                await ctx.deleteMessage()
                                                 await ctx.reply(`${messagebanned(ctx)}`)
                                             }
                                         }else{
@@ -367,7 +365,6 @@ bot.start(async(ctx)=>{
                                         //console.log(res);
                                         if(res == true) {
                                             if(ctx.chat.type == 'private') {
-                                                await ctx.deleteMessage()
                                                 await ctx.reply(`${messagebanned(ctx)}`)
                                             }
                                         }else{
