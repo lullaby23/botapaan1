@@ -1242,9 +1242,9 @@ bot.on('document', async(ctx, next) => {
                 }else{
                     var exstension = document2.file_name;
                     var regex = /\.[A-Za-z0-9]+$/gm
-                    var vidtext = exstension.replace(regex, '');
+                    var doctext = exstension.replace(regex, '');
                     fileDetails2 = {
-                        file_name: vidtext,
+                        file_name: doctext,
                         userId:ctx.from.id,
                         file_id: document2.file_id,
                         caption: ctx.message.caption,
@@ -1268,9 +1268,9 @@ bot.on('document', async(ctx, next) => {
                 }else{
                     var exstension2 = document2.file_name;
                     var regex2 = /\.[A-Za-z0-9]+$/gm
-                    var vidtext2 = exstension2.replace(regex2, '');
+                    var doctext2 = exstension2.replace(regex2, '');
                     fileDetails4 = {
-                        file_name: vidtext2,
+                        file_name: doctext2,
                         userId:ctx.from.id,
                         file_id: document2.file_id,
                         mediaId: ctx.message.media_group_id,
@@ -1300,12 +1300,12 @@ bot.on('document', async(ctx, next) => {
                                 reply_to_message_id: ctx.message.message_id
                             })
                             if(ctx.message.caption == undefined)
-                                return await ctx.replyWithPhoto(document2.file_id, {
+                                return await ctx.replyWithDocument(document2.file_id, {
                                     chat_id: process.env.LOG_CHANNEL,
                                     caption: `✔️ Document disimpan \n<b>Dari:</b> ${ctx.from.id}\n<b>Nama:</b> <a href="tg://user?id=${ctx.from.id}">${first_name(ctx)} ${last_name(ctx)}</a>\n\n<b>Nama file:</b> ${fileDetails1.file_name}\n<b>Size:</b> ${document2.file_size} B\n<b>ID file:</b> ${document2.file_id}\n\nhttps://t.me/${process.env.BOTUSERNAME}?start=${document2.file_unique_id}`,
                                     parse_mode:'HTML'
                                 })
-                                await ctx.replyWithPhoto(document2.file_id, {
+                                await ctx.replyWithDocument(document2.file_id, {
                                     chat_id: process.env.LOG_CHANNEL,
                                     caption: `${ctx.message.caption}\n\n✔️ Document disimpan \n<b>Dari:</b> ${ctx.from.id}\n<b>Nama:</b> <a href="tg://user?id=${ctx.from.id}">${first_name(ctx)} ${last_name(ctx)}</a>\n\n<b>Nama file:</b> ${fileDetails1.file_name}\n<b>Size:</b> ${document2.file_size} B\n<b>ID file:</b> ${document2.file_id}\n\nhttps://t.me/${process.env.BOTUSERNAME}?start=${document2.file_unique_id}`,
                                     parse_mode:'HTML'
@@ -1329,12 +1329,12 @@ bot.on('document', async(ctx, next) => {
                                 reply_to_message_id: ctx.message.message_id
                             })
                             if(ctx.message.caption == undefined)
-                                return await ctx.replyWithPhoto(document2.file_id, {
+                                return await ctx.replyWithDocument(document2.file_id, {
                                     chat_id: process.env.LOG_CHANNEL,
                                     caption: `✔️ Document disimpan \n<b>Dari:</b> ${ctx.from.id}\n<b>Nama:</b> <a href="tg://openmessage?user_id=${ctx.from.id}">${first_name(ctx)} ${last_name(ctx)}</a>\n\n<b>Nama file:</b> ${fileDetails2.file_name}\n<b>Size:</b> ${document2.file_size} B\n<b>ID file:</b> ${document2.file_id}\n\nhttps://t.me/${process.env.BOTUSERNAME}?start=${document2.file_unique_id}`,
                                     parse_mode:'HTML'
                                 })
-                                await ctx.replyWithPhoto(document2.file_id, {
+                                await ctx.replyWithDocument(document2.file_id, {
                                     chat_id: process.env.LOG_CHANNEL,
                                     caption: `${ctx.message.caption}\n\n✔️ Document disimpan \n<b>Dari:</b> ${ctx.from.id}\n<b>Nama:</b> <a href="tg://openmessage?user_id=${ctx.from.id}">${first_name(ctx)} ${last_name(ctx)}</a>\n\n<b>Nama file:</b> ${fileDetails2.file_name}\n<b>Size:</b> ${document2.file_size} B\n<b>ID file:</b> ${document2.file_id}\n\nhttps://t.me/${process.env.BOTUSERNAME}?start=${document2.file_unique_id}`,
                                     parse_mode:'HTML'
@@ -1360,12 +1360,12 @@ bot.on('document', async(ctx, next) => {
                                 reply_to_message_id: ctx.message.message_id
                             })
                             if(ctx.message.caption == undefined)                   
-                                return await ctx.replyWithPhoto(document2.file_id, {
+                                return await ctx.replyWithDocument(document2.file_id, {
                                     chat_id: process.env.LOG_CHANNEL,
                                     caption: `✔️ Grup disimpan \n<b>Dari:</b> ${ctx.from.id}\n<b>Nama:</b> <a href="tg://openmessage?user_id=${ctx.from.id}">${first_name(ctx)} ${last_name(ctx)}</a>\n\n<b>Nama file:</b> ${fileDetails3.file_name}\n<b>Size:</b> ${document2.file_size} B\n<b>ID file:</b> ${document2.file_id}\n<b>ID grup:</b> ${ctx.message.media_group_id}\n\nhttps://t.me/${process.env.BOTUSERNAME}?start=${document2.file_unique_id}\nhttps://t.me/${process.env.BOTUSERNAME}?start=grp_${ctx.message.media_group_id}`,
                                     parse_mode:'HTML'
                                 })
-                                await ctx.replyWithPhoto(document2.file_id, {
+                                await ctx.replyWithDocument(document2.file_id, {
                                     chat_id: process.env.LOG_CHANNEL,
                                     caption: `${ctx.message.caption}\n\n✔️ Grup disimpan \n<b>Dari:</b> ${ctx.from.id}\n<b>Nama:</b> <a href="tg://openmessage?user_id=${ctx.from.id}">${first_name(ctx)} ${last_name(ctx)}</a>\n\n<b>Nama file:</b> ${fileDetails3.file_name}\n<b>Size:</b> ${document2.file_size} B\n<b>ID file:</b> ${document2.file_id}\n<b>ID grup:</b> ${ctx.message.media_group_id}\n\nhttps://t.me/${process.env.BOTUSERNAME}?start=grp_${document2.file_unique_id}\nhttps://t.me/${process.env.BOTUSERNAME}?start=grp_${ctx.message.media_group_id}`,
                                     parse_mode:'HTML'
@@ -1389,12 +1389,12 @@ bot.on('document', async(ctx, next) => {
                                 reply_to_message_id: ctx.message.message_id
                             })
                             if(ctx.message.caption == undefined)                   
-                                return await ctx.replyWithPhoto(document2.file_id, {
+                                return await ctx.replyWithDocument(document2.file_id, {
                                     chat_id: process.env.LOG_CHANNEL,
                                     caption: `✔️ Grup disimpan \n<b>Dari:</b> ${ctx.from.id}\n<b>Nama:</b> <a href="tg://openmessage?user_id=${ctx.from.id}">${first_name(ctx)} ${last_name(ctx)}</a>\n\n<b>Nama file:</b> ${fileDetails4.file_name}\n<b>Size:</b> ${document2.file_size} B\n<b>ID file:</b> ${document2.file_id}\n<b>ID grup:</b> ${ctx.message.media_group_id}\n\nhttps://t.me/${process.env.BOTUSERNAME}?start=${document2.file_unique_id}\nhttps://t.me/${process.env.BOTUSERNAME}?start=grp_${ctx.message.media_group_id}`,
                                     parse_mode:'HTML'
                                 })
-                                await ctx.replyWithPhoto(document2.file_id, {
+                                await ctx.replyWithDocument(document2.file_id, {
                                     chat_id: process.env.LOG_CHANNEL,
                                     caption: `${ctx.message.caption}\n\n✔️ Grup disimpan \n<b>Dari:</b> ${ctx.from.id}\n<b>Nama:</b> <a href="tg://openmessage?user_id=${ctx.from.id}">${first_name(ctx)} ${last_name(ctx)}</a>\n\n<b>Nama file:</b> ${fileDetails4.file_name}\n<b>Size:</b> ${document2.file_size} B\n<b>ID file:</b> ${document2.file_id}\n<b>ID grup:</b> ${ctx.message.media_group_id}\n\nhttps://t.me/${process.env.BOTUSERNAME}?start=${document2.file_unique_id}\nhttps://t.me/${process.env.BOTUSERNAME}?start=grp_${ctx.message.media_group_id}`,
                                     parse_mode:'HTML'
@@ -1454,9 +1454,9 @@ bot.on('document', async(ctx, next) => {
                     }else{
                         var exstension = document3.file_name;
                         var regex = /\.[A-Za-z0-9]+$/gm
-                        var vidtext = exstension.replace(regex, '');
+                        var doctext = exstension.replace(regex, '');
                         fileDetails2 = {
-                            file_name: vidtext,
+                            file_name: doctext,
                             userId:ctx.from.id,
                             file_id: document3.file_id,
                             caption: ctx.message.caption,
@@ -1480,9 +1480,9 @@ bot.on('document', async(ctx, next) => {
                     }else{
                         var exstension2 = document3.file_name;
                         var regex2 = /\.[A-Za-z0-9]+$/gm
-                        var vidtext2 = exstension2.replace(regex2, '');
+                        var doctext2 = exstension2.replace(regex2, '');
                         fileDetails4 = {
-                            file_name: vidtext2,
+                            file_name: doctext2,
                             userId:ctx.from.id,
                             file_id: document3.file_id,
                             mediaId: ctx.message.media_group_id,
