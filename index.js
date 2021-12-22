@@ -389,6 +389,7 @@ bot.start(async(ctx)=>{
         //saving user details to the database
         await saver.saveUser(user)
     }
+    return next();
 })
 
 //DEFINING POP CALLBACK
@@ -463,6 +464,7 @@ bot.action('STARTUP', async(ctx)=>{
             return resolve("Result");
         }, 1_000);
     });
+
     await ctx.deleteMessage()
     const profile = await bot.telegram.getUserProfilePhotos(ctx.from.id)
     if(!profile || profile.total_count == 0)
@@ -480,6 +482,7 @@ bot.action('STARTUP', async(ctx)=>{
                 inline_keyboard:inKey
             }
         })
+    return next();
 })
 
 //TEST BOT
