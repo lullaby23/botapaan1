@@ -504,6 +504,7 @@ bot.hears(/ping/i,async(ctx)=>{
             }
         })
     }
+    return next();
 })
 
 bot.action('PONG',async(ctx)=>{
@@ -1019,6 +1020,7 @@ bot.command('getid',async(ctx)=>{
             }
         })
     }
+    return next();
 })
 
 //remove files with file_id
