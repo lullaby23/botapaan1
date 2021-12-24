@@ -1811,7 +1811,7 @@ bot.on('video', async(ctx, next) => {
                 }
             }else{
                 var tag = `✔️ Group save`;
-                var mediaId2 = `\n\nhttps://t.me/${process.env.BOTUSERNAME}?start=grp_${ctx.message.media_group_id}`;
+                var mediaId2 = `\nhttps://t.me/${process.env.BOTUSERNAME}?start=grp_${ctx.message.media_group_id}`;
                 if(video.file_name == undefined){
                     var file_name2 = `${today2(ctx)}`;
                     if(ctx.message.caption == undefined){
