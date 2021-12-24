@@ -136,7 +136,7 @@ bot.start(async(ctx, next)=>{
                         }
                     })
             }else{
-                if (query.indexOf('grp_') > -1){
+                if(query.indexOf('grp_') > -1){
                     let query1 = query.replace('grp_','');
                     try{
                         const res1 = await saver.getFile1(query1)
@@ -145,13 +145,12 @@ bot.start(async(ctx, next)=>{
                             const data = res1[index];
                             mediagroup.push({type: data.type, media: data.file_id, caption: data.caption, parse_mode:'HTML'});
                         }
-                    
+                        await ctx.deleteMessage()
                         async function captionFunction() {
                             return await ctx.reply(`${captionbuild(ctx)}`,{
                                 parse_mode:'HTML'
                             })
                         }
-                        await ctx.deleteMessage()
                         await ctx.telegram.sendMediaGroup(ctx.chat.id, mediagroup);
                         setTimeout(captionFunction, 1000)
                     }catch(error){
