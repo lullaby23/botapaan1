@@ -146,12 +146,12 @@ bot.start(async(ctx, next)=>{
                             mediagroup.push({type: data.type, media: data.file_id, caption: data.caption, parse_mode:'HTML'});
                         }
 
-                        await ctx.deleteMessage()
                         async function captionFunction() {
                             return await ctx.reply(`${captionbuild(ctx)}`,{
                                 parse_mode:'HTML'
                             })
                         }
+                        await ctx.deleteMessage()
                         await ctx.telegram.sendMediaGroup(ctx.chat.id, mediagroup);
                         setTimeout(captionFunction, 1000)
                     }catch(error){
@@ -278,7 +278,6 @@ bot.start(async(ctx, next)=>{
                                         mediagroup.push({type: data.type, media: data.file_id, caption: data.caption, parse_mode:'HTML'});
                                     }
                                 
-                                    await ctx.deleteMessage()
                                     async function captionFunction() {
                                         return await ctx.reply(`${captionbuild(ctx)}`,{
                                             parse_mode:'HTML'
@@ -293,6 +292,7 @@ bot.start(async(ctx, next)=>{
                                                 await ctx.reply(`${messagebanned(ctx)}`)
                                             }
                                         }else{
+                                            await ctx.deleteMessage()
                                             await ctx.telegram.sendMediaGroup(ctx.chat.id, mediagroup);
                                             setTimeout(captionFunction, 1000)
                                         }
@@ -1154,11 +1154,11 @@ bot.command('remgrp', async(ctx, next) => {
         msg = ctx.message.text
         let msgArray = msg.split(' ')
         msgArray.shift()
-        let text = msgArray.join(' ')
-        console.log(text);
+        let media = msgArray.join(' ')
+        console.log(media);
         if(ctx.from.id == process.env.ADMIN || ctx.from.id == process.env.ADMIN1 || ctx.from.id == process.env.ADMIN2){
             await ctx.deleteMessage()
-            saver.removeFileMedia(text)
+            saver.removeFileMedia(media)
             await ctx.reply('❌ Media group deleted successfully')
         }
     }
