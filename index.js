@@ -1785,7 +1785,7 @@ bot.on('video', async(ctx, next) => {
 
     if(ctx.chat.type == 'private') {
         if(ctx.from.id == process.env.ADMIN || ctx.from.id == process.env.ADMIN1 || ctx.from.id == process.env.ADMIN2){
-            video2 = ctx.message.video
+            video = ctx.message.video
 
             if(ctx.message.media_group_id == undefined){
                 var tag = `✔️ Video save`;
