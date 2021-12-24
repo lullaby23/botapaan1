@@ -155,7 +155,7 @@ bot.start(async(ctx, next)=>{
                         await ctx.telegram.sendMediaGroup(ctx.chat.id, mediagroup);
                         setTimeout(captionFunction, 1000)
                     }catch(error){
-                        await ctx.deleteMessage()
+                        //await ctx.deleteMessage()
                         await ctx.reply(`Media not found or has been removed.`)
                     }
                 }else{
