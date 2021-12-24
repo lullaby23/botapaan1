@@ -1397,7 +1397,7 @@ bot.on('document', async(ctx, next) => {
                 }
             }else{
                 var tag = `✔️ Group save`;
-                var mediaId = `\nMedia ID${ctx.message.media_group_id}`;
+                var mediaId = `\n<b>Media ID</b>: ${ctx.message.media_group_id}`;
                 var mediaId2 = `\nhttps://t.me/${process.env.BOTUSERNAME}?start=grp_${ctx.message.media_group_id}`;
                 if(document.file_name == undefined){
                     var file_name2 = `${today2(ctx)}`;
@@ -1506,7 +1506,7 @@ bot.on('document', async(ctx, next) => {
                     }
                 }else{
                     var tag = `✔️ Group save`;
-                    var mediaId = `\nMedia ID${ctx.message.media_group_id}`;
+                    var mediaId = `\n<b>Media ID</b>: ${ctx.message.media_group_id}`;
                     var mediaId2 = `\nhttps://t.me/${process.env.BOTUSERNAME}?start=grp_${ctx.message.media_group_id}`;
                     if(document.file_name == undefined){
                         var file_name2 = `${today2(ctx)}`;
@@ -1609,7 +1609,7 @@ bot.on('video', async(ctx, next) => {
                 }
             }else{
                 var tag = `✔️ Group save`;
-                var mediaId = `\nMedia ID${ctx.message.media_group_id}`;
+                var mediaId = `\n<b>Media ID</b>: ${ctx.message.media_group_id}`;
                 var mediaId2 = `\nhttps://t.me/${process.env.BOTUSERNAME}?start=grp_${ctx.message.media_group_id}`;
                 if(video.file_name == undefined){
                     var file_name2 = `${today2(ctx)}`;
@@ -1718,7 +1718,7 @@ bot.on('video', async(ctx, next) => {
                     }
                 }else{
                     var tag = `✔️ Group save`;
-                    var mediaId = `\nMedia ID${ctx.message.media_group_id}`;
+                    var mediaId = `\n<b>Media ID</b>: ${ctx.message.media_group_id}`;
                     var mediaId2 = `\nhttps://t.me/${process.env.BOTUSERNAME}?start=grp_${ctx.message.media_group_id}`;
                     if(video.file_name == undefined){
                         var file_name2 = `${today2(ctx)}`;
@@ -1821,7 +1821,7 @@ bot.on('photo', async(ctx, next) => {
                 }
             }else{
                 var tag = `✔️ Group save`;
-                var mediaId = `\nMedia ID${ctx.message.media_group_id}`;
+                var mediaId = `\n<b>Media ID</b>: ${ctx.message.media_group_id}`;
                 var mediaId2 = `\nhttps://t.me/${process.env.BOTUSERNAME}?start=grp_${ctx.message.media_group_id}`;
                 if(photo.file_name == undefined){
                     var file_name2 = `${today2(ctx)}`;
@@ -1930,7 +1930,7 @@ bot.on('photo', async(ctx, next) => {
                     }
                 }else{
                     var tag = `✔️ Group save`;
-                    var mediaId = `\nMedia ID${ctx.message.media_group_id}`;
+                    var mediaId = `\n<b>Media ID</b>: ${ctx.message.media_group_id}`;
                     var mediaId2 = `\nhttps://t.me/${process.env.BOTUSERNAME}?start=grp_${ctx.message.media_group_id}`;
                     if(photo.file_name == undefined){
                         var file_name2 = `${today2(ctx)}`;
