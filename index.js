@@ -1840,7 +1840,7 @@ bot.on('video', async(ctx, next) => {
                         reply_to_message_id: ctx.message.message_id
                     })
                 }else{
-                    await ctx.reply(`${tag} \n<b>Nama file:</b> ${file_name2}\n<b>Size:</b> ${video.file_size} B\n<b>ID file:</b> ${video.file_unique_id} ${mediaId2}`,{
+                    await ctx.reply(`${tag} \n<b>Nama file:</b> ${file_name2}\n<b>Size:</b> ${video.file_size} B\n<b>ID file:</b> ${video.file_unique_id} \n\nhttps://t.me/${process.env.BOTUSERNAME}?start=${video.file_unique_id} ${mediaId2}`,{
                         parse_mode: 'HTML',
                         disable_web_page_preview: true,
                         reply_to_message_id: ctx.message.message_id
