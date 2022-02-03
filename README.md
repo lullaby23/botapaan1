@@ -23,9 +23,9 @@ Detail yang diperlukan.</br>
     mongodb+srv://login:password@bot.qnbbq.mongodb.net/database?retryWrites=true&w=majority
 
 <code>LOG_CHANNEL</code> - buat saluran pribadi dan dapatkan ID saluran (jika Anda tidak dapat meneruskan ID saluran apa pun dari saluran ke @getidsbot itu mungkin terlihat seperti -1001234567899).
-<hr>
 
 <code>Info:</code> - Admin diambil dari akses grup/channel yang akan dijadikan tempat log media.
+<hr>
 
 <h2>Berikut adalah beberapa perintah dan penggunaan admin.</h2>
 
