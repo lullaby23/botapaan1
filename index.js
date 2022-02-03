@@ -1107,58 +1107,6 @@ bot.command('remall', async(ctx) => {
     
 })
 
-bot.command('sendchat',async(ctx)=>{
-    
-    const groupDetails = await saver.getGroup().then(async res=>{
-        const n = res.length
-        const groupId = []
-        for (let i = n-1; i >=0; i--) {
-            groupId.push(res[i].groupId)
-        }
-        async function sendchat() {
-            for (const group of groupId) {
-                var memberstatus = await bot.telegram.getChatMember(group, ctx.from.id)
-                //console.log(memberstatus);
-
-                if(memberstatus.status == 'creator' || memberstatus.status == 'administrator'){
-                    await ctx.deleteMessage()
-                    const str = ctx.message.text;
-                    const words = str.split(/ +/g);
-                    const command = words.shift().slice(1);
-                    const userId = words.shift();
-                    const caption = words.join(" ");
-                    await ctx.reply('Sent!',{
-                        reply_to_message_id: ctx.message.message_id
-                    })
-                    return await bot.telegram.sendMessage(userId, `${caption}`)
-                }
-            }
-        }
-
-        if(ctx.chat.type == 'private') {
-            var botStatus = await bot.telegram.getChatMember(process.env.LOG_CHANNEL, ctx.botInfo.id)
-            var member = await bot.telegram.getChatMember(process.env.LOG_CHANNEL, ctx.from.id)
-            //console.log(member);
-            if(member.status == 'creator' || member.status == 'administrator'){
-                await ctx.deleteMessage()
-                const str = ctx.message.text;
-                const words = str.split(/ +/g);
-                const command = words.shift().slice(1);
-                const userId = words.shift();
-                const caption = words.join(" ");
-                await ctx.reply('Sent!',{
-                    reply_to_message_id: ctx.message.message_id
-                })
-
-                return await bot.telegram.sendMessage(userId, `${caption}`)
-            }
-
-            sendchat()
-        }
-    })
-    
-})
-
 //broadcasting message to bot users(from last joined to first)
 bot.command('broadcast',async(ctx)=>{
 
