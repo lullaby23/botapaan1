@@ -16,7 +16,6 @@ Klik di sini untuk menonton cara meng-host
 Detail yang diperlukan.</br>
 <code>TOKEN</code> - Dapatkan Token bot dari bot father.</br>
 <code>DOMAIN</code> - Sama dengan nama aplikasi yang Anda masukkan di Heroku.</br>
-<code>ADMIN</code> - ID Akun Anda (jika Anda tidak dapat menemukannya menggunakan bot seperti @getmyid_bot). <b>Jika ada tambahan ADMIN1 dan ADMIN2 tulis sesuai contoh yang ada di config Heroku dan tinggal kasih angka di belakangnya</b></br>
 <code>botUSERNAME</code> - Nama pengguna bot Anda tanpa '@'.</br>
 <code>DB_URL</code> - Buat akun di https://www.mongodb.com/cloud/atlas , nama database - RatuMediaFile ,nama collection - RatuFileBackup.Klik Connect dan pilih 'Hubungkan aplikasi Anda'.copy tautan dan ganti "< password >" dengan kata sandi pengguna yang memiliki akses ke DB dan ganti "myFirstDatabase" untuk "RatuMediaFile". Kalau mau ubah sesuai keinginan nama databasenya ada di folder config.</br>
 <b>Tautan DB_URL</b>
@@ -25,6 +24,8 @@ Detail yang diperlukan.</br>
 
 <code>LOG_CHANNEL</code> - buat saluran pribadi dan dapatkan ID saluran (jika Anda tidak dapat meneruskan ID saluran apa pun dari saluran ke @getidsbot itu mungkin terlihat seperti -1001234567899).
 <hr>
+
+<code>Info:</code> - Admin diambil dari akses grup/channel yang akan dijadikan tempat log media.
 
 <h2>Berikut adalah beberapa perintah dan penggunaan admin.</h2>
 
