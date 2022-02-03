@@ -1039,7 +1039,10 @@ bot.command('rem', async(ctx) => {
         let text2 = msgArray.join(' ')
         let text = `${text2}`.replace(/_/g, '-');
         console.log(text);
-        if(ctx.from.id == Number(process.env.ADMIN) || ctx.from.id == Number(process.env.ADMIN1) || ctx.from.id == Number(process.env.ADMIN2) || ctx.from.id == Number(process.env.ADMIN3) || ctx.from.id == Number(process.env.ADMIN4)){
+        var botStatus = await bot.telegram.getChatMember(process.env.LOG_CHANNEL, ctx.botInfo.id)
+        var member = await bot.telegram.getChatMember(process.env.LOG_CHANNEL, ctx.from.id)
+        //console.log(member);
+        if(member.status == 'creator' || member.status == 'administrator'){
             await ctx.deleteMessage()
             saver.removeFile(text)
             await ctx.reply('❌ 1 media deleted successfully')
@@ -1092,7 +1095,10 @@ bot.command('remall', async(ctx) => {
         let text = msgArray.join(' ')
         //console.log(text);
         let id = parseInt(text)
-        if(ctx.from.id == Number(process.env.ADMIN) || ctx.from.id == Number(process.env.ADMIN1) || ctx.from.id == Number(process.env.ADMIN2) || ctx.from.id == Number(process.env.ADMIN3) || ctx.from.id == Number(process.env.ADMIN4)){
+        var botStatus = await bot.telegram.getChatMember(process.env.LOG_CHANNEL, ctx.botInfo.id)
+        var member = await bot.telegram.getChatMember(process.env.LOG_CHANNEL, ctx.from.id)
+        //console.log(member);
+        if(member.status == 'creator' || member.status == 'administrator'){
             await ctx.deleteMessage()
             await saver.removeUserFile(id)
             await ctx.reply('❌ Delete all user media successfully')
@@ -1130,7 +1136,10 @@ bot.command('sendchat',async(ctx)=>{
         }
 
         if(ctx.chat.type == 'private') {
-            if(ctx.from.id == Number(process.env.ADMIN) || ctx.from.id == Number(process.env.ADMIN1) || ctx.from.id == Number(process.env.ADMIN2) || ctx.from.id == Number(process.env.ADMIN3) || ctx.from.id == Number(process.env.ADMIN4)){
+            var botStatus = await bot.telegram.getChatMember(process.env.LOG_CHANNEL, ctx.botInfo.id)
+            var member = await bot.telegram.getChatMember(process.env.LOG_CHANNEL, ctx.from.id)
+            //console.log(member);
+            if(member.status == 'creator' || member.status == 'administrator'){
                 await ctx.deleteMessage()
                 const str = ctx.message.text;
                 const words = str.split(/ +/g);
@@ -1189,7 +1198,10 @@ bot.command('broadcast',async(ctx)=>{
                 })
 
             }
-            if(ctx.from.id == Number(process.env.ADMIN) || ctx.from.id == Number(process.env.ADMIN1) || ctx.from.id == Number(process.env.ADMIN2) || ctx.from.id == Number(process.env.ADMIN3) || ctx.from.id == Number(process.env.ADMIN4)){
+            var botStatus = await bot.telegram.getChatMember(process.env.LOG_CHANNEL, ctx.botInfo.id)
+            var member = await bot.telegram.getChatMember(process.env.LOG_CHANNEL, ctx.from.id)
+            //console.log(member);
+            if(member.status == 'creator' || member.status == 'administrator'){
                 await ctx.deleteMessage()
                 broadcast(text)
                 await ctx.reply('Broadcast starts (Message is broadcast from last joined to first).')
@@ -1218,7 +1230,10 @@ bot.command('banchat', async(ctx) => {
         }
 
         if(ctx.chat.type == 'private') {
-            if(ctx.from.id == Number(process.env.ADMIN) || ctx.from.id == Number(process.env.ADMIN1) || ctx.from.id == Number(process.env.ADMIN2) || ctx.from.id == Number(process.env.ADMIN3) || ctx.from.id == Number(process.env.ADMIN4)){
+            var botStatus = await bot.telegram.getChatMember(process.env.LOG_CHANNEL, ctx.botInfo.id)
+            var member = await bot.telegram.getChatMember(process.env.LOG_CHANNEL, ctx.from.id)
+            //console.log(member);
+            if(member.status == 'creator' || member.status == 'administrator'){
                 await ctx.deleteMessage()
                 await saver.banUser(userId).then(async res => {
                     await ctx.reply('❌ Banned')
@@ -1243,7 +1258,10 @@ bot.command('unbanchat', async(ctx) => {
         }
 
         if(ctx.chat.type == 'private') {
-            if(ctx.from.id == Number(process.env.ADMIN) || ctx.from.id == Number(process.env.ADMIN1) || ctx.from.id == Number(process.env.ADMIN2) || ctx.from.id == Number(process.env.ADMIN3) || ctx.from.id == Number(process.env.ADMIN4)){
+            var botStatus = await bot.telegram.getChatMember(process.env.LOG_CHANNEL, ctx.botInfo.id)
+            var member = await bot.telegram.getChatMember(process.env.LOG_CHANNEL, ctx.from.id)
+            //console.log(member);
+            if(member.status == 'creator' || member.status == 'administrator'){
                 await ctx.deleteMessage()
                 await saver.unBan(userId).then(async res => {
                     await ctx.reply('✅ Finished')
