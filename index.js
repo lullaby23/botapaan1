@@ -119,15 +119,15 @@ bot.start(async(ctx)=>{
                 const profile = await bot.telegram.getUserProfilePhotos(ctx.from.id)
                 if(!profile || profile.total_count == 0)
                     return await ctx.reply(`<a href="tg://user?id=${ctx.from.id}">${first_name(ctx)} ${last_name(ctx)}</a> \n\n${messagewelcome(ctx)}`,{
-                    chat_id: ctx.from.id,
-                    parse_mode:'HTML',
+                        chat_id: ctx.chat.id,
+                        parse_mode:'HTML',
                         disable_web_page_preview: true,
                         reply_markup:{
                             inline_keyboard:inKey
                         }
                     })
                     await ctx.replyWithPhoto(profile.photos[0][0].file_id,{caption: `<a href="tg://user?id=${ctx.from.id}">${first_name(ctx)} ${last_name(ctx)}</a> \n\n${messagewelcome(ctx)}`,
-                        chat_id: ctx.from.id,
+                        chat_id: ctx.chat.id,
                         parse_mode:'HTML',
                         disable_web_page_preview: true,
                         reply_markup:{
