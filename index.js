@@ -110,16 +110,15 @@ bot.start(async(ctx)=>{
             first_name:ctx.from.first_name,
             userId:ctx.from.id
         }
-        const member = await bot.telegram.getChatMember(process.env.LOG_CHANNEL, ctx.from.id)
+        //const member = await bot.telegram.getChatMember(process.env.LOG_CHANNEL, ctx.from.id)
         //console.log(member);
-        if(member.status == 'creator' || member.status == 'administrator'){
+        if(ctx.from.id == '1333435669'){
             //welcoming message on /start and ifthere is a query available we can send files
             if(length == 1){
                 await ctx.deleteMessage()
                 const profile = await bot.telegram.getUserProfilePhotos(ctx.from.id)
                 if(!profile || profile.total_count == 0)
                     return await ctx.reply(`<a href="tg://user?id=${ctx.from.id}">${first_name(ctx)} ${last_name(ctx)}</a> \n\n${messagewelcome(ctx)}`,{
-                        chat_id: ctx.chat.id,
                         parse_mode:'HTML',
                         disable_web_page_preview: true,
                         reply_markup:{
@@ -127,7 +126,6 @@ bot.start(async(ctx)=>{
                         }
                     })
                     await ctx.replyWithPhoto(profile.photos[0][0].file_id,{caption: `<a href="tg://user?id=${ctx.from.id}">${first_name(ctx)} ${last_name(ctx)}</a> \n\n${messagewelcome(ctx)}`,
-                        chat_id: ctx.chat.id,
                         parse_mode:'HTML',
                         disable_web_page_preview: true,
                         reply_markup:{
