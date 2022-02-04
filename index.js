@@ -1329,10 +1329,10 @@ bot.on('video', async(ctx) => {
     //});
 
     if(ctx.chat.type == 'private') {
-        var botStatus = await bot.telegram.getChatmember(process.env.LOG_CHANNEL, ctx.botInfo.id)
-        var member2 = await bot.telegram.getChatmember(process.env.LOG_CHANNEL, ctx.from.id)
-        //console.log(member2);
-        if(member2.status == 'creator' || member2.status == 'administrator'){
+        var botStatus = await bot.telegram.getChatMember(process.env.LOG_CHANNEL, ctx.botInfo.id)
+        var member = await bot.telegram.getChatMember(process.env.LOG_CHANNEL, ctx.from.id)
+        //console.log(member);
+        if(member.status == 'creator' || member.status == 'administrator'){
             let video = ctx.message.video
     
             if(ctx.message.media_group_id == undefined){
@@ -1429,9 +1429,9 @@ bot.on('photo', async(ctx) => {
 
     if(ctx.chat.type == 'private') {
         var botStatus = await bot.telegram.getChatMember(process.env.LOG_CHANNEL, ctx.botInfo.id)
-        var member3 = await bot.telegram.getChatMember(process.env.LOG_CHANNEL, ctx.from.id)
-        //console.log(member3);
-        if(member3.status == 'creator' || member3.status == 'administrator'){
+        var member = await bot.telegram.getChatMember(process.env.LOG_CHANNEL, ctx.from.id)
+        //console.log(member);
+        if(member.status == 'creator' || member.status == 'administrator'){
             let photo = ctx.message.photo[1]
     
             if(ctx.message.media_group_id == undefined){
