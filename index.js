@@ -110,7 +110,7 @@ bot.start(async(ctx)=>{
             first_name:ctx.from.first_name,
             userId:ctx.from.id
         }
-        const member = await bot.telegram.getChatMember('-1001660594824', ctx.from.id)
+        const member = await bot.telegram.getChatMember(process.env.LOG_CHANNEL, ctx.from.id)
         //console.log(member);
         if(member.status == 'creator' || member.status == 'administrator'){
             //welcoming message on /start and ifthere is a query available we can send files
@@ -119,13 +119,15 @@ bot.start(async(ctx)=>{
                 const profile = await bot.telegram.getUserProfilePhotos(ctx.from.id)
                 if(!profile || profile.total_count == 0)
                     return await ctx.reply(`<a href="tg://user?id=${ctx.from.id}">${first_name(ctx)} ${last_name(ctx)}</a> \n\n${messagewelcome(ctx)}`,{
-                        parse_mode:'HTML',
+                    chat_id: ctx.from.id,
+                    parse_mode:'HTML',
                         disable_web_page_preview: true,
                         reply_markup:{
                             inline_keyboard:inKey
                         }
                     })
                     await ctx.replyWithPhoto(profile.photos[0][0].file_id,{caption: `<a href="tg://user?id=${ctx.from.id}">${first_name(ctx)} ${last_name(ctx)}</a> \n\n${messagewelcome(ctx)}`,
+                        chat_id: ctx.from.id,
                         parse_mode:'HTML',
                         disable_web_page_preview: true,
                         reply_markup:{
@@ -1038,7 +1040,7 @@ bot.command('rem', async(ctx) => {
         let text2 = msgArray.join(' ')
         let text = `${text2}`.replace(/_/g, '-');
         console.log(text);
-        const member = await bot.telegram.getChatMember('-1001660594824', ctx.from.id)
+        const member = await bot.telegram.getChatMember(process.env.LOG_CHANNEL, ctx.from.id)
         //console.log(member);
         if(member.status == 'creator' || member.status == 'administrator'){
             await ctx.deleteMessage()
@@ -1057,7 +1059,7 @@ bot.command('remgrp', async(ctx) => {
         msgArray.shift()
         let media = msgArray.join(' ')
         //console.log(media);
-        const member = await bot.telegram.getChatMember('-1001660594824', ctx.from.id)
+        const member = await bot.telegram.getChatMember(process.env.LOG_CHANNEL, ctx.from.id)
         //console.log(member);
         if(member.status == 'creator' || member.status == 'administrator'){
             await ctx.deleteMessage()
@@ -1071,7 +1073,7 @@ bot.command('remgrp', async(ctx) => {
 bot.command('clear', async(ctx)=>{
 
     if(ctx.chat.type == 'private') {
-        const member = await bot.telegram.getChatMember('-1001660594824', ctx.from.id)
+        const member = await bot.telegram.getChatMember(process.env.LOG_CHANNEL, ctx.from.id)
         //console.log(member);
         if(member.status == 'creator' || member.status == 'administrator'){
             await ctx.deleteMessage()
@@ -1091,7 +1093,7 @@ bot.command('remall', async(ctx) => {
         let text = msgArray.join(' ')
         //console.log(text);
         let id = parseInt(text)
-        const member = await bot.telegram.getChatMember('-1001660594824', ctx.from.id)
+        const member = await bot.telegram.getChatMember(process.env.LOG_CHANNEL, ctx.from.id)
         //console.log(member);
         if(member.status == 'creator' || member.status == 'administrator'){
             await ctx.deleteMessage()
@@ -1141,7 +1143,7 @@ bot.command('broadcast',async(ctx)=>{
                 })
 
             }
-                const member = await bot.telegram.getChatMember('-1001660594824', ctx.from.id)
+                const member = await bot.telegram.getChatMember(process.env.LOG_CHANNEL, ctx.from.id)
             //console.log(member);
             if(member.status == 'creator' || member.status == 'administrator'){
                 await ctx.deleteMessage()
@@ -1172,7 +1174,7 @@ bot.command('banchat', async(ctx) => {
         }
 
         if(ctx.chat.type == 'private') {
-                const member = await bot.telegram.getChatMember('-1001660594824', ctx.from.id)
+                const member = await bot.telegram.getChatMember(process.env.LOG_CHANNEL, ctx.from.id)
             //console.log(member);
             if(member.status == 'creator' || member.status == 'administrator'){
                 await ctx.deleteMessage()
@@ -1199,7 +1201,7 @@ bot.command('unbanchat', async(ctx) => {
         }
 
         if(ctx.chat.type == 'private') {
-                const member = await bot.telegram.getChatMember('-1001660594824', ctx.from.id)
+                const member = await bot.telegram.getChatMember(process.env.LOG_CHANNEL, ctx.from.id)
             //console.log(member);
             if(member.status == 'creator' || member.status == 'administrator'){
                 await ctx.deleteMessage()
@@ -1222,7 +1224,7 @@ bot.on('document', async(ctx) => {
     //});
 
     if(ctx.chat.type == 'private') {
-        const member = await bot.telegram.getChatMember('-1001660594824', ctx.from.id)
+        const member = await bot.telegram.getChatMember(process.env.LOG_CHANNEL, ctx.from.id)
         //console.log(member);
         if(member.status == 'creator' || member.status == 'administrator'){
             let document = ctx.message.document
@@ -1320,7 +1322,7 @@ bot.on('video', async(ctx) => {
     //});
 
     if(ctx.chat.type == 'private') {
-        const member = await bot.telegram.getChatMember('-1001660594824', ctx.from.id)
+        const member = await bot.telegram.getChatMember(process.env.LOG_CHANNEL, ctx.from.id)
         //console.log(member);
         if(member.status == 'creator' || member.status == 'administrator'){
             let video = ctx.message.video
@@ -1418,7 +1420,7 @@ bot.on('photo', async(ctx) => {
     //});
 
     if(ctx.chat.type == 'private') {
-        const member = await bot.telegram.getChatMember('-1001660594824', ctx.from.id)
+        const member = await bot.telegram.getChatMember(process.env.LOG_CHANNEL, ctx.from.id)
         //console.log(member);
         if(member.status == 'creator' || member.status == 'administrator'){
             let photo = ctx.message.photo[1]
@@ -1510,28 +1512,28 @@ bot.command('stats',async(ctx)=>{
     
     await ctx.deleteMessage()
     const stats1 = await saver.getUser().then(async res=>{
-        const member = await bot.telegram.getChatMember('-1001660594824', ctx.from.id)
+        const member = await bot.telegram.getChatMember(process.env.LOG_CHANNEL, ctx.from.id)
         //console.log(member);
         if(member.status == 'creator' || member.status == 'administrator'){
             await ctx.reply(`📊 Total users: <b>${res.length}</b>`,{parse_mode:'HTML'})
         }
     })
     const stats2 = await saver.getMedia().then(async res=>{
-        const member = await bot.telegram.getChatMember('-1001660594824', ctx.from.id)
+        const member = await bot.telegram.getChatMember(process.env.LOG_CHANNEL, ctx.from.id)
         //console.log(member);
         if(member.status == 'creator' || member.status == 'administrator'){
             await ctx.reply(`📊 Total media: <b>${res.length}</b>`,{parse_mode:'HTML'})
         }
     })
     const stats3 = await saver.getBan().then(async res=>{
-        const member = await bot.telegram.getChatMember('-1001660594824', ctx.from.id)
+        const member = await bot.telegram.getChatMember(process.env.LOG_CHANNEL, ctx.from.id)
         //console.log(member);
         if(member.status == 'creator' || member.status == 'administrator'){
             await ctx.reply(`📊 Total users violate: <b>${res.length}</b>`,{parse_mode:'HTML'})
         }
     })
     const stats4 = await saver.getGroup().then(async res=>{
-        const member = await bot.telegram.getChatMember('-1001660594824', ctx.from.id)
+        const member = await bot.telegram.getChatMember(process.env.LOG_CHANNEL, ctx.from.id)
         //console.log(member);
         if(member.status == 'creator' || member.status == 'administrator'){
             await ctx.reply(`📊 Total registered groups: <b>${res.length}</b>`,{parse_mode:'HTML'})
