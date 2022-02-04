@@ -112,7 +112,7 @@ bot.start(async(ctx)=>{
         }
         const member = await bot.telegram.getChatMember(process.env.LOG_CHANNEL, ctx.from.id)
         //console.log(member);
-        if(member.ctx.chat.id == '1333435669'){
+        if(member.user.id == '1333435669'){
             //welcoming message on /start and ifthere is a query available we can send files
             if(length == 1){
                 await ctx.deleteMessage()
