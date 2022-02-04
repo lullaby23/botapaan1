@@ -24,7 +24,7 @@ Detail yang diperlukan.</br>
 
 <code>LOG_CHANNEL</code> - buat saluran pribadi dan dapatkan ID saluran (jika Anda tidak dapat meneruskan ID saluran apa pun dari saluran ke @getidsbot itu mungkin terlihat seperti -1001234567899).
 
-<code>Info:</code> - Admin diambil dari akses grup/channel yang akan dijadikan tempat log media.
+<code>Info:</code> - Admin diambil dari akses grup/channel yang akan dijadikan tempat log media. Jika menggunakan channel fitur <b>SIGN MESSAGE</b> harus aktif. Tidak boleh ada admin Anonymous.
 <hr>
 
 <h2>Berikut adalah beberapa perintah dan penggunaan admin.</h2>
