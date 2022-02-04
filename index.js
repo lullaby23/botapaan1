@@ -1314,6 +1314,7 @@ bot.on('document', async(ctx) => {
                     await saver.saveFile(fileDetails1)
                 }
             })
+        }else{
         }
     }
     return next();
@@ -1413,6 +1414,7 @@ bot.on('video', async(ctx) => {
                     await saver.saveFile(fileDetails1)
                 }
             })
+        }else{
         }
     }
     return next();
@@ -1512,6 +1514,7 @@ bot.on('photo', async(ctx) => {
                     await saver.saveFile(fileDetails1)
                 }
             })
+        }else{
         }
     }
     return next();
