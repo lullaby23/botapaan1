@@ -1559,6 +1559,6 @@ domain = `${process.env.DOMAIN}.herokuapp.com`
 bot.launch({
     webhook:{
        domain:domain,
-        port:Number('3000') 
+        port:Number(process.env.PORT) 
     }
 })
