@@ -1329,6 +1329,7 @@ bot.on('video', async(ctx) => {
         //console.log(memberaccess);
         if(memberaccess.status == 'creator' || memberaccess.status == 'administrator'){
             let video = ctx.message.video
+            const uniqueId = uniqueId
     
             if(ctx.message.media_group_id == undefined){
                 var tag = `✔️ Video save`;
@@ -1378,21 +1379,21 @@ bot.on('video', async(ctx) => {
                 }
             }
 
-            await saver.checkFile(`${video.file_unique_id}`).then(async res => {
+            await saver.checkFile(`${uniqueId}`).then(async res => {
                 //console.log(res);
                 if(res == true) {
                     await ctx.reply(`File already exists.`,{
                         reply_to_message_id: ctx.message.message_id
                     })
                 }else{
-                    await ctx.reply(`${tag} \n<b>Name file:</b> ${file_name2}\n<b>Size:</b> ${video.file_size} B\n<b>File ID:</b> ${video.file_unique_id} ${mediaId} \n\nhttps://t.me/${process.env.BOTUSERNAME}?start=${video.file_unique_id} ${mediaId2}`,{
+                    await ctx.reply(`${tag} \n<b>Name file:</b> ${file_name2}\n<b>Size:</b> ${video.file_size} B\n<b>File ID:</b> ${uniqueId} ${mediaId} \n\nhttps://t.me/${process.env.BOTUSERNAME}?start=${uniqueId} ${mediaId2}`,{
                         parse_mode: 'HTML',
                         disable_web_page_preview: true,
                         reply_to_message_id: ctx.message.message_id
                     })
                     await ctx.replyWithVideo(video.file_id, {
                         chat_id: logchannel,
-                        caption: `${tag} \n<b>From:</b> ${ctx.from.id}\n<b>Name:</b> <a href="tg://user?id=${ctx.from.id}">${first_name(ctx)} ${last_name(ctx)}</a>\n\n<b>Name file:</b> ${file_name2}\n<b>Size:</b> ${video.file_size} B\n<b>File ID:</b> ${video.file_unique_id} ${mediaId} \n\nhttps://t.me/${process.env.BOTUSERNAME}?start=${video.file_unique_id} ${mediaId2} ${caption2}`,
+                        caption: `${tag} \n<b>From:</b> ${ctx.from.id}\n<b>Name:</b> <a href="tg://user?id=${ctx.from.id}">${first_name(ctx)} ${last_name(ctx)}</a>\n\n<b>Name file:</b> ${file_name2}\n<b>Size:</b> ${video.file_size} B\n<b>File ID:</b> ${uniqueId} ${mediaId} \n\nhttps://t.me/${process.env.BOTUSERNAME}?start=${uniqueId} ${mediaId2} ${caption2}`,
                         parse_mode:'HTML'
                     })
                     let fileDetails1 = {
@@ -1402,7 +1403,7 @@ bot.on('video', async(ctx) => {
                         mediaId: ctx.message.media_group_id,
                         caption: ctx.message.caption,
                         file_size: video.file_size,
-                        uniqueId: video.file_unique_id,
+                        uniqueId: uniqueId,
                         type: 'video'
                     }
                     await saver.saveFile(fileDetails1)
