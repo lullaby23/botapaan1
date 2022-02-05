@@ -1329,7 +1329,7 @@ bot.on('video', async(ctx) => {
         //console.log(memberaccess);
         if(memberaccess.status == 'creator' || memberaccess.status == 'administrator'){
             let video = ctx.message.video
-            const uniqueId = uniqueId
+            const uniqueId = video.file_unique_id
     
             if(ctx.message.media_group_id == undefined){
                 var tag = `✔️ Video save`;
