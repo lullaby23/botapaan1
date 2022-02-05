@@ -23,8 +23,8 @@ Detail yang diperlukan.</br>
     mongodb+srv://login:password@bot.qnbbq.mongodb.net/database?retryWrites=true&w=majority
 
 <code>LOG_CHANNEL</code> - buat saluran pribadi dan dapatkan ID saluran (jika Anda tidak dapat meneruskan ID saluran apa pun dari saluran ke @getidsbot itu mungkin terlihat seperti -1001234567899).
+<code>ADMIN</code> - ID Akun Anda (jika Anda tidak dapat menemukannya menggunakan bot seperti @getmyid_bot). <b>Jika ada tambahan ADMIN1 dan ADMIN2 tulis sesuai contoh yang ada di config Heroku dan tinggal kasih angka di belakangnya</b></br>
 
-<code>Info:</code> - Admin diambil dari akses grup/channel yang akan dijadikan tempat log media. Jika menggunakan channel fitur <b>SIGN MESSAGE</b> harus aktif. Tidak boleh ada admin Anonymous.
 <hr>
 
 <h2>Berikut adalah beberapa perintah dan penggunaan admin.</h2>
@@ -80,9 +80,6 @@ Anda dapat menghapus file 4 cara.</br>
 <b>Jika Anda ingin mendukung saya, ikuti saya di GitHub sebagai dukungan.</b>
 
 //Update
-
-HISTORY 12
-1. Admin digantikan dengan log grup/channel media.
 
 HISTORY 11
 1. Penambahan woker untuk mengatasi Heroku tertidur.

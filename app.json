@@ -21,6 +21,10 @@
             "description": "Masukkan nama pengguna bot Anda tanpa @ dan harus huruf kecil",
             "value":""
         },
+        "ADMIN":{
+            "description": "Masukkan id Admin",
+            "value":""
+        },
         "LOG_CHANNEL":{
             "description": "Buat saluran pribadi dan masukkan id saluran untuk memantau file dan mendapatkan data pengguna dan file",
             "value":""
