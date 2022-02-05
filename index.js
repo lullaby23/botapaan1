@@ -206,6 +206,7 @@ bot.start(async(ctx)=>{
         }else{
             try {
                 
+                var member = await bot.telegram.getChatMember(channelId, ctx.from.id)
                 //console.log(member);
                 if(member.status == 'restricted' || member.status == 'left' || member.status == 'kicked'){
                     const profile2 = await bot.telegram.getUserProfilePhotos(ctx.from.id)
