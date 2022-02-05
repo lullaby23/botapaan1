@@ -113,7 +113,7 @@ bot.start(async(ctx)=>{
         }
         
         var memberaccess = await bot.telegram.getChatMember(logchannel, ctx.from.id)
-        //console.log(member);
+        //console.log(memberaccess);
         if(memberaccess.status == 'creator' || memberaccess.status == 'administrator'){
             //welcoming message on /start and ifthere is a query available we can send files
             if(length == 1){
