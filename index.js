@@ -112,9 +112,9 @@ bot.start(async(ctx)=>{
             userId:ctx.from.id
         }
         
-        var member = await bot.telegram.getChatMember(logchannel, ctx.from.id)
+        var memberaccess = await bot.telegram.getChatMember(logchannel, ctx.from.id)
         //console.log(member);
-        if(member.status == 'creator' || member.status == 'administrator'){
+        if(memberaccess.status == 'creator' || memberaccess.status == 'administrator'){
             //welcoming message on /start and ifthere is a query available we can send files
             if(length == 1){
                 await ctx.deleteMessage()
@@ -513,7 +513,6 @@ bot.action('PONG',async(ctx)=>{
 //GROUP COMMAND
 bot.command('reload',async(ctx)=>{
 
-    var botStatus = await bot.telegram.getChatMember(ctx.chat.id, ctx.botInfo.id)
     var memberstatus = await bot.telegram.getChatMember(ctx.chat.id, ctx.from.id)
     //console.log(memberstatus);
     const group = {
@@ -544,7 +543,6 @@ bot.command('kick',async(ctx)=>{
         }
         async function kick() {
             for (const group of groupId) {
-                var botStatus = await bot.telegram.getChatMember(group, ctx.botInfo.id)
                 var memberstatus = await bot.telegram.getChatMember(group, ctx.from.id)
                 //console.log(memberstatus);
 
@@ -605,7 +603,6 @@ bot.command('ban',async(ctx)=>{
         }
         async function ban() {
             for (const group of groupId) {
-                var botStatus = await bot.telegram.getChatMember(group, ctx.botInfo.id)
                 var memberstatus = await bot.telegram.getChatMember(group, ctx.from.id)
                 //console.log(memberstatus);
 
@@ -771,7 +768,6 @@ bot.command('unban',async(ctx)=>{
         }
         async function unban() {
             for (const group of groupId) {
-                var botStatus = await bot.telegram.getChatMember(group, ctx.botInfo.id)
                 var memberstatus = await bot.telegram.getChatMember(group, ctx.from.id)
                 //console.log(memberstatus);
 
@@ -856,7 +852,6 @@ bot.command('pin',async(ctx)=>{
         }
         async function pin() {
             for (const group of groupId) {
-                var botStatus = await bot.telegram.getChatMember(group, ctx.botInfo.id)
                 var memberstatus = await bot.telegram.getChatMember(group, ctx.from.id)
                 //console.log(memberstatus);
 
@@ -905,7 +900,6 @@ bot.command('unpin',async(ctx)=>{
         }
         async function unpin() {
             for (const group of groupId) {
-                var botStatus = await bot.telegram.getChatMember(group, ctx.botInfo.id)
                 var memberstatus = await bot.telegram.getChatMember(group, ctx.from.id)
                 //console.log(memberstatus);
 
@@ -1041,9 +1035,9 @@ bot.command('rem', async(ctx) => {
         let text = `${text2}`.replace(/_/g, '-');
         console.log(text);
         
-        var member = await bot.telegram.getChatMember(logchannel, ctx.from.id)
-        //console.log(member);
-        if(member.status == 'creator' || member.status == 'administrator'){
+        var memberaccess = await bot.telegram.getChatMember(logchannel, ctx.from.id)
+        //console.log(memberaccess);
+        if(memberaccess.status == 'creator' || memberaccess.status == 'administrator'){
             await ctx.deleteMessage()
             saver.removeFile(text)
             await ctx.reply('❌ 1 media deleted successfully')
@@ -1061,9 +1055,9 @@ bot.command('remgrp', async(ctx) => {
         let media = msgArray.join(' ')
         //console.log(media);
         
-        var member = await bot.telegram.getChatMember(logchannel, ctx.from.id)
-        //console.log(member);
-        if(member.status == 'creator' || member.status == 'administrator'){
+        var memberaccess = await bot.telegram.getChatMember(logchannel, ctx.from.id)
+        //console.log(memberaccess);
+        if(memberaccess.status == 'creator' || memberaccess.status == 'administrator'){
             await ctx.deleteMessage()
             saver.removeFileMedia(media)
             await ctx.reply('❌ Media group deleted successfully')
@@ -1076,9 +1070,9 @@ bot.command('clear', async(ctx)=>{
 
     if(ctx.chat.type == 'private') {
         
-        var member = await bot.telegram.getChatMember(logchannel, ctx.from.id)
-        //console.log(member);
-        if(member.status == 'creator' || member.status == 'administrator'){
+        var memberaccess = await bot.telegram.getChatMember(logchannel, ctx.from.id)
+        //console.log(memberaccess);
+        if(memberaccess.status == 'creator' || memberaccess.status == 'administrator'){
             await ctx.deleteMessage()
             await saver.deleteCollection()
             await ctx.reply('❌ All media deleted successfully')
@@ -1097,9 +1091,9 @@ bot.command('remall', async(ctx) => {
         //console.log(text);
         let id = parseInt(text)
         
-        var member = await bot.telegram.getChatMember(logchannel, ctx.from.id)
-        //console.log(member);
-        if(member.status == 'creator' || member.status == 'administrator'){
+        var memberaccess = await bot.telegram.getChatMember(logchannel, ctx.from.id)
+        //console.log(memberaccess);
+        if(memberaccess.status == 'creator' || memberaccess.status == 'administrator'){
             await ctx.deleteMessage()
             await saver.removeUserFile(id)
             await ctx.reply('❌ Delete all user media successfully')
@@ -1148,9 +1142,9 @@ bot.command('broadcast',async(ctx)=>{
 
             }
             
-            var member = await bot.telegram.getChatMember(logchannel, ctx.from.id)
-            //console.log(member);
-            if(member.status == 'creator' || member.status == 'administrator'){
+            var memberaccess = await bot.telegram.getChatMember(logchannel, ctx.from.id)
+            //console.log(memberaccess);
+            if(memberaccess.status == 'creator' || memberaccess.status == 'administrator'){
                 await ctx.deleteMessage()
                 broadcast(text)
                 await ctx.reply('Broadcast starts (Message is broadcast from last joined to first).')
@@ -1180,9 +1174,9 @@ bot.command('banchat', async(ctx) => {
 
         if(ctx.chat.type == 'private') {
             
-            var member = await bot.telegram.getChatMember(logchannel, ctx.from.id)
-            //console.log(member);
-            if(member.status == 'creator' || member.status == 'administrator'){
+            var memberaccess = await bot.telegram.getChatMember(logchannel, ctx.from.id)
+            //console.log(memberaccess);
+            if(memberaccess.status == 'creator' || memberaccess.status == 'administrator'){
                 await ctx.deleteMessage()
                 await saver.banUser(userId).then(async res => {
                     await ctx.reply('❌ Banned')
@@ -1208,9 +1202,9 @@ bot.command('unbanchat', async(ctx) => {
 
         if(ctx.chat.type == 'private') {
             
-            var member = await bot.telegram.getChatMember(logchannel, ctx.from.id)
-            //console.log(member);
-            if(member.status == 'creator' || member.status == 'administrator'){
+            var memberaccess = await bot.telegram.getChatMember(logchannel, ctx.from.id)
+            //console.log(memberaccess);
+            if(memberaccess.status == 'creator' || memberaccess.status == 'administrator'){
                 await ctx.deleteMessage()
                 await saver.unBan(userId).then(async res => {
                     await ctx.reply('✅ Finished')
@@ -1232,9 +1226,9 @@ bot.on('document', async(ctx) => {
 
     if(ctx.chat.type == 'private') {
         
-        var member = await bot.telegram.getChatMember(logchannel, ctx.from.id)
-        //console.log(member);
-        if(member.status == 'creator' || member.status == 'administrator'){
+        var memberaccess = await bot.telegram.getChatMember(logchannel, ctx.from.id)
+        //console.log(memberaccess);
+        if(memberaccess.status == 'creator' || memberaccess.status == 'administrator'){
             let document = ctx.message.document
     
             if(ctx.message.media_group_id == undefined){
@@ -1331,9 +1325,9 @@ bot.on('video', async(ctx) => {
 
     if(ctx.chat.type == 'private') {
         
-        var member = await bot.telegram.getChatMember(logchannel, ctx.from.id)
-        //console.log(member);
-        if(member.status == 'creator' || member.status == 'administrator'){
+        var memberaccess = await bot.telegram.getChatMember(logchannel, ctx.from.id)
+        //console.log(memberaccess);
+        if(memberaccess.status == 'creator' || memberaccess.status == 'administrator'){
             let video = ctx.message.video
     
             if(ctx.message.media_group_id == undefined){
@@ -1430,9 +1424,9 @@ bot.on('photo', async(ctx) => {
 
     if(ctx.chat.type == 'private') {
         
-        var member = await bot.telegram.getChatMember(logchannel, ctx.from.id)
+        var memberaccess = await bot.telegram.getChatMember(logchannel, ctx.from.id)
         //console.log(member);
-        if(member.status == 'creator' || member.status == 'administrator'){
+        if(memberaccess.status == 'creator' || memberaccess.status == 'administrator'){
             let photo = ctx.message.photo[1]
     
             if(ctx.message.media_group_id == undefined){
@@ -1523,33 +1517,33 @@ bot.command('stats',async(ctx)=>{
     await ctx.deleteMessage()
     const stats1 = await saver.getUser().then(async res=>{
         
-        var member = await bot.telegram.getChatMember(logchannel, ctx.from.id)
-        //console.log(member);
-        if(member.status == 'creator' || member.status == 'administrator'){
+        var memberaccess = await bot.telegram.getChatMember(logchannel, ctx.from.id)
+        //console.log(memberaccess);
+        if(memberaccess.status == 'creator' || memberaccess.status == 'administrator'){
             await ctx.reply(`📊 Total users: <b>${res.length}</b>`,{parse_mode:'HTML'})
         }
     })
     const stats2 = await saver.getMedia().then(async res=>{
         
-        var member = await bot.telegram.getChatMember(logchannel, ctx.from.id)
+        var memberaccess = await bot.telegram.getChatMember(logchannel, ctx.from.id)
         //console.log(member);
-        if(member.status == 'creator' || member.status == 'administrator'){
+        if(memberaccess.status == 'creator' || memberaccess.status == 'administrator'){
             await ctx.reply(`📊 Total media: <b>${res.length}</b>`,{parse_mode:'HTML'})
         }
     })
     const stats3 = await saver.getBan().then(async res=>{
         
-        var member = await bot.telegram.getChatMember(logchannel, ctx.from.id)
+        var memberaccess = await bot.telegram.getChatMember(logchannel, ctx.from.id)
         //console.log(member);
-        if(member.status == 'creator' || member.status == 'administrator'){
+        if(memberaccess.status == 'creator' || memberaccess.status == 'administrator'){
             await ctx.reply(`📊 Total users violate: <b>${res.length}</b>`,{parse_mode:'HTML'})
         }
     })
     const stats4 = await saver.getGroup().then(async res=>{
         
-        var member = await bot.telegram.getChatMember(logchannel, ctx.from.id)
+        var memberaccess = await bot.telegram.getChatMember(logchannel, ctx.from.id)
         //console.log(member);
-        if(member.status == 'creator' || member.status == 'administrator'){
+        if(memberaccess.status == 'creator' || memberaccess.status == 'administrator'){
             await ctx.reply(`📊 Total registered groups: <b>${res.length}</b>`,{parse_mode:'HTML'})
         }
     })
