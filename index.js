@@ -86,6 +86,11 @@ const url4 = url2[1];
 
 // inline keyboard
 const inKey = [
+    [{text:'📎 Tautan',callback_data:'POP'}],
+
+    [{text:'📚 Dokumentasi',callback_data:'DOC'},{text:'🆘 Bantuan',callback_data:'HELP'}],
+
+    [{text:'💿 Source code',callback_data:'SRC'}],
         [{text: `${url3}`, url: `${url4}`}]
 ];
 
